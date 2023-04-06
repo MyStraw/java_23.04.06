@@ -1,6 +1,6 @@
 package chapter5;
 
-public class mission_1 {
+public class mission_1 { // 클래스
 
 	public void matrix() { // 메소드 선언
 
