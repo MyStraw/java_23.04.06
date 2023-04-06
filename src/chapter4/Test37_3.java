@@ -12,7 +12,7 @@ public class Test37_3 {
 		int min = score[0];
 
 		for (int i = 1; i < score.length; i++) { // i=1인게 위에서 sum에서 score[0] =90을 미리
-			//계산했기 때문에 i=0을 이미 위에서 한 셈이다. 언급하면서 i=0을 동시에
+			//계산했기 때문에 i=0을 이미 위에서 한 셈이다. 언급하면서 i=0을 동시에 한거네.
 			sum += score[i];
 			if (max < score[i])
 				max = score[i];
