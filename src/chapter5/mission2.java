@@ -26,6 +26,7 @@ public class mission2 {
 		}
 		for (int k : arr) {
 			System.out.println(k);
+			System.out.println(k);
 		}
 	}
 }
