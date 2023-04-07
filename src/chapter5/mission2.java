@@ -24,9 +24,9 @@ public class mission2 {
 				// System.out.println(year); // arr 안쓰면 이걸로
 			}
 		}
-		for (int k : arr) {
+		for (int k : arr) { //arr에 자리배치된 애들을 하나씩 k에 반복
 			System.out.println(k);
-			System.out.println(k);
+			
 		}
 	}
 }

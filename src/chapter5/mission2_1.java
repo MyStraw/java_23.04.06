@@ -18,7 +18,9 @@ public class mission2_1 {
 			if (year % 100 != 0) {
 				arr[find] = year;
 				find += 1;
-			} else if (year % 100 == 0 && year % 400 == 0) {
+			} else if (year % 100 == 0 && year % 400 == 0) { //year % 100은 필요없네?
+				//앞에 if에서 100년으로 나눠 떨어지지 않으면, else if로 조건문 넘어가니까
+				//이미 100년으로 나눠 떨어진 애들이 여기로 온거.
 				arr[find] = year;
 				find += 1; // 위랑 아래 순서 바뀌면 2028부터 시작함.
 			}
