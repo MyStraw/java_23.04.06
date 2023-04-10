@@ -16,7 +16,7 @@ public class Student { // 이건 파일 한개로 한 화면에 전부. 아래�
 	String city; // 주소 도시
 
 	public String toString() {
-		return "sid = " + sid + "snmae = " + sname + "city = " + city;
+		return "sid = " + sid + " snmae = " + sname + " city = " + city;
 	}
 
 	void showStudent() {
@@ -33,10 +33,9 @@ public class Student { // 이건 파일 한개로 한 화면에 전부. 아래�
 	}
 
 	public Student(int sid) {
-		sid = 0;
+		this.sid=sid;
 		sname = null;
 		city = null;
-
 	}
 
 	public Student(int sid, String sname) {
@@ -52,7 +51,6 @@ public class Student { // 이건 파일 한개로 한 화면에 전부. 아래�
 
 	static void showNumberObjects() {// 생성된 객체수를 출력한다.
 		System.out.println(countStudents);
-
 	}
 
 	// 생성자 구현한다.
@@ -66,10 +64,9 @@ public class Student { // 이건 파일 한개로 한 화면에 전부. 아래�
 		arry[2] = new Student(202302, "Hong");
 		arry[3] = new Student(202303, "Lee", "Busan");
 		arry[4] = new Student(202304, "Na", "jeju");
-
 		Student.showNumberObjects();
 	
-	 for () {
+	 for (int i = 0;i<5;i++) {
 		 arry[i].showStudent();//생성된 객체 모두를 출력한다.
 	 }
 	}

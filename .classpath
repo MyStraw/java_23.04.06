@@ -5,6 +5,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="prac/CountTest.java" kind="src" path="src"/>
+	<classpathentry excluding="prac/CountTest.java|com/ruby/java/ch06/TestStudent.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
