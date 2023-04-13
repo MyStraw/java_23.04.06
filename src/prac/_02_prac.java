@@ -1,7 +1,6 @@
 package prac;
 
-public class _02_prac {		
-
+public class _02_prac {
 
 	public static void main(String[] args) {
 		int sumEvens = 0;
