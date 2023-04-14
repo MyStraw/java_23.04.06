@@ -31,8 +31,11 @@ public class 객체배열외부클래스 { // 객체배열에선 밖에 있었�
 		sdata[2] = my.new Student(2021, "lee");
 		sdata[3] = my.new Student(2020, "park");
 		sdata[4] = my.new Student(2019, "choi");
+		if(sdata[0]==sdata[1]) {}
+		if(sdata[0].equals(sdata[1]) == true) {}
 		for (int i = 0; i < 5; i++) {
 			sdata[i].show();
+			System.out.println("::" + sdata[i].toString());
 
 		}
 
