@@ -5,6 +5,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java" kind="src" path="src"/>
+	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java|chapter9/MyObject.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
