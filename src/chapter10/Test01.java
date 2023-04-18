@@ -87,4 +87,4 @@ public class Test01 {
 //		}
 //		eset[4] = new Employee("choi", 11, 130, 50, 'A', "bhhong@go.kr"); // 이걸2번째에 넣고싶다~ 위에 2 넣으면 기존이날라가.
 // 	}
-}
+} //깃허브 다시 덮어쓰기
