@@ -32,7 +32,5 @@ public class _4_10_평균 {
 		avg = sum / N;
 
 		System.out.println(avg);
-
 	}
-
 }
