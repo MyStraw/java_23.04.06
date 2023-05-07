@@ -2,7 +2,7 @@ package study;
 
 import java.util.Scanner;
 
-public class _4_9_바구니뒤집기 {
+public class _4_9_바구니뒤집기교정 {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
