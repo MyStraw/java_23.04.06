@@ -64,7 +64,7 @@ public class _01정수배열이진탐색 {
 
 		System.out.println();
 		if (result != -1) {
-			System.out.println("원하는 값 " + key + "는(은) 인덱스 " + result + "("+ (result +1) +"번째)"+ "에 있습니다.");
+			System.out.println("원하는 값 " + key + "는(은) 인덱스 " + result + "(" + (result + 1) + "번째)" + "에 있습니다.");
 		} else {
 			System.out.println("원하는 값 " + key + "를(을) 찾지 못했습니다.");
 		}
@@ -75,7 +75,7 @@ public class _01정수배열이진탐색 {
 		int left = 0;
 		int right = data.length - 1;
 
-		while (left <= right) {
+		do {
 			int mid = (left + right) / 2;
 
 			if (data[mid] == key) {
@@ -85,7 +85,7 @@ public class _01정수배열이진탐색 {
 			} else {
 				right = mid - 1;
 			}
-		}
+		} while (left <= right);
 
 		return -1;
 	}
