@@ -1,47 +1,46 @@
 package _스터디;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class _5월13일스터디_두용액_이진검색 {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		int n = sc.nextInt();
-		int[] N = new int[n];
-		
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] N = new int[n];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        		
 		int sol1 = 0;
 		int sol2 = 0;
-		int solution = 0;
-		for (int i = 0; i < n; i++) {
-			solution = sc.nextInt();
-			N[i] = solution;
+		
+		for (int i = 0; i < n; i++) {			
+			N[i] = Integer.parseInt(st.nextToken());
 		}
 
 		Arrays.sort(N); // 이거쓰면 sortData 2중포문도, swap도 쓸필요가 없어진다.
 
-		System.out.print(sol1 + " ");
-		System.out.println(sol2);
-	}
-
-	private static int binSearch(int[] N, int key) {
 		int left = 0;
 		int right = N.length - 1;
 		int sum = 2_000_000_000;
 
-		do {
-			int mid = (left + right) / 2;
-
+		while (left < right) {
 			if (sum > Math.abs(N[left] + N[right])) {
-				sum = N[left] + N[right];
-			} else if (N[mid] < key) {
-				left ++;
+				sum = Math.abs(N[left] + N[right]);
+				sol1 = N[left];
+				sol2 = N[right];
+			} else if (0 > N[left] + N[right]) {
+				left++;
 			} else {
-				right = mid - 1;
+				right--;
 			}
-		} while (left <= right);
+		}
 
-		return -1;
+		System.out.print(sol1 + " ");
+		System.out.println(sol2);
+
 	}
 
 }
