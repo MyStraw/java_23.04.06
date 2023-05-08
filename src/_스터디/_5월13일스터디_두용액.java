@@ -25,7 +25,6 @@ public class _5월13일스터디_두용액 {
 				if (sum == Math.abs(N[i] + N[j])) {
 					sol1 = N[i];
 					sol2 = N[j];
-
 				}
 			}
 		}
