@@ -1,4 +1,4 @@
-package Chap3_검색알고리즘;
+package Chap3_검색알고리즘연습;
 //1. 난수생성
 
 //2. 정렬
