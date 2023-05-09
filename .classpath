@@ -5,6 +5,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java|chapter9/MyObject.java|chapter10/Test06.java|chapter10/Test11.java|chapter14/Test06.java|Chap3_검색알고리즘/Fruit객체배열이진탐색_Test.java" kind="src" path="src"/>
+	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java|chapter9/MyObject.java|chapter10/Test06.java|chapter10/Test11.java|chapter14/Test06.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
