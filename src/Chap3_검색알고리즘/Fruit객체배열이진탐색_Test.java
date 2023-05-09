@@ -28,6 +28,7 @@ public class Fruit객체배열이진탐색_Test {
 
 		System.out.println("정렬전 객체 배열: ");
 		showData(arr);
+		
 		Arrays.sort(arr, (a, b) -> a.getPrice() - b.getPrice()); // Fruit에 compareTo()가 있어도 람다식 우선 적용
 		System.out.println("람다식 정렬(가격)후 객체 배열: ");
 		showData(arr);
