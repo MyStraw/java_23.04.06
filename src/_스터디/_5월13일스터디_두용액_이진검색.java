@@ -9,14 +9,14 @@ import java.util.StringTokenizer;
 public class _5월13일스터디_두용액_이진검색 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int[] N = new int[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        		
+		int n = Integer.parseInt(br.readLine());
+		int[] N = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
 		int sol1 = 0;
 		int sol2 = 0;
-		
-		for (int i = 0; i < n; i++) {			
+
+		for (int i = 0; i < n; i++) {
 			N[i] = Integer.parseInt(st.nextToken());
 		}
 
@@ -31,7 +31,8 @@ public class _5월13일스터디_두용액_이진검색 {
 				sum = Math.abs(N[left] + N[right]);
 				sol1 = N[left];
 				sol2 = N[right];
-			} else if (0 > N[left] + N[right]) {
+			}
+			if (0 > N[left] + N[right]) {
 				left++;
 			} else {
 				right--;

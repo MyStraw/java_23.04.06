@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class _5월13일스터디_탑 {
+public class _5월13일스터디_탑2 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,27 +19,25 @@ public class _5월13일스터디_탑 {
 		st = new StringTokenizer(br.readLine());
 
 		int[] arr = new int[N];
-		
-		
+		int[] copy = new int[N];
+
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		
-		
 
 		for (int i = arr.length - 1; i >= 0; i--) {
 			for (int j = i - 1; j >= 0; j--) {
 				if (arr[i] <= arr[j]) {
-					arr[i] = j + 1;
+					copy[i] = j + 1;
 					break;
 				} else {
-					arr[i] = 0;
+					copy[i] = 0;
 				}
 			}
 		}
-		arr[0] = 0;
+		copy[0] = 0;
 
-		for (int top : arr) {
+		for (int top : copy) {
 			bw.write(top + " ");
 		}
 		br.close();
