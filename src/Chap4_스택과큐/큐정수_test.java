@@ -6,6 +6,8 @@ import java.util.Scanner;
 //int형 고정 길이 큐
 
 class Queue {
+	public Queue(int i) {		
+	}
 	private List<Integer> que;
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
