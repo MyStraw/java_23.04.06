@@ -115,7 +115,7 @@ class Point {
 
 	@Override
 	public String toString() {
-		return "Point [x=" + x + ", y=" + y + "]"; //x,y 컴마컴마니까~
+		return "Point [x=" + x + ", y=" + y + "]"; //x,y 컴마컴이니까~
 	}
 
 	@Override

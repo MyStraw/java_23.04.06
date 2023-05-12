@@ -6,15 +6,26 @@ import java.util.Scanner;
 //int형 고정 길이 큐
 
 class Queue {
-	public Queue(int i) {		
+	
+	public Queue(int i) {
 	}
 	private List<Integer> que;
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
 	private int num; // 현재 데이터 개수
+	
+	
+    public class EmptyIntQueueException extends RuntimeException {
+        public EmptyIntQueueException() { }
+    }
+    
+    public class OverflowIntQueueException extends RuntimeException {
+        public OverflowIntQueueException() { }
+    }
 
 }
+
 
 
 //int형 고정 길이 큐의 사용 예
