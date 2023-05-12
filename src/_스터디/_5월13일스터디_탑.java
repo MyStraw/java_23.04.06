@@ -19,13 +19,10 @@ public class _5월13일스터디_탑 {
 		st = new StringTokenizer(br.readLine());
 
 		int[] arr = new int[N];
-		
-		
+
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		
-		
 
 		for (int i = arr.length - 1; i >= 0; i--) {
 			for (int j = i - 1; j >= 0; j--) {

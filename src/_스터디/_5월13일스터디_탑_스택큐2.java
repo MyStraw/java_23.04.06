@@ -6,7 +6,7 @@ package _스터디;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class _5월13일스터디_탑_스택큐 {
+public class _5월13일스터디_탑_스택큐2 {
 
 	public static void main(String[] args) {
 
@@ -16,24 +16,22 @@ public class _5월13일스터디_탑_스택큐 {
 		Stack<Integer> st = new Stack<Integer>();
 		Stack<Integer> st2 = st;
 		int[] arr = new int[N];
-
+		int[] copy = new int[N];
+		int[] stack = new int[N];
 		int count = 0;
 
 		for (int i = 0; i < N; i++) {
 			int top = sc.nextInt();
 			st.push(top);
 		}
-
-		while (!st.empty()) { // for 문으로 해보자
-			try {
+		for (int i = 0; i < N; i++) {
+			if (!st.empty()) {
 				int pop = st.pop();
-
 				if (st.empty()) {
 					arr[N - count] = 0;
 					break;
 				}
 				int peek = st.peek();
-
 				if (peek < pop) {
 					count++;
 					arr[N - count] = N - count - 1;
@@ -41,14 +39,10 @@ public class _5월13일스터디_탑_스택큐 {
 					count++;
 					arr[N - count] = N - count;
 				}
-			} catch (Exception e) {
-
 			}
 		}
 		for (int top : arr) {
 			System.out.print(top + " ");
-
 		}
-
 	}
 }
