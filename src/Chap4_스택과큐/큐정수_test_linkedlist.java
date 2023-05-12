@@ -1,55 +1,55 @@
 package Chap4_스택과큐;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //int형 고정 길이 큐
-class EmptyQueueException extends RuntimeException {
-	public EmptyQueueException() {
+class EmptyIntQueueException extends RuntimeException {
+	public EmptyIntQueueException() {
 	}
 }
 
-class OverflowQueueException extends RuntimeException {
-	public OverflowQueueException() {
+class OverflowIntQueueException extends RuntimeException {
+	public OverflowIntQueueException() {
 	}
 }
 
 class Queue {
 
-	private int[] que;
+	private List<Integer> que;
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
 	private int num; // 현재 데이터 개수
 
 	// 생성자
-
+	
 	public Queue(int i) {
-
 		num = front = rear = 0;
 		capacity = i;
 		try {
-			que = new int[capacity]; // 큐 본체용 배열을 생성
+			que = new ArrayList<Integer>(); // 큐 본체용 배열을 생성
 		} catch (OutOfMemoryError e) { // 생성할 수 없음
 			capacity = 0;
 		}
 	}
 
 	// --- 큐에 데이터를 인큐 ---//
-	public int enque(int x) throws OverflowQueueException {
+	public int enque(int x) throws OverflowIntQueueException {
 		if (num >= capacity)
-			throw new OverflowQueueException(); // 큐가 가득 찼음
-		que[rear++] = x;
+			throw new OverflowIntQueueException(); // 큐가 가득 찼음
+		que[rear++] = x; // 데이터 추가
 		num++;
-		if (rear == capacity)
-			rear = 0;
+		rear = (rear + 1) % capacity; // rear를 증가시키고, capacity를 초과하면 0으로 초기화
 		return x;
 	}
 
 	// --- 큐에서 데이터를 디큐 ---//
-	public int deque() throws EmptyQueueException {
+	public int deque() throws EmptyIntQueueException {
 		if (num <= 0)
-			throw new EmptyQueueException(); // 큐가 비어있음
-		int x = que[front++];
+			throw new EmptyIntQueueException(); // 큐가 비어있음
+		int x = que.remove(front+1);
 		num--;
 		if (front == capacity)
 			front = 0;
@@ -57,10 +57,10 @@ class Queue {
 	}
 
 	// --- 큐에서 데이터를 피크(프런트 데이터를 들여다봄) ---//
-	public int peek() throws EmptyQueueException {
+	public int peek() throws EmptyIntQueueException {
 		if (num <= 0)
-			throw new EmptyQueueException(); // 큐가 비어있음
-		return que[front];
+			throw new EmptyIntQueueException(); // 큐가 비어있음
+		return que.get(front);
 	}
 
 	// --- 큐를 비움 ---//
@@ -112,7 +112,7 @@ class Queue {
 }
 
 //int형 고정 길이 큐의 사용 예
-public class 큐정수_test {
+public class 큐정수_test_linkedlist {
 
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
@@ -132,7 +132,6 @@ public class 큐정수_test {
 			case 1: // 인큐
 				System.out.print("데이터: ");
 				x = stdIn.nextInt();
-				System.out.println(x);
 				try {
 					s.enque(x);
 				} catch (OverflowQueueException e) {
