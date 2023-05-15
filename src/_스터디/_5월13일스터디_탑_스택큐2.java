@@ -31,7 +31,7 @@ public class _5월13일스터디_탑_스택큐2 {
 					arr[N - count] = 0;
 					break;
 				}
-				int peek = st.peek();
+				int peek = st.peek();				
 				if (peek < pop) {
 					count++;
 					arr[N - count] = N - count - 1;

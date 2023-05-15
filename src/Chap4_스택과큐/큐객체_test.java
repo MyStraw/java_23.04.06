@@ -6,13 +6,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 //int형 고정 길이 큐
-class EmptyQueueException extends RuntimeException {
-	public EmptyQueueException() { //위로빼면서 class로 해준거구나
+class EmptyGenericQueueException extends RuntimeException {
+	public EmptyGenericQueueException() { //위로빼면서 class로 해준거구나
 	}
 }
 
-class OverflowQueueException extends RuntimeException {
-	public OverflowQueueException() {
+class OverflowGenericQueueException extends RuntimeException {
+	public OverflowGenericQueueException() {
 	}
 }
 
@@ -36,9 +36,9 @@ class objectQueue {
 	}
 
 	// --- 큐에 데이터를 인큐 ---//
-	public int enque(Point x) throws OverflowQueueException {
+	public int enque(Point x) throws OverflowGenericQueueException {
 		if (num >= capacity)
-			throw new OverflowQueueException(); // 큐가 가득 찼음
+			throw new OverflowGenericQueueException(); // 큐가 가득 찼음
 		que.add(x);
 		num++;
 		if (rear == capacity)
@@ -47,10 +47,10 @@ class objectQueue {
 	}
 
 	// --- 큐에서 데이터를 디큐 ---//
-	public int deque() throws EmptyQueueException {
+	public Point deque() throws EmptyGenericQueueException {
 		if (num <= 0)
-			throw new EmptyQueueException(); // 큐가 비어있음
-		int x = que[front++];
+			throw new EmptyGenericQueueException(); // 큐가 비어있음
+		Point x = que.remove(front);
 		num--;
 		if (front == capacity)
 			front = 0;
@@ -58,10 +58,10 @@ class objectQueue {
 	}
 
 	// --- 큐에서 데이터를 피크(프런트 데이터를 들여다봄) ---//
-	public int peek() throws EmptyQueueException {
+	public Point peek() throws EmptyGenericQueueException {
 		if (num <= 0)
-			throw new EmptyQueueException(); // 큐가 비어있음
-		return que[front];
+			throw new EmptyGenericQueueException(); // 큐가 비어있음
+		return que.get(front);
 	}
 
 	// --- 큐를 비움 ---//
@@ -73,7 +73,7 @@ class objectQueue {
 	public int indexOf(int x) {
 		for (int i = 0; i < num; i++) {
 			int idx = (i + front) % capacity;
-			if (que[idx] == x) // 검색 성공
+			if (que.get(idx).equals(x)) // 검색 성공
 				return idx;
 		}
 		return -1; // 검색 실패
@@ -105,7 +105,7 @@ class objectQueue {
 			System.out.println("큐가 비어있습니다.");
 		else {
 			for (int i = 0; i < num; i++)
-				System.out.print(que[(i + front) % capacity] + " ");
+				System.out.print(que.get((i + front) % capacity).toString() + " ");
 			System.out.println();
 		}
 	}
@@ -139,7 +139,7 @@ public class 큐객체_test {
 				p = new Point(rndx, rndy);
 				try {
 					s.enque(p);
-				} catch (OverflowQueueException e) {
+				} catch (OverflowGenericQueueException e) {
 					System.out.println("stack이 가득찼있습니다.");
 				}
 				break;
@@ -148,7 +148,7 @@ public class 큐객체_test {
 				try {
 					p = s.deque();
 					System.out.println("디큐한 데이터는 " + p + "입니다.");
-				} catch (EmptyQueueException e) {
+				} catch (EmptyGenericQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;
@@ -157,7 +157,7 @@ public class 큐객체_test {
 				try {
 					p = s.peek();
 					System.out.println("피크한 데이터는 " + p + "입니다.");
-				} catch (EmptyQueueException e) {
+				} catch (EmptyGenericQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;

@@ -41,6 +41,10 @@ public class _5월13일스터디_탑 {
 		}
 		br.close();
 		bw.flush();
-		bw.close();
+		bw.close();	
 	}
 }
+
+//9
+
+//10 6 7 4 5 2 3 1 9

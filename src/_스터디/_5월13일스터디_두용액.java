@@ -19,16 +19,17 @@ public class _5월13일스터디_두용액 {
 
 		for (int i = 0; i < n - 1; i++) {
 			for (int j = i + 1; j < n; j++) {
-				if (sum > Math.abs(N[i] + N[j])) {
-					sum = Math.abs(N[i] + N[j]);
-				}
-				if (sum == Math.abs(N[i] + N[j])) {
+				if (sum > Math.abs(N[i] + N[j])) { 
+					sum= Math.abs(N[i] + N[j]);
 					sol1 = N[i];
 					sol2 = N[j];
-				}
+				}				
 			}
 		}
-		System.out.print(sol1 + " ");
-		System.out.println(sol2);
+		if(sol1<sol2)
+		System.out.print(sol1 + " " + sol2);
+		else 
+		System.out.println(sol2 + " " + sol1);
+		
 	}
 }

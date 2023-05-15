@@ -38,10 +38,7 @@ public class _5월13일스터디_두용액_이진검색 {
 				right--;
 			}
 		}
-
-		System.out.print(sol1 + " ");
-		System.out.println(sol2);
-
+		System.out.print(sol1 + " " + sol2);		
 	}
 
 }
