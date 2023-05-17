@@ -99,7 +99,7 @@ class RecurX2 {
 
 	static void recur(int n) {
 		IntStack s = new IntStack(n);
-		Stack<Integer> st = new Stack<>(); // 그냥 이거 이용
+	//	Stack<Integer> st = new Stack<>(); // 그냥 이거 이용
 
 		while (true) { // 추가
 			if (n > 0) {
