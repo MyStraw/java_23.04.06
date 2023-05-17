@@ -164,17 +164,21 @@ public class Chap5_Test_QueenEight_revised {
 	}
 
 	public static boolean checkRow(int[][] d, int crow) { // 가로 체크
-
+		for (int i = 0; i<d.length; i++)
+			if (d[i][crow] ==1)
+				return false;
 		return true;
 	}
 
 	public static boolean checkCol(int[][] d, int ccol) { // 세로 체크 (data, y=0)
-
+		for (int i = 0; i<d.length; i++)
+			if (d[ccol][i] ==1)
+				return false;
 		return true;
 	}
 
 	public static boolean checkDiagSW(int[][] d, int cx, int cy) { // 대각선 왼쪽아래 체크 x++, y-- or x--, y++ where 0<= x,y <=
-																	// 7
+																	
 
 		return true;
 	}
