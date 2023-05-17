@@ -15,9 +15,9 @@ class OverflowIntQueueException extends RuntimeException {
 	}
 }
 
-class Queue {
+class ArrayQueue {
 
-	private List<Integer> que;
+	private List<Integer> que; //어레이 리스트로 하면 추가는 add, 빼는건 remove
 	private int capacity; // 큐의 크기
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
@@ -25,7 +25,7 @@ class Queue {
 
 	// 생성자
 	
-	public Queue(int i) {
+	public ArrayQueue(int i) {
 		num = front = rear = 0;
 		capacity = i;
 		try {
@@ -39,9 +39,10 @@ class Queue {
 	public int enque(int x) throws OverflowIntQueueException {
 		if (num >= capacity)
 			throw new OverflowIntQueueException(); // 큐가 가득 찼음
-		que[rear++] = x; // 데이터 추가
+		que.add(x); // 데이터 추가
 		num++;
-		rear = (rear + 1) % capacity; // rear를 증가시키고, capacity를 초과하면 0으로 초기화
+		if (rear == capacity)
+			rear = 0; // rear를 증가시키고, capacity를 초과하면 0으로 초기화
 		return x;
 	}
 
@@ -49,7 +50,7 @@ class Queue {
 	public int deque() throws EmptyIntQueueException {
 		if (num <= 0)
 			throw new EmptyIntQueueException(); // 큐가 비어있음
-		int x = que.remove(front+1);
+		int x = que.remove(front);
 		num--;
 		if (front == capacity)
 			front = 0;
@@ -72,7 +73,7 @@ class Queue {
 	public int indexOf(int x) {
 		for (int i = 0; i < num; i++) {
 			int idx = (i + front) % capacity;
-			if (que[idx] == x) // 검색 성공
+			if (que.get(idx).equals(x)) // 검색 성공
 				return idx;
 		}
 		return -1; // 검색 실패
@@ -104,7 +105,7 @@ class Queue {
 			System.out.println("큐가 비어있습니다.");
 		else {
 			for (int i = 0; i < num; i++)
-				System.out.print(que[(i + front) % capacity] + " ");
+				System.out.print(que.get((i + front) % capacity).toString() + " ");
 			System.out.println();
 		}
 	}
@@ -112,11 +113,11 @@ class Queue {
 }
 
 //int형 고정 길이 큐의 사용 예
-public class 큐정수_test_linkedlist {
+public class 큐정수_test_ArrayList {
 
 	public static void main(String[] args) {
 		Scanner stdIn = new Scanner(System.in);
-		Queue s = new Queue(4); // 최대 64개를 인큐할 수 있는 큐
+		ArrayQueue s = new ArrayQueue(4); // 최대 64개를 인큐할 수 있는 큐
 
 		while (true) {
 			System.out.println(" "); // 메뉴 구분을 위한 빈 행 추가
@@ -134,7 +135,7 @@ public class 큐정수_test_linkedlist {
 				x = stdIn.nextInt();
 				try {
 					s.enque(x);
-				} catch (OverflowQueueException e) {
+				} catch (OverflowIntQueueException e) {
 					System.out.println("큐가 가득 찼습니다.");
 				}
 				break;
@@ -143,7 +144,7 @@ public class 큐정수_test_linkedlist {
 				try {
 					x = s.deque();
 					System.out.println("디큐한 데이터는 " + x + "입니다.");
-				} catch (EmptyQueueException e) {
+				} catch (EmptyIntQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;
@@ -152,7 +153,7 @@ public class 큐정수_test_linkedlist {
 				try {
 					x = s.peek();
 					System.out.println("피크한 데이터는 " + x + "입니다.");
-				} catch (EmptyQueueException e) {
+				} catch (EmptyIntQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;

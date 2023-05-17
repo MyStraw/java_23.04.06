@@ -126,8 +126,8 @@ public class 큐정수_test {
 			int menu = stdIn.nextInt();
 			if (menu == 0)
 				break;
-
 			int x;
+			
 			switch (menu) {
 			case 1: // 인큐
 				System.out.print("데이터: ");
