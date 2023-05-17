@@ -37,7 +37,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class _5월20일_뱀 {
+public class _5월20일_뱀 { //다시다시 point를 써보자. point에 해당하는 좌표가 Queue에 쌓일수 있게. 이게 낫겠다.
 
 	public static void main(String[] args) {
 
@@ -62,21 +62,23 @@ public class _5월20일_뱀 {
 		que.add(1);
 
 		int L = sc.nextInt();
+		
 		for (int i = 1; i < L; i++) {
 			int X = sc.nextInt();
 			String C = sc.next();
-
+			int swap = 0;
 			if (count != X && C != "L") {
 				que.add(1);
 				board[0][i][0] = que.peek();
 				board[0][i - 1][0] = que.poll();
 				count++;
+				swap = i;
 			} else if (C == "L") {
 				break;
 			} else if (C == "D") {
 				que.add(1);
-				board[i][i][0] = que.peek();
-				board[i][i][0] = que.poll();
+				board[i][swap][0] = que.peek();
+				board[i][swap][0] = que.poll();
 				count++;
 			}
 
