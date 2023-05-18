@@ -27,6 +27,7 @@ public class _5월20일_별찍기2 {
 	public static void main(String[] args) {
 
 		star();
+		
 
 	}
 

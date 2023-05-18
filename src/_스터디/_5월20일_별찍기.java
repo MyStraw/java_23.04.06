@@ -50,6 +50,7 @@ public class _5월20일_별찍기 {
 	public static void main(String[] args) {
 		
 		stars(N);
+		
 
 	}
 
