@@ -37,7 +37,7 @@ class Stack3 {
 		if (top >= capacity)
 			throw new OverflowGenericStackException();
 		data.add(x);
-		top++;
+		top ++;
 		return 1;
 
 	}
@@ -116,7 +116,7 @@ class Point {
 
 	@Override
 	public String toString() {
-		return "Point [x=" + x + ", y=" + y + "]"; // x,y 컴마컴이니까~
+		return "Point [x=" + x + ", y=" + y + "]"; //x,y 컴마컴이니까~
 	}
 
 	@Override
@@ -130,13 +130,12 @@ class Point {
 	}
 }
 
-public class Chap5_Test_QueenEight_revised {
+public class Chap5_Test_QueenEight_revised2 {
 	public static void SolveQueen(int[][] d) {
 		int count = 0, mode = 0;
 		int ix = 0, iy = 0;
-		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
-									// 좌표 갖고 있으니.
-		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
+		Stack3 st = new Stack3(10); //객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y 좌표 갖고 있으니. 
+		Point p = new Point(ix, iy); //포인트 객체 만들어서 push. 다 가져왔다.
 		Point px = (Point) p;
 		d[ix][iy] = 1;
 		count++; // 여왕을 놨다. 1개.
@@ -144,7 +143,7 @@ public class Chap5_Test_QueenEight_revised {
 		while (count < 8) {
 			ix++;
 			int cy = 0;
-			while (ix < d.length) {// 한칸씩 내려가면서 먼저 행을 먼저 잡고.
+			while (ix < d.length) {//한칸씩 내려가면서 먼저 행을 먼저 잡고.
 
 				while (cy < d[0].length) {
 
@@ -165,33 +164,54 @@ public class Chap5_Test_QueenEight_revised {
 	}
 
 	public static boolean checkRow(int[][] d, int crow) { // 가로 체크
-
+		for (int i = 0; i<d.length; i++)
+			if (d[i][crow] ==1)
+				return false;
 		return true;
 	}
 
 	public static boolean checkCol(int[][] d, int ccol) { // 세로 체크 (data, y=0)
-
+		for (int i = 0; i<d.length; i++)
+			if (d[ccol][i] ==1)
+				return false;
 		return true;
 	}
 
 	public static boolean checkDiagSW(int[][] d, int cx, int cy) { // 대각선 왼쪽아래 체크 x++, y-- or x--, y++ where 0<= x,y <=
+		while (cx < d.length && cy >= 0) {
+			if (d[cx][cy] == 1)
+				return false;
+			cx++;
+			cy--;
+		}											
 
 		return true;
 	}
 
 	public static boolean checkDiagSE(int[][] d, int cx, int cy) {// 대각선 오른족아래(south east) x++, y++ or x--, y--
-
+		while (cx < d.length && cy < d.length) {
+			if (d[cx][cy] == 1)
+				return false;
+			cx++;
+			cy++;
+		}
 		return true;
 	}
 
 	public static boolean CheckMove(int[][] d, int x, int y) {// (x,y)로 이동 가능한지를 check
-
+		return checkRow(d, x) && checkCol(d, y) && checkDiagSW(d, x, y) && checkDiagSE(d, x, y);
 	}
 
-	public static boolean NextMove(int[][] d, int row, int col) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우,
-																	// row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
-		return true;
-
+	public static boolean NextMove(int[][] d, int row) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우, row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
+		for (int col = 0; col < d.length; col++) {
+			if (CheckMove(d, row, col)) {
+				d[row][col] = 1;
+				if (row == d.length - 1 || NextMove(d, row + 1))
+					return true;
+				d[row][col] = 0;
+			}
+		}
+		return false;
 	}
 
 	public static void main(String[] args) {
