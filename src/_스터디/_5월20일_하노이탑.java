@@ -27,10 +27,11 @@ class _5월20일_하노이탑 {
 		System.out.println(hanoi(N));
 
 	}
-	
-	static int hanoi2(int n, int x, int y) {
-		return n;
+
+	static int hanoi2(int num, int x, int y) {
+		return num;
 		
 	}
+
 
 }
