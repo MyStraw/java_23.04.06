@@ -81,9 +81,6 @@ public class _5월20일_뱀 { //다시다시 point를 써보자. point에 해당
 				board[i][swap][0] = que.poll();
 				count++;
 			}
-
-		}
-		
+		}		
 	}
-
 }

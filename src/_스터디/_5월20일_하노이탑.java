@@ -29,6 +29,7 @@ class _5월20일_하노이탑 {
 	}
 	
 	static int hanoi2(int n, int x, int y) {
+		return n;
 		
 	}
 
