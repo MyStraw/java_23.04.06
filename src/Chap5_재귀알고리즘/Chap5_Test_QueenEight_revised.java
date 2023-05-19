@@ -116,7 +116,7 @@ class Point {
 
 	@Override
 	public String toString() {
-		return "Point [x=" + x + ", y=" + y + "]"; // x,y 컴마컴이니까~
+		return "(" + x + "," + y + ")"; // x,y 컴마컴이니까~
 	}
 
 	@Override
@@ -131,72 +131,127 @@ class Point {
 }
 
 public class Chap5_Test_QueenEight_revised {
+
+	static final int numberQueens = 4;
+
 	public static void SolveQueen(int[][] d) {
 		int count = 0, mode = 0;
 		int ix = 0, iy = 0;
 		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
 									// 좌표 갖고 있으니.
 		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
-		Point px = (Point) p;
 		d[ix][iy] = 1;
 		count++; // 여왕을 놨다. 1개.
 		st.push(p);
-		while (count < 8) {
+		while (count < numberQueens) {
 			ix++;
 			int cy = 0;
-			while (ix < d.length) {// 한칸씩 내려가면서 먼저 행을 먼저 잡고.
-
-				while (cy < d[0].length) {
-
+			while (ix < numberQueens) {// 한칸씩 내려가면서 먼저 행을 먼저 잡고.
+				cy = nextMove(d, ix, cy);
+				do {
+					if (cy == -1) {
+						p = st.pop();				
+						cy=mode+1;					
+					}					
+					Point px = new Point(ix, cy);
 					st.push(px);
+					st.dump();
 					count++;
+					d[ix][cy] = 1;
+					mode=cy;
+					
 					break;
-
-				}
-				if (cy != d[0].length) {
-					break;
-				} else {
-					p = st.pop();
-					count--;
-
-				}
+				}while (cy < numberQueens && cy>=0);				
 			}
 		}
 	}
 
 	public static boolean checkRow(int[][] d, int crow) { // 가로 체크
-
+		// 배열 d에서 crow에 Queen을 놓을수 있느냐?
+		for (int j = 0; j < numberQueens; j++)
+			if (d[crow][j] == 1)
+				return false; // 1이 있으면 퀸이 있단거니까.
 		return true;
 	}
 
 	public static boolean checkCol(int[][] d, int ccol) { // 세로 체크 (data, y=0)
-
+		// 배열 d에 ccol 열에 배치할 수 있느냐? 있다면 true로 리턴
+		for (int j = 0; j < numberQueens; j++)
+			if (d[j][ccol] == 1)
+				return false;
 		return true;
 	}
 
-	public static boolean checkDiagSW(int[][] d, int cx, int cy) { // 대각선 왼쪽아래 체크 x++, y-- or x--, y++ where 0<= x,y <=
-
+	public static boolean checkDiagSW(int[][] d, int x, int y) { // x++, y-- or x--, y++ where 0<= x,y <= 7
+		// 배열 d에 d[cx][cy]의 SW 대각선에 배치 가능하냐? while 문으로.
+		int cx = x, cy = y;
+		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+			cx++;
+			cy--;
+			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+				return false;
+		}
+		cx = x;
+		cy = y; // (반대쪽 대각선 보기위해 x,y값 초기화. 위에서 x,y 바꼈으니.)
+		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+			cx--;
+			cy++;
+			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+				return false;
+		}
 		return true;
 	}
 
-	public static boolean checkDiagSE(int[][] d, int cx, int cy) {// 대각선 오른족아래(south east) x++, y++ or x--, y--
-
+	public static boolean checkDiagSE(int[][] d, int x, int y) {// 대각선 오른족아래(south east) x++, y++ or x--, y--
+		int cx = x, cy = y;
+		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+			cx++;
+			cy++;
+			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+				return false;
+		}
+		cx = x;
+		cy = y; // (반대쪽 대각선 보기위해 x,y값 초기화. 위에서 x,y 바꼈으니.)
+		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+			cx--;
+			cy--;
+			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+				return false;
+		}
 		return true;
 	}
 
-	public static boolean CheckMove(int[][] d, int x, int y) {// (x,y)로 이동 가능한지를 check
-
+	public static boolean checkMove(int[][] d, int x, int y) {// (x,y)로 이동 가능한지를 check
+		if (checkRow(d, x) && checkCol(d, y) && checkDiagSW(d, x, y) && checkDiagSE(d, x, y))
+			return true;
+		else
+			return false;
 	}
 
-	public static boolean NextMove(int[][] d, int row, int col) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우,
-																	// row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
-		return true;
-
+	public static int nextMove(int[][] d, int row, int newcol) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우,
+		// 다음 넣을자리 // row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
+		for (int col = 0 ; col < numberQueens; col++) {
+			if (checkMove(d, row, col))
+				return col;
+		}
+		return -1;
 	}
+
+//	public static boolean nextMove(int[][] d, int row, int newCol) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이
+//																	// 있을경우,
+//		// 다음 넣을자리 // row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
+//		for (int col = 0; col < numberQueens; col++) {
+//			if (checkMove(d, row, col)) {
+//				newCol = col;
+//				return true;
+//			}
+//			
+//		}return false;
+//	}
 
 	public static void main(String[] args) {
-		int row = 8, col = 8;
-		int[][] data = new int[8][8];
+		int row = numberQueens, col = numberQueens;
+		int[][] data = new int[numberQueens][numberQueens];
 		for (int i = 0; i < data.length; i++)
 			for (int j = 0; j < data[0].length; j++)
 				data[i][j] = 0; // 체스판 만들기

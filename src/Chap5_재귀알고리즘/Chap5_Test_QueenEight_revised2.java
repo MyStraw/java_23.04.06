@@ -18,22 +18,22 @@ class OverflowGenericStackException extends RuntimeException {
 	}
 }
 
-class Stack3 {
-	private List<Point> data; // 스택용 배열
+class Stack4 {
+	private List<Point1> data; // 스택용 배열
 	private int capacity; // 스택의 크기
 	private int top; // 스택 포인터
 
-	public Stack3(int maxlen) {
+	public Stack4(int maxlen) {
 		top = 0;
 		capacity = maxlen;
 		try {
-			data = new ArrayList<Point>();
+			data = new ArrayList<Point1>();
 		} catch (OutOfMemoryError e) {
 			capacity = 0;
 		}
 	}
 
-	public int push(Point x) throws OverflowGenericStackException {
+	public int push(Point1 x) throws OverflowGenericStackException {
 		if (top >= capacity)
 			throw new OverflowGenericStackException();
 		data.add(x);
@@ -42,18 +42,18 @@ class Stack3 {
 
 	}
 
-	public Point pop() throws EmptyGenericStackException {//
+	public Point1 pop() throws EmptyGenericStackException {//
 		if (top <= 0)
 			throw new EmptyGenericStackException();
 		{
 			// Point p = data.get(top - 1);
-			Point p = data.remove(top - 1); // 팝은 끄집어 내는거. 그럼 겟이 아니라 리무브가 맞다.
+			Point1 p = data.remove(top - 1); // 팝은 끄집어 내는거. 그럼 겟이 아니라 리무브가 맞다.
 			return p;
 		}
 
 	}
 
-	public Point peek() throws EmptyIntStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
+	public Point1 peek() throws EmptyIntStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
 		if (top <= 0) // 스택이 빔
 			throw new EmptyIntStackException();
 		// return stk[ptr - 1];
@@ -66,7 +66,7 @@ class Stack3 {
 	}
 
 	// --- 스택에서 x를 찾아 인덱스(없으면 –1)를 반환 ---//
-	public int indexOf(Point x) {
+	public int indexOf(Point1 x) {
 		for (int i = top - 1; i >= 0; i--) // 꼭대기 쪽부터 선형 검색
 			if (data.get(i).equals(x))
 				return i; // 검색 성공
@@ -105,11 +105,11 @@ class Stack3 {
 	}
 }
 
-class Point {
+class Point1 {
 	private int x;
 	private int y;
 
-	public Point(int x, int y) {
+	public Point1(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -122,7 +122,7 @@ class Point {
 	@Override
 	public boolean equals(Object p) { // Object 클래스에 존재하는 equals()메소드가 정의되어 있는데 오버라이드 하려면 파라미터가 같아야 한다.(객체)
 										// (Point P) 라고 입력하니까 @Override 떼라고 에러떠. 이건 객체가 아니니 (Object p) 이걸로 바꾸면
-		Point px = (Point) p; // 아래에 그냥 x.x 하니까 없는 필드래. Point에는 x가 없으니까.
+		Point1 px = (Point1) p; // 아래에 그냥 x.x 하니까 없는 필드래. Point에는 x가 없으니까.
 		if (this.x == px.x && this.y == px.y)
 			return true;
 		else
@@ -134,9 +134,9 @@ public class Chap5_Test_QueenEight_revised2 {
 	public static void SolveQueen(int[][] d) {
 		int count = 0, mode = 0;
 		int ix = 0, iy = 0;
-		Stack3 st = new Stack3(10); //객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y 좌표 갖고 있으니. 
-		Point p = new Point(ix, iy); //포인트 객체 만들어서 push. 다 가져왔다.
-		Point px = (Point) p;
+		Stack4 st = new Stack4(10); //객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y 좌표 갖고 있으니. 
+		Point1 p = new Point1(ix, iy); //포인트 객체 만들어서 push. 다 가져왔다.
+		Point1 px = (Point1) p;
 		d[ix][iy] = 1;
 		count++; // 여왕을 놨다. 1개.
 		st.push(p);
