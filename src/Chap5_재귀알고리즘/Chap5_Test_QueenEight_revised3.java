@@ -6,14 +6,17 @@ import java.util.Stack;
 
 public class Chap5_Test_QueenEight_revised3 {
 
-    final int N = 8;
+    final int N = 4;
+    int count = 0;
 
     void printSolution(int board[][]) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++)
                 System.out.print(" " + board[i][j] + " ");
+            	
             System.out.println();
-        }
+        }count++;
+        System.out.println(count);
     }
 
     boolean isSafe(int board[][], int row, int col) {
