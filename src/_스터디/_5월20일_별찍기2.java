@@ -3,32 +3,23 @@ package _스터디;
 import java.util.Scanner;
 
 public class _5월20일_별찍기2 {
-	static Scanner sc = new Scanner(System.in);
-	static int k = sc.nextInt();
-	static double N = Math.pow(3, k);
-
-	static void star() {
-		for (int i = 0; i < 3; i++) {
-			System.out.print("*");
-		}
-		System.out.println("");
-		for (int j = 0; j < 3; j++) {
-			if (j != 1)
-				System.out.print("*");
-			else
-				System.out.print(" ");
-		}
-		System.out.println("");
-		for (int i = 0; i < 3; i++) {
-			System.out.print("*");
-		}
-	}
-
 	public static void main(String[] args) {
 
-		star();
-		
-
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		extracted(N);
 	}
-
+	
+	private static char extracted(int N) {
+		char top[][] = new char[N][N];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				if (!(i == j && i == 1))
+					top[i][j] = '*';
+				System.out.print(top[i][j]);
+			}
+			System.out.println();
+		}
+		return 0;
+	}
 }
