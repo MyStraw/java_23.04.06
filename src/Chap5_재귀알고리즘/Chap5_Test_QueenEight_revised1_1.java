@@ -53,9 +53,9 @@ class Stack3 {
 
 	}
 
-	public Point peek() throws EmptyIntStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
+	public Point peek() throws EmptyGenericStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
 		if (top <= 0) // 스택이 빔
-			throw new EmptyIntStackException();
+			throw new EmptyGenericStackException();
 		// return stk[ptr - 1];
 		return data.get(top - 1);
 	}
@@ -106,8 +106,8 @@ class Stack3 {
 }
 
 class Point {
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 
 	public Point(int x, int y) {
 		this.x = x;
@@ -130,75 +130,50 @@ class Point {
 	}
 }
 
-public class Chap5_Test_QueenEight_revised {
+public class Chap5_Test_QueenEight_revised1_1 {
 
 	static final int numberQueens = 4;
-	
-	
 
-//	public static void SolveQueen(int[][] d) {
-//		int count = 0, mode = 0;
-//		int ix = 0, iy = 0;
-//		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
-//									// 좌표 갖고 있으니.
-//		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
-//		d[ix][iy] = 1;
-//		count++; // 여왕을 놨다. 1개.
-//		st.push(p);
-//		while (count < numberQueens) {
-//			ix++;
-//			int cy = 0;
-//			while (ix < numberQueens) {// 한칸씩 내려가면서 먼저 행을 먼저 잡고.
-//				cy = nextMove(d, ix, cy);
-//				do {
-//					if (cy == -1) {
-//						p = st.pop();				
-//						cy=mode+1;					
-//					}					
-//					Point px = new Point(ix, cy);
-//					st.push(px);
-//					st.dump();
-//					count++;
-//					d[ix][cy] = 1;
-//					mode=cy;
-//					
-//					break;
-//				}while (cy < numberQueens && cy>=0);				
-//			}
-//		}
-//	}
-	
-	
 	public static void SolveQueen(int[][] d) {
-		int count = 0, mode = 0;
-		int ix = 0, iy = 0;
-		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
-									// 좌표 갖고 있으니.
-		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
-		Point px = (Point) p;
-		d[ix][iy] = 1;
-		count++; // 여왕을 놨다. 1개.
-		st.push(p);
-		while (count < numberQueens) {
-			ix++;
-			int cy = 0;
-			while (ix < numberQueens) {
-				cy = nextMove(d, ix, cy);
-				while (cy != -1 && cy < numberQueens) {
-					st.push(px);
-					count++;
-					break;
-				}
-				if (cy != numberQueens) {
-					break;
-				} else {
-					p = st.pop();
-					count--;
-				}
+	    int count = 0;
+	    int ix = 0;
+	    int cy = 0;
+	    Stack3 st = new Stack3(10);
 
-			}
-		}
+	    while (count < numberQueens) {
+	        if (st.isEmpty() || ix >= numberQueens) {
+	            if (st.isEmpty())
+	                return;
+	            else {
+	                Point p = st.pop();
+	                d[p.x][p.y] = 0;
+	                count--;
+	                ix = p.x;
+	                cy = p.y + 1;
+	                continue;
+	            }
+	        }
+	        
+	        cy = nextMove(d, ix, cy);
+	        if (cy != -1) {
+	            d[ix][cy] = 1; // Queen is placed at the valid position
+	            count++;
+	            Point p = new Point(ix, cy);
+	            st.push(p);
+	            ix++; // Move to the next row
+	            cy = 0;
+	        } else if (!st.isEmpty()) { // If no valid move is found in this row and stack is not empty
+	            Point p = st.pop();
+	            d[p.x][p.y] = 0; // Remove the queen from the previous position
+	            count--;
+	            cy = p.y + 1; // Start checking from the next column
+	            ix = p.x; // Move back to the previous row
+	        } else {
+	            break;
+	        }
+	    }
 	}
+
 
 	public static boolean checkRow(int[][] d, int crow) { // 가로 체크
 		// 배열 d에서 crow에 Queen을 놓을수 있느냐?
@@ -264,24 +239,12 @@ public class Chap5_Test_QueenEight_revised {
 
 	public static int nextMove(int[][] d, int row, int newcol) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우,
 		// 다음 넣을자리 // row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
-		for (int col = 0; col < numberQueens; col++) {
+		for (int col = newcol; col < numberQueens; col++) {
 			if (checkMove(d, row, col))
 				return col;
 		}
 		return -1;
 	}
-
-//	public static boolean nextMove(int[][] d, int row, int newCol) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이
-//																	// 있을경우,
-//		// 다음 넣을자리 // row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
-//		for (int col = 0; col < numberQueens; col++) {
-//			if (checkMove(d, row, col)) {
-//				newCol = col;
-//				return true;
-//			}
-//			
-//		}return false;
-//	}
 
 	public static void main(String[] args) {
 		int row = numberQueens, col = numberQueens;
