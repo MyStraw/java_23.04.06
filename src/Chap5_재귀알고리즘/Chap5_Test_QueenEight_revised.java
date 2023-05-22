@@ -53,9 +53,9 @@ class Stack3 {
 
 	}
 
-	public Point peek() throws EmptyIntStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
+	public Point peek() throws EmptyGenericStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
 		if (top <= 0) // 스택이 빔
-			throw new EmptyIntStackException();
+			throw new EmptyGenericStackException();
 		// return stk[ptr - 1];
 		return data.get(top - 1);
 	}
@@ -128,13 +128,19 @@ class Point {
 		else
 			return false;
 	}
+
+	public int getX() {
+		return 0;
+	}
+
+	public int getY() {
+		return 0;
+	}
 }
 
 public class Chap5_Test_QueenEight_revised {
 
 	static final int numberQueens = 4;
-	
-	
 
 //	public static void SolveQueen(int[][] d) {
 //		int count = 0, mode = 0;
@@ -168,7 +174,37 @@ public class Chap5_Test_QueenEight_revised {
 //		}
 //	}
 	
-	
+//	public static void SolveQueen(int[][] d) {
+//		int count = 0, mode = 0;
+//		int ix = 0, iy = 0;
+//		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
+//									// 좌표 갖고 있으니.
+//		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
+//		Point px = (Point) p;
+//		d[ix][iy] = 1;
+//		count++; // 여왕을 놨다. 1개.
+//		st.push(p);
+//		while (count < numberQueens) {
+//			ix++;
+//			int cy = 0;
+//			while (ix < numberQueens) {
+//				cy = nextMove(d, ix, cy);
+//				while (cy != -1 && cy < numberQueens) {
+//					st.push(px);
+//					count++;
+//					break;
+//				}
+//				if (cy != numberQueens) {
+//					break;
+//				} else {
+//					p = st.pop();
+//					count--;
+//				}
+//
+//			}
+//		}
+//	}
+
 	public static void SolveQueen(int[][] d) {
 		int count = 0, mode = 0;
 		int ix = 0, iy = 0;
@@ -184,16 +220,19 @@ public class Chap5_Test_QueenEight_revised {
 			int cy = 0;
 			while (ix < numberQueens) {
 				cy = nextMove(d, ix, cy);
-				while (cy != -1 && cy < numberQueens) {
-					st.push(px);
-					count++;
-					break;
-				}
-				if (cy != numberQueens) {
-					break;
-				} else {
+				if (cy != d[0].length)
+					while (cy != -1 && cy < numberQueens) {
+						st.push(px);
+						d[ix][iy] = 1;
+						count++;
+						break;
+					}
+				else {
 					p = st.pop();
+					d[p.getX()][p.getY()] = 0;
+					ix--;
 					count--;
+					iy = p.getY() + 1;
 				}
 
 			}
