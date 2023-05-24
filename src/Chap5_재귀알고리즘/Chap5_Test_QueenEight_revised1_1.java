@@ -108,6 +108,7 @@ class Stack3 {
 class Point {
 	public int x;
 	public int y;
+	public int dir;
 
 	public Point(int x, int y) {
 		this.x = x;

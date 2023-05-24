@@ -4,6 +4,10 @@ package Chap5_재귀알고리즘;
 import java.util.ArrayList;
 import java.util.List;
 
+import 숙제.EmptyGenericStackException;
+import 숙제.OverflowGenericStackException;
+import 숙제.Point;
+
 //https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/?ref=lbp
 //N Queen problem / backtracking
 
@@ -43,7 +47,7 @@ class Stack3 {
 	}
 
 	public Point pop() throws EmptyGenericStackException {//
-		if (top <= 0)
+		if (isEmpty())
 			throw new EmptyGenericStackException();
 		{
 			// Point p = data.get(top - 1);
@@ -54,7 +58,7 @@ class Stack3 {
 	}
 
 	public Point peek() throws EmptyGenericStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
-		if (top <= 0) // 스택이 빔
+		if (isEmpty()) // 스택이 빔
 			throw new EmptyGenericStackException();
 		// return stk[ptr - 1];
 		return data.get(top - 1);
@@ -106,8 +110,8 @@ class Stack3 {
 }
 
 class Point {
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 
 	public Point(int x, int y) {
 		this.x = x;
@@ -130,11 +134,11 @@ class Point {
 	}
 
 	public int getX() {
-		return 0;
+		return x;
 	}
 
 	public int getY() {
-		return 0;
+		return y;
 	}
 }
 
@@ -205,39 +209,41 @@ public class Chap5_Test_QueenEight_revised {
 //		}
 //	}
 
-	public static void SolveQueen(int[][] d) {
-		int count = 0, mode = 0;
-		int ix = 0, iy = 0;
-		Stack3 st = new Stack3(10); // 객체스택. 파일에서 가져오셈. point 다 가져와. 포인트 객체를 스택에 넣는다. 맨 윗줄부터 하면서 넣고. pop 하면 이게 x,y
-									// 좌표 갖고 있으니.
-		Point p = new Point(ix, iy); // 포인트 객체 만들어서 push. 다 가져왔다.
-		Point px = (Point) p;
-		d[ix][iy] = 1;
-		count++; // 여왕을 놨다. 1개.
-		st.push(p);
-		while (count < numberQueens) {
-			ix++;
-			int cy = 0;
-			while (ix < numberQueens) {
-				cy = nextMove(d, ix, cy);
-				if (cy != d[0].length)
-					while (cy != -1 && cy < numberQueens) {
-						st.push(px);
-						d[ix][iy] = 1;
-						count++;
-						break;
-					}
-				else {
-					p = st.pop();
-					d[p.getX()][p.getY()] = 0;
-					ix--;
-					count--;
-					iy = p.getY() + 1;
-				}
+	public static void SolveQueen(int[][] d) {	
+		
+		  int count = 0;
+	        int ix = 0, iy = 1;
+	        Stack3 st = new Stack3(numberQueens * numberQueens);
+	        Point p = new Point(ix, iy);
+	        d[ix][iy] = 1;
+	        count++;
+	        st.push(p);
 
-			}
-		}
-	}
+	        while (count < numberQueens) {
+	            ix++;
+	            int cy = 0;
+	            while (ix < numberQueens) {
+	                cy = nextMove(d, ix, cy);
+	                if (cy < 0) {
+	                    if (!st.isEmpty()) {
+	                        p = st.pop();
+	                        ix = p.x;
+	                        cy = p.y;
+	                        d[ix][cy] = 0;
+	                        count--;
+	                    } else {
+	                        break;
+	                    }
+	                } else {
+	                    Point px = new Point(ix, cy);
+	                    st.push(px);
+	                    d[ix][cy] = 1;
+	                    count++;
+	                    break;
+	                }
+	            }
+	        }
+	    }
 
 	public static boolean checkRow(int[][] d, int crow) { // 가로 체크
 		// 배열 d에서 crow에 Queen을 놓을수 있느냐?
@@ -255,44 +261,44 @@ public class Chap5_Test_QueenEight_revised {
 		return true;
 	}
 
-	public static boolean checkDiagSW(int[][] d, int x, int y) { // x++, y-- or x--, y++ where 0<= x,y <= 7
-		// 배열 d에 d[cx][cy]의 SW 대각선에 배치 가능하냐? while 문으로.
+	public static boolean checkDiagSW(int[][] d, int x, int y) {
 		int cx = x, cy = y;
-		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+		while (cx >= 0 & cx < numberQueens-1 && cy >= 1 & cy < numberQueens-1) {
 			cx++;
 			cy--;
-			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+			if (d[cx][cy] == 1)
 				return false;
 		}
 		cx = x;
-		cy = y; // (반대쪽 대각선 보기위해 x,y값 초기화. 위에서 x,y 바꼈으니.)
-		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+		cy = y;
+		while (cx >= 1 & cx < numberQueens-1 && cy >= 0 & cy < numberQueens-1) {
 			cx--;
 			cy++;
-			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+			if (d[cx][cy] == 1)
 				return false;
 		}
 		return true;
 	}
 
-	public static boolean checkDiagSE(int[][] d, int x, int y) {// 대각선 오른족아래(south east) x++, y++ or x--, y--
+	public static boolean checkDiagSE(int[][] d, int x, int y) {
 		int cx = x, cy = y;
-		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+		while (cx >= 0 & cx < numberQueens-1 && cy >= 0 & cy < numberQueens-1) {
 			cx++;
 			cy++;
-			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+			if (d[cx][cy] == 1)
 				return false;
 		}
 		cx = x;
-		cy = y; // (반대쪽 대각선 보기위해 x,y값 초기화. 위에서 x,y 바꼈으니.)
-		while (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens) {
+		cy = y;
+		while (cx >= 1 & cx < numberQueens-1&& cy >= 1 & cy < numberQueens-1) {
 			cx--;
 			cy--;
-			if (cx >= 0 & cx < numberQueens && cy >= 0 & cy < numberQueens && d[cx][cy] == 1)
+			if (d[cx][cy] == 1)
 				return false;
 		}
 		return true;
 	}
+
 
 	public static boolean checkMove(int[][] d, int x, int y) {// (x,y)로 이동 가능한지를 check
 		if (checkRow(d, x) && checkCol(d, y) && checkDiagSW(d, x, y) && checkDiagSE(d, x, y))
@@ -303,7 +309,7 @@ public class Chap5_Test_QueenEight_revised {
 
 	public static int nextMove(int[][] d, int row, int newcol) {// 다음 row에 대하여 이동할 col을 조사 // ex) 4X4일때 (0,0)에 퀸이 있을경우,
 		// 다음 넣을자리 // row 1일때 y를 한칸씩 열 이동시키면서 놔지는지 확인. y=2 자리에가능하네.
-		for (int col = 0; col < numberQueens; col++) {
+		for (int col = newcol; col < numberQueens; col++) {
 			if (checkMove(d, row, col))
 				return col;
 		}
@@ -325,14 +331,14 @@ public class Chap5_Test_QueenEight_revised {
 	public static void main(String[] args) {
 		int row = numberQueens, col = numberQueens;
 		int[][] data = new int[numberQueens][numberQueens];
-		for (int i = 0; i < data.length; i++)
-			for (int j = 0; j < data[0].length; j++)
+		for (int i = 0; i < numberQueens; i++)
+			for (int j = 0; j < numberQueens; j++)
 				data[i][j] = 0; // 체스판 만들기
 
 		SolveQueen(data);
 
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
+		for (int i = 0; i < numberQueens; i++) {
+			for (int j = 0; j < numberQueens; j++) {
 				System.out.print(" " + data[i][j]);
 			}
 			System.out.println();
