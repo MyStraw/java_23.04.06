@@ -44,6 +44,7 @@ class ObjectStack {
 		{
 			// Point p = data.get(top - 1);
 			Items p = data.remove(top - 1); // 팝은 끄집어 내는거. 그럼 겟이 아니라 리무브가 맞다.
+			top--;
 			return p;
 		}
 
