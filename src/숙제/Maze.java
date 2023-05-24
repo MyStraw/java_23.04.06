@@ -1,4 +1,4 @@
-package Chap5_재귀알고리즘;
+package 숙제;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,12 @@ class OverflowGenericStackException extends RuntimeException {
 	}
 }
 
-class StackList {
+class ObjectStack {
 	private List<Items> data; // 스택용 배열
 	private int capacity; // 스택의 크기
 	private int top; // 스택 포인터
 
-	public StackList(int maxlen) {
+	public ObjectStack(int maxlen) {
 		top = 0;
 		capacity = maxlen;
 		try {
@@ -29,17 +29,17 @@ class StackList {
 		}
 	}
 
-	public int push(Items x) throws OverflowGenericStackException {
+	public int push(Items temp) throws OverflowGenericStackException {
 		if (top >= capacity)
 			throw new OverflowGenericStackException();
-		data.add(x);
+		data.add(temp);
 		top++;
 		return 1;
 
 	}
 
 	public Items pop() throws EmptyGenericStackException {//
-		if (isEmpty())
+		if (top <= 0)
 			throw new EmptyGenericStackException();
 		{
 			// Point p = data.get(top - 1);
@@ -51,7 +51,7 @@ class StackList {
 	}
 
 	public Items peek() throws EmptyGenericStackException { // 꼭대기는 값을 줘야하니 int가 아니라 Point
-		if (isEmpty()) // 스택이 빔
+		if (top <= 0) // 스택이 빔
 			throw new EmptyGenericStackException();
 		// return stk[ptr - 1];
 		return data.get(top - 1);
@@ -100,6 +100,33 @@ class StackList {
 			System.out.println();
 		}
 	}
+
+}
+
+class Point {
+	int x;
+	int y;
+	int dir;
+
+	public Point(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public String toString() {
+		return "(" + x + "," + y + ")"; // x,y 컴마컴이니까~
+	}
+
+	@Override
+	public boolean equals(Object p) { // Object 클래스에 존재하는 equals()메소드가 정의되어 있는데 오버라이드 하려면 파라미터가 같아야 한다.(객체)
+										// (Point P) 라고 입력하니까 @Override 떼라고 에러떠. 이건 객체가 아니니 (Object p) 이걸로 바꾸면
+		Point px = (Point) p; // 아래에 그냥 x.x 하니까 없는 필드래. Point에는 x가 없으니까.
+		if (this.x == px.x && this.y == px.y)
+			return true;
+		else
+			return false;
+	}
 }
 
 enum Directions {
@@ -107,77 +134,74 @@ enum Directions {
 }
 
 class Items {
+	int x;
+	int y;
+	int dir;
+
 	public Items(int x, int y, int dir) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 	}
 
-	int x;
-	int y;
-	int dir;
-
 }
 
 class Offsets {
+
+	int a;
+	int b;
+
 	public Offsets(int a, int b) {
 		this.a = a;
 		this.b = b;
 	}
 
-	int a;
-	int b;
 }
 
-public class MazingProblem {
-	// 만약 이 필드를 같은 패키지 내에서만 사용하려면 디폴트 접근 제어자를,
-	// 다른 패키지에서도 사용하려면 'public'을,
-	// 오직 같은 클래스 내에서만 사용하려면 'private'을 선택하게 될 것입니다.
+public class Maze {
 
-	private static Offsets[] moves = new Offsets[8];// static을 선언하는 이유를 알아야 한다
-	// 객체를 담는 배열
-//	[][][] 이런 방을 만든거다. 여기에 생성자가 있네~
-//	[]  []
-//	[][][]
+	static Offsets[] moves = new Offsets[8];// static을 선언하는 이유를 알아야 한다
 
 	public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 
 		mark[1][1] = 1;
-		StackList st = new StackList(50);
+		ObjectStack st = new ObjectStack(50);
 		Items temp = new Items(0, 0, 0);// N :: 0
-		temp.x = 1; // Items의 x
-		temp.y = 1; // Items의 y
-		temp.dir = 2;// E:: 2 east?
+		temp.x = 1;
+		temp.y = 1;
+		temp.dir = 2;// E:: 2
 		mark[temp.x][temp.y] = 2;// 미로 찾기 궤적은 2로 표시
 		st.push(temp);
 
-		while (!st.isEmpty()) // stack not empty //backtracking
+		while (!st.isEmpty()) // stack not empty
 		{
 			Items tmp = st.pop(); // unstack
-			int i = tmp.x; // pop된 x값을 i에 넣는다.
+			int i = tmp.x;
 			int j = tmp.y;
-			int d = tmp.dir; // 이게 offsets 안에 들어가야할 방향인거 같다.
+			int d = tmp.dir;
 			mark[i][j] = 1;// backtracking 궤적은 1로 표시
-//			[7][0][1] 
-//			[6]   [2]
-//			[5][4][3]
 			while (d < 8) // moves forward
 			{
-				int g = i + moves[d].a; //그다음위치
+				int g = i + moves[d].a;
 				int h = j + moves[d].b;
 
-				if ((g == ix) && (h == iy)) { // reached exit // output path
-					System.out.println("찾았당!!");
+				if ((g == ix) && (h == iy)) { // reached exit
+												// output path
+					System.out.println("Path found!");
 					return;
+
 				}
 				if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
-					mark[i][j] = 1;
-					st.push(temp);
-					i = 1;
-					j = 1;
+					mark[g][h] = 1;
+					Items newItem = new Items(i, j, d + 1);
+					st.push(newItem);
+					i = g;
+					j = h;
+					d = 0;
 
-				} else
+				} else {
 					d++;
+				}
 
 			}
 		}
@@ -189,42 +213,38 @@ public class MazingProblem {
 		int[][] mark = new int[14][17];
 
 		int input[][] = { // 12 x 15
-				{ 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 }, 
-				{ 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
-				{ 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 }, 
-				{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0 },
-				{ 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1 }, 
-				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
-				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 }, 
-				{ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
-				{ 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, 
-				{ 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
-				{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, 
-				{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 } };
+				{ 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
+				{ 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0 },
+				{ 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1 }, { 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
+				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 }, { 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
+				{ 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, { 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
+				{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, { 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 } };
 
-		for (int ia = 0; ia < 8; ia++) {
+		for (int ia = 0; ia < 8; ia++)
 			moves[ia] = new Offsets(0, 0);// 배열에 offsets 객체를 치환해야 한다.
-		}
-		moves[0].a = -1;		moves[0].b = 0; 	// ↑
-		moves[1].a = -1;		moves[1].b = 1; 	// ↗
-		moves[2].a = 0;			moves[2].b = 1;		// →
-		moves[3].a = 1;			moves[3].b = 1; 	// ↘
-		moves[4].a = 1;			moves[4].b = 0;		// ↓
-		moves[5].a = 1;			moves[5].b = -1;	// ↙
-		moves[6].a = 0;			moves[6].b = -1; 	// ←
-		moves[7].a = -1;		moves[7].b = -1; 	// ↖
-
-//		[7][0][1] 이런 방을 만든거다. 여기에 생성자가 있네~
-//		[6]   [2]
-//		[5][4][3]
-
+		moves[0].a = -1;
+		moves[0].b = 0;
+		moves[1].a = -1;
+		moves[1].b = 1;
+		moves[2].a = 0;
+		moves[2].b = 1;
+		moves[3].a = 1;
+		moves[3].b = 1;
+		moves[4].a = 1;
+		moves[4].b = 0;
+		moves[5].a = 1;
+		moves[5].b = -1;
+		moves[6].a = 0;
+		moves[6].b = -1;
+		moves[7].a = -1;
+		moves[7].b = -1;
 		// Directions d;
 		// d = Directions.N;
 		// d = d + 1;//java는 지원안됨
-
 		for (int i = 0; i < 14; i++) {
 			for (int j = 0; j < 17; j++) {
 				maze[i][j] = input[i - 1][j - 1];
+
 			}
 		}
 		System.out.println("maze[12,15]::");
@@ -243,7 +263,7 @@ public class MazingProblem {
 			}
 			System.out.println();
 		}
-		path(maze, mark, 12, 15); //이게 답이네?
+		path(maze, mark, 12, 15);
 		System.out.println("mark::");
 		for (int i = 1; i <= 12; i++) {
 			for (int j = 1; j <= 15; j++) {
