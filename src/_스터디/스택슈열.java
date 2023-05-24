@@ -8,46 +8,40 @@ public class 스택슈열 {
 
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-		Stack<Integer> st = new Stack<>();
-	int Natural[] = new int[N];
+		Stack<Integer> st = new Stack<>();		
 		int Su[] = new int[N];
-		Stack<Integer> result = new Stack<>();
-		Stack<String> plus = new Stack<>();
+		Stack<Integer> result = new Stack<>();		
+		int count = 0;
 
+		StringBuffer str = new StringBuffer(N);
+		
 		for (int i = 0; i < N; i++) {
 			int su = sc.nextInt();
-			Su[i] = su;
-		Natural[i] = i + 1;
+			Su[i] = su;			
 		}
 
-		try {
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j <= N; j++) {
-					if (st.isEmpty() && result.capacity() == Su.length) {
-						return;
-					} else if (st.isEmpty() || !st.peek().equals(Su[i])) {
-						st.push(j+1);
-						plus.push("+");
-					} else {
-						result.push(st.pop());
-						plus.push("-");
-						if (!st.isEmpty()) {
-							j--;
-							i++;
-						} else if (st.isEmpty()) {	
-							j--;
-							i++;							
-						}
-					}
+		for (int i = 0; i < N; i++) {
+			for (int j = i; j <= N; j++) {
+				if (count > N) {
+					System.out.println("NO");
+					return;
+				}
+				if (st.isEmpty() && result.size() == Su.length) {
+					break;
+				} else if (st.isEmpty() || !st.peek().equals(Su[i])) {
+					st.push(j + 1);
+					str.append("+\n");
+					count++;
+				} else {
+					result.push(st.pop());
+					str.append("-\n");
+					j--;
+					i++;
 				}
 			}
-			for (String pl : plus) {
-				System.out.println(pl);
-			}
-
-		} catch (Exception e) {
-			System.out.println("NO");
+		}
+		System.out.println(str);
 		}
 
 	}
-}
+
