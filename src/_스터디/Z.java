@@ -3,6 +3,30 @@ package _스터디;
 import java.util.Scanner;
 
 public class Z {
+	
+	private static void DrawZ(int x, int y, int N) {
+		
+		if (N==1) {
+			int i = 1;
+			i++;
+			return;
+		}
+		
+		int size = N/2;
+		int count = 0;
+		for(int i = x; i<x+N ; i++) {
+			for (int j = y; j<y+N ; j++) {
+				count ++;
+				if(count ==2) {
+					
+				}
+				//i는 사이즈만큼 증가
+			}
+		}
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -14,8 +38,7 @@ public class Z {
 		int Z[][] = new int[z][z];
 		
 		for(int i = 0 ; i<z*z;i++) {
-			(0,0), (0,1)
-			(1,0), (1,1)
+			
 		}
 		
 	}
