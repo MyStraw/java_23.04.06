@@ -9,25 +9,23 @@ import java.util.Stack;
 
 public class Z {
 
+	static int[][] Z;
+
 	private static final int x = 0;
 	private static final int y = 0;
 
 	public static Point p = new Point(x, y);
 	public static Queue<Point> que = new LinkedList<>();
 
-	private static void DrawZ(int[][] Z, int x, int y, int z) {
+	static void DrawZ(int[][] Z, int x, int y, int z) {
 		int num = 0;
 		
 		if (z == 1) {
-			num++;
-			
-			
+			num++;			
 			p.x = x;
 			p.y = y;
-			que.add(p);
-			for(int w : Z[][] )
-				
-			Z[x][y]
+			que.add(p);		
+			Z[x][y] = num;
 			return;
 		}
 
@@ -52,9 +50,9 @@ public class Z {
 		int c = sc.nextInt();
 
 		int z = 1 << N; // 2의 3승 = Math.pow(2, 3); 이건 더블
-		int Z[][] = new int[z][z];
+		Z = new int[z][z];
 		
-		
+		DrawZ(Z, 0, 0, z);
 
 		for (int i = 0; i < z; i++) {
 			for (int j = 0; j < z; j++) {
@@ -63,7 +61,7 @@ public class Z {
 			System.out.println();
 		}
 
-		DrawZ(Z,0, 0, z);
+		
 
 		System.out.println(que.peek());
 
