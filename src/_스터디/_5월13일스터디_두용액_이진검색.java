@@ -16,6 +16,8 @@ public class _5월13일스터디_두용액_이진검색 {
 		int sol1 = 0;
 		int sol2 = 0;
 
+	
+		
 		for (int i = 0; i < n; i++) {
 			N[i] = Integer.parseInt(st.nextToken());
 		}
