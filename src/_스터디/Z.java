@@ -1,26 +1,45 @@
 package _스터디;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Z {
 
-	private static void DrawZ(int x, int y, int z) {
+	private static final int x = 0;
+	private static final int y = 0;
+
+	public static Point p = new Point(x, y);
+	public static Queue<Point> que = new LinkedList<>();
+
+	private static void DrawZ(int[][] Z, int x, int y, int z) {
 		int num = 0;
+		
 		if (z == 1) {
 			num++;
+			
+			
+			p.x = x;
+			p.y = y;
+			que.add(p);
+			for(int w : Z[][] )
+				
+			Z[x][y]
 			return;
 		}
 
+		
 		int size = z / 2;
-
 		int count = 0;
 		for (int i = x; i < x + z; i += size) {
 			for (int j = y; j < y + z; j += size) {
 				count++;
-				if (count == 4) {
-					DrawZ(i, j, size);
-				}
-				// i는 사이즈만큼 증가
+			//	if (count == 4) {
+					DrawZ(Z,i, j, size);
+				//}
 			}
 		}
 	}
@@ -34,12 +53,20 @@ public class Z {
 
 		int z = 1 << N; // 2의 3승 = Math.pow(2, 3); 이건 더블
 		int Z[][] = new int[z][z];
+		
+		
 
-		for (int i = 0; i < z * z; i++) {
-
+		for (int i = 0; i < z; i++) {
+			for (int j = 0; j < z; j++) {
+				System.out.print(Z[i][j]);
+			}
+			System.out.println();
 		}
 
-		DrawZ(0, 0, z);
+		DrawZ(Z,0, 0, z);
+
+		System.out.println(que.peek());
+
 	}
 
 }
