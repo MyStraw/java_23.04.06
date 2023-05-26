@@ -1,11 +1,9 @@
 package _스터디;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Z {
 
@@ -59,12 +57,12 @@ public class Z {
 				System.out.print(Z[i][j]);
 			}
 			System.out.println();
-		}
-
-		
+		}		
 
 		System.out.println(que.peek());
 
 	}
 
 }
+
+

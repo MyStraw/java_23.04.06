@@ -77,5 +77,4 @@ public class 개똥벌레 {
 //			else if(counts[mid] > cc) right = mid-1;
 //			else return;			
 	}
-
 }

@@ -5,6 +5,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java|chapter9/MyObject.java|chapter10/Test06.java|chapter10/Test11.java|chapter14/Test06.java|Chap4_스택과큐/스택정수.java|Chap4_스택과큐/스택객체_test2.java|Chap4_스택과큐/IntQueue.java|Chap4_스택과큐/IntQueueTester.java|Chap4_스택과큐/LastNElements.java|Chap4_스택과큐/Queen.java|숙제/Chap5_Test_QueenEight_revised.java|Chap5_재귀알고리즘/MazingProblemCPP.java|Chap5_재귀알고리즘/MazingProblemCPP2.java|Chap5_재귀알고리즘/미로찾기.java" kind="src" path="src"/>
+	<classpathentry excluding="prac/CountTest.java|chapter8/EnumTest01.java|chapter9/MyObject.java|chapter10/Test06.java|chapter10/Test11.java|chapter14/Test06.java|Chap4_스택과큐/스택정수.java|Chap4_스택과큐/스택객체_test2.java|Chap4_스택과큐/IntQueue.java|Chap4_스택과큐/IntQueueTester.java|Chap4_스택과큐/LastNElements.java|Chap4_스택과큐/Queen.java|숙제/Chap5_Test_QueenEight_revised.java|Chap5_재귀알고리즘/MazingProblemCPP.java|Chap5_재귀알고리즘/MazingProblemCPP2.java|Chap5_재귀알고리즘/미로찾기.java|Chap6_정렬알고리즘/Point.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
