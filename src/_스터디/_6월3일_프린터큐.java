@@ -44,27 +44,43 @@ public class _6월3일_프린터큐 {
 
 //		int N = Integer.parseInt(br.readLine());
 
-
 		Queue<Integer> testcase = new LinkedList<>();
 		Queue<Integer> testcasecopy = new LinkedList<>();
-		
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		int casenum = sc.nextInt();
 
 		for (int i = 0; i < casenum; i++) {
+			int max = 0;
+			int count = 0;
 			int N = sc.nextInt();
+			int Nbae[] = new int[N];
 			int M = sc.nextInt();
 			for (int j = 0; j < N; j++) {
 				int importance = sc.nextInt();
-				testcase.add(importance);				
+				testcase.add(importance);
+				Nbae[j] = importance;
+				if (max < Nbae[j]) {
+					max = Nbae[j];
+				}
 			}
+			while (!testcase.isEmpty()) {				
+				if (testcase.peek() == max) {				
+					testcase.poll();
+					count++;					
+				} else if (testcase.peek() < max) {
+					testcase.add(testcase.poll());					
+				} else if (testcase.isEmpty()) {
+					break;
+				}if(count-1 == M) {
+					System.out.println(count);
+					break;
+				}
+
+			}
+
 		}
-		
-		
-		
 
 	}
-
 }
