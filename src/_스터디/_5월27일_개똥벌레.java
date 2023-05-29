@@ -2,7 +2,7 @@ package _스터디;
 
 import java.util.Scanner;
 
-public class 개똥벌레 {
+public class _5월27일_개똥벌레 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 

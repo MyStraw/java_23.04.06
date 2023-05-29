@@ -2,18 +2,18 @@ package _스터디;
 
 import java.util.Scanner;
 
-public class 재귀잉 {
+public class _5월27일_Z재귀 {
 	static int[][] Z;
 	static int count = -1;
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int n = in.nextInt();
-		int N = 1 << n;
-		int r = in.nextInt();
-		int c = in.nextInt();
-		Z = new int[N][N];
-		star(0, 0, N);
+		int n = in.nextInt(); //입력
+		int N = 1 << n; //2의 n승
+		int r = in.nextInt(); //행
+		int c = in.nextInt(); //열
+		Z = new int[N][N]; //배열 N*N개
+		Z재귀(0, 0, N);
 
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < N; i++) {
@@ -27,7 +27,7 @@ public class 재귀잉 {
 		System.out.println(Z[r][c]);
 	}
 
-	static void star(int x, int y, int N) {
+	static void Z재귀(int x, int y, int N) {
 		if (N == 1) {
 			count++;
 			Z[x][y] = count;
@@ -39,7 +39,7 @@ public class 재귀잉 {
 		for (int i = x; i < x + N; i += size) {
 			for (int j = y; j < y + N; j += size) {
 //				count++;
-				star(i, j, size);
+				Z재귀(i, j, size);
 			}
 		}
 	}

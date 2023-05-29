@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Z {
+public class _5월27일_Z {
 
 	static int[][] Z;
 
