@@ -1,25 +1,35 @@
 package _스터디;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class _6월3일_문자열폭발_6차수정 {
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String moonjang = br.readLine();
-		String bomb = br.readLine();
-		String splitmoonjang = "";
+		Scanner sc = new Scanner(System.in);
 
-		Queue<String[]> que = new LinkedList<>();
-		String[] st = moonjang.split(bomb);
-		que.add(st);
+		String moonjang = sc.nextLine();
+		String bomb = sc.nextLine();
+
+		Stack<Character> st = new Stack<>();
+
+		char[] split = new char[moonjang.toCharArray().length];
+		
+		for (char ch : moonjang.toCharArray()) {
+			st.push(ch); 				
+		}
+		st.contains("ba");
 		
 		
-		System.out.println(splitmoonjang);
+		st.set(1, ' ');
+		System.out.println(st);
+		
+		
+
+//		for (int i = 0; i < moonjang.toCharArray().length; i++) {			
+//
+//		}
 
 	}
 }
