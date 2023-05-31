@@ -1,10 +1,12 @@
 package _스터디;
+
+import java.awt.Point;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
+import java.util.Stack;
 
 //3 - 총 제시할 문제의 케이스개수 
 
@@ -40,36 +42,66 @@ public class _6월3일_프린터큐_1차수정 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
 		Queue<Integer> testcase = new LinkedList<>();
-		Queue<Integer> testcasecopy = new LinkedList<>();
-
+		Queue<Point> point = new LinkedList<>();
+		Stack<Integer> reverse = new Stack<>();
+		Queue<Integer> testreverse = new LinkedList<>();
 		Scanner sc = new Scanner(System.in);
 
 		int casenum = sc.nextInt();
 
 		for (int i = 0; i < casenum; i++) {
-			int max = 0;
+			point.clear();
+			testcase.clear();
+			testreverse.clear();
+			reverse.clear();
+//			int max = 0;
 			int count = 0;
 			int N = sc.nextInt();
-			int Nbae[][] = new int[2*N][2];
+			int Nbae[][] = new int[N][2];
 			int important[] = new int[N];
 			int M = sc.nextInt();
-			Nbae[M][1]=100;
+//			Nbae[M][1] = 100;
 			for (int j = 0; j < N; j++) {
-				int importance = sc.nextInt();				
-				Nbae[j][0] = importance;
+				Point pp = new Point();
+				int importance = sc.nextInt();
+//				Nbae[j][0] = importance;
+				important[j] = importance;
 				testcase.add(Nbae[j][0]);
-				if (max < Nbae[j][0]) {
-					max = Nbae[j][0];
+				pp.x = importance;
+				if (M == j) {
+					pp.y = 100;
+					point.add(pp);
+				} else {
+					pp.y = 0;
+					point.add(pp);
 				}
-			}		
-			
-		
-			
-			for (int j = 0; j<2*N ; j++) {
-			
-				
-				
+//				if (max < Nbae[j][0]) {
+//					max = Nbae[j][0];
+//				}
 			}
-		}		
+			Arrays.sort(important);
+			for (int k = 0; k < N; k++) {
+				reverse.push(important[k]);
+			}
+			for (int k = 0; k < N; k++) {
+				testreverse.add(reverse.pop()); // testreverse 안에 역순이 들어있다. //point가 뺄거.
+			}
+
+			while (!testcase.isEmpty()) {
+				if (testreverse.peek() == point.peek().x) {
+					if (100 == point.peek().y) {
+						count++;
+						System.out.println(count);
+						break;
+					}
+					testreverse.poll();
+					point.poll();
+					count++;
+
+				} else if (testreverse.peek() > point.peek().x) {
+					point.add(point.poll());
+				}
+			}
+		}
 	}
 }

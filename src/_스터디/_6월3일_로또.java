@@ -48,8 +48,8 @@ public class _6월3일_로또 {
 							lotto[4] = S[e];
 							for (int f = e + 1; f < k; f++) {
 								lotto[5] = S[f];
-								for (int chil : lotto) {
-									bw.write(chil + " ");
+								for (int i = 0; i<6 ; i++) {
+									bw.write(lotto[i] + " ");
 								}
 								bw.write("\n");
 							}
