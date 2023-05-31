@@ -45,7 +45,7 @@ public class _6월3일_프린터큐 {
 
 		Queue<Integer> testcase = new LinkedList<>();
 		Queue<Integer> testcasecopy = new LinkedList<>();
-
+		
 		Scanner sc = new Scanner(System.in);
 
 		int casenum = sc.nextInt();
