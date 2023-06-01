@@ -13,23 +13,28 @@ public class _6월3일_문자열폭발_8차수정 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String moonjang = br.readLine();
 		String bomb = br.readLine();
-		Stack<String> st = new Stack<>();
+		Stack<Character> st = new Stack<>();
 		
-		
-		int count = 0;
-		int cursor = 0;
-		String splitmoonjang;
 
-		for (char split : moonjang.toCharArray()) {
-			st.push(Character.toString(split));
-			if( st.peek() == Character.toString(bomb.charAt(bomb.length()))) {
-				st.pop();
-				st.pop();
+		for (char ch : moonjang.toCharArray()) {
+			st.push(ch);
+
+			if (st.size() >= bomb.length()) {
+				boolean matches = true;
+				for (int i = 0; i < bomb.length(); i++) {
+					if (st.get(st.size() - bomb.length() + i) != bomb.charAt(i)) {
+						matches = false;
+						break;
+					}
+				}
+
+				if (matches) {
+					for (int i = 0; i < bomb.length(); i++) {
+						st.pop();
+					}
+				}
 			}
-						
 		}
-	
-	
-		System.out.println(count);
+		System.out.println(st);
 	}
 }
