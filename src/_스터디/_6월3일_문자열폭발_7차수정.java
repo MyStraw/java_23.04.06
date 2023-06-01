@@ -12,8 +12,7 @@ public class _6월3일_문자열폭발_7차수정 {
 		String moonjang = br.readLine();
 		String bomb = br.readLine();
 		Stack<String> st = new Stack<>();
-		
-		
+
 		int count = 0;
 		int cursor = 0;
 		String splitmoonjang;
@@ -33,7 +32,7 @@ public class _6월3일_문자열폭발_7차수정 {
 				count++;
 			}
 		}
-	
+
 		System.out.println(count);
 	}
 }
