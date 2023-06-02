@@ -30,12 +30,9 @@ public class Max3Method {
 
 	public static void main(String[] args) {
 
-		Max3Method max = new Max3Method(1,2,3);
-		
+		Max3Method max = new Max3Method(1, 2, 3);
 
 		System.out.println("max3(3,2,1) = " + max3(3, 2, 1));
 	}
-
-
 
 }

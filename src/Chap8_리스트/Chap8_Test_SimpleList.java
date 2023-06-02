@@ -1,7 +1,7 @@
 package Chap8_리스트;
 
 //단순한 linked list에서 insert, delete하는 알고리즘을 코딩: 1단계
-
+//이건 무시. 새로 올라온 정수연결리스트 들부터 다 봐
 import java.util.Scanner;
 
 import Chap8_List.SimpleLinkedList.Menu;

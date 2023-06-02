@@ -56,17 +56,17 @@ class LinkedList1 {
 
 	public void Add(int element) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
-		Node1 newNode = new Node1(element);
-		if (first == null || first.data >= newNode.data) {
-			newNode.link = first;
-			first = newNode;
+		Node1 nd = new Node1(element);
+		if (first == null || first.data >= nd.data) {
+			nd.link = first;
+			first = nd;
 		} else {
-			Node1 current = first;
-			while (current.link != null && current.link.data < newNode.data) {
-				current = current.link;
+			Node1 p = first;
+			while (p.link != null && p.link.data < nd.data) {
+				p = p.link;
 			}
-			newNode.link = current.link;
-			current.link = newNode;
+			nd.link = p.link;
+			p.link = nd;
 		}
 
 	}
@@ -83,7 +83,7 @@ class LinkedList1 {
 	}
 }
 
-public class 정수연결리스트_test {
+public class 정수연결리스트_test2 {
 	enum Menu {
 		Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Exit("종료");
 
@@ -134,8 +134,8 @@ public class 정수연결리스트_test {
 			switch (menu = SelectMenu()) {
 			case Add: // 머리노드 삽입
 				data = rand.nextInt(20);
-				double d = Math.random();
-				data = (int) (d * 50);
+				 double d = Math.random();
+				 data = (int) (d * 50);
 				l.Add(data);
 				break;
 			case Delete: // 머리 노드 삭제
