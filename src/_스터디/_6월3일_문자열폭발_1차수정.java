@@ -25,19 +25,19 @@ public class _6월3일_문자열폭발_1차수정 {
 		if (num == 0) {
 			return;
 		}
-		
+
 //		if (moonjang.contains(bomb)) {
 //            moonjang = moonjang.replace(bomb, "");
 //        }
-		
-		splitmoonjang = moonjang.replaceAll(bomb, ""); //문제이해 잘못. 붙여도 되네?
+
+		splitmoonjang = moonjang.replaceAll(bomb, ""); // 문제이해 잘못. 붙여도 되네?
 //		hap = splitmoonjang.split("\\s+");
-		
+
 		if (splitmoonjang == "") {
 			System.out.println("FRULA");
 			return;
 		}
-		
+
 //		if (hap.length == 0 || splitmoonjang == "") {
 //			result.push(new StringBuffer("FRULA"));
 //			return;
