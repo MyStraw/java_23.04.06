@@ -20,10 +20,10 @@ public class _6월3일_문자열폭발_9차수정 {
 			st.push(split);
 			if (st.size() >= bomb.length()) {
 				boolean ilchi = true;
-				for (int i = 0; i < bomb.length(); i++) {
-					if (st.elementAt(st.size() - bomb.length() + i) != bomb.charAt(i)) {
-						ilchi = false;
-						break;
+				for (int i = 0; i < bomb.length(); i++) { //항상 2개씩 돌게끔. 
+					if (st.elementAt(st.size() - bomb.length() + i) != bomb.charAt(i)) { //elemenaAt, get이랑 같다. 알고싶은 위치의 글자가 뭔지. index 0번의 글자가 무슨 글자인지.
+						ilchi = false; //st.size는 곧 push를 몇개 했냐는 소리. 3개 했다면 여기서 bomb 길이인 2개를 빼면... index 1부터 시작해서 그다음 글자까지.
+						break; 
 					}
 				}
 				if (ilchi) {

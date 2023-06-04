@@ -2,7 +2,7 @@ package _스터디;
 
 import java.util.Scanner;
 
-public class _6월3일_문자열폭발_2차수정 {
+public class _6월3일_문자열폭발_2차수정3 {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

@@ -12,14 +12,13 @@ public class _6월3일_로또 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
 
 		while (true) {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			int k = Integer.parseInt(st.nextToken());
 
 			if (k == 0) {
-				bw.flush(); //이거 위치가 어려웠다. 이거 위치는 현진이가 갈켜줌.
+				bw.flush(); // 이거 위치가 어려웠다. 이거 위치는 현진이가 갈켜줌.
 				return;
 			}
 			int[] S = new int[k];
@@ -32,7 +31,7 @@ public class _6월3일_로또 {
 
 			lottong(k, S, lotto);
 			bw.write("\n");
-		} 
+		}
 	}
 
 	private static void lottong(int k, int[] S, int[] lotto) throws IOException {
@@ -48,7 +47,12 @@ public class _6월3일_로또 {
 							lotto[4] = S[e];
 							for (int f = e + 1; f < k; f++) {
 								lotto[5] = S[f];
-								for (int i = 0; i<6 ; i++) {
+								
+								
+								
+								
+								
+								for (int i = 0; i < 6; i++) {
 									bw.write(lotto[i] + " ");
 								}
 								bw.write("\n");
