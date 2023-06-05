@@ -77,17 +77,44 @@ class LinkedList2 {
 
 	public int Delete(SimpleObject element, Comparator<SimpleObject> cc) // delete the element
 	{
+		Node2 now = first;
+		Node2 left = null;
+
+		if (now == null) { // 처음. first 넣는건데 없으면 걍 없는거지. 리턴
+			return -1;
+		}
+
+		while (now != null) {
+			if (cc.compare(element, now.data) > 0) {// 일단 처음이 아니고 현재 커서가 있는 데이터랑 삭제하고픈 데이터가 같지 않을때
+				left = now;
+				now = now.link;
+			}
+
+			else if (cc.compare(element, now.data) == 0) {// 일단 처음이 아니고 현재 커서에 있는 데이터가 삭제하고픈 데이터일때
+				if (left == null) {
+					first = now.link;
+					return 1;
+				}
+			}
+		}
+		left.link = now.link;
+		return -1;
 
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
-
+		Node2 p = first;
+		while (p != null) {
+			System.out.print(p.data + " ");// p값 출력
+			p = p.link;
+		}
+		System.out.println();
 	}
 
 	public void Add(SimpleObject element, Comparator<SimpleObject> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
-		Node1 insert = new Node1(element);
-		Node1 now = first, past = now;
+		Node2 insert = new Node2(element);
+		Node2 now = first, past = now;
 		if (now == null) {
 			first = insert;
 			return;
@@ -116,6 +143,14 @@ class LinkedList2 {
 
 	public boolean Search(SimpleObject element, Comparator<SimpleObject> cc) { // 전체 리스트를 순서대로 출력한다.
 //		if(cc.compare(element, p.data)); <-이런식으로 바꾸고 나머진 같당~>
+		Node2 p = first;
+		while (p != null) {
+			if (cc.compare(element, p.data) == 0) {
+				return true;
+			}
+			p = p.link;
+		}
+		return false;
 	}
 }
 
