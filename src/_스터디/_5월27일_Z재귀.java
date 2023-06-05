@@ -8,11 +8,11 @@ public class _5월27일_Z재귀 {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int n = in.nextInt(); //입력
-		int N = 1 << n; //2의 n승
-		int r = in.nextInt(); //행
-		int c = in.nextInt(); //열
-		Z = new int[N][N]; //배열 N*N개
+		int n = in.nextInt(); // 입력
+		int N = 1 << n; // 2의 n승
+		int r = in.nextInt(); // 행
+		int c = in.nextInt(); // 열
+		Z = new int[N][N]; // 배열 N*N개
 		Z재귀(0, 0, N);
 
 		StringBuilder sb = new StringBuilder();
