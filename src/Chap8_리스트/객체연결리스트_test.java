@@ -146,7 +146,7 @@ class LinkedList2 {
 			if (cc.compare(element, now.data) < 0) {
 				if (now == first) {
 					add.link = now; // 10 앞에 5가 끼어드는 상황.
-					first = add;
+					first.link = add;
 					return;
 				} else {
 					add.link = now;

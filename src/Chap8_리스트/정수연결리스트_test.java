@@ -95,7 +95,7 @@ class LinkedList1 {
 			if (element < now.data) { // 3. 마지막 넣는거. p는 첫번째 내가 입력할려는값이 첫번째보다 작다면
 				if (now == first) {
 					add.link = now; // 10 앞에 5가 끼어드는 상황.
-					first = add;
+					first.link = add; //first.link가 되어야 하지 않나.
 					return;
 				} else {
 					add.link = now;

@@ -89,20 +89,20 @@ class CircularList {
 
 	public int Delete(SimpleObject3 element, Comparator<SimpleObject3> cc) // delete the element
 	{
-		Node3 now = first;
-		Node3 left = null;
-		while (now != null) {
-			if (cc.compare(element, now.data) == 0) {
-				if (now == first) {
-					first = now.link;
+		Node3 p = first;
+		Node3 q = null;
+		while (p != null) {
+			if (cc.compare(element, p.data) == 0) {
+				if (p == first) {
+					first = p.link;
 					return 1;
 				} else {
-					left.link = now.link;
+					q.link = p.link;
 					return 1;
 				}
-			} else { // ele != p.data
-				left = now;
-				now = now.link;
+			} else {
+				q = p;
+				p = p.link;
 			}
 
 		}
@@ -122,17 +122,17 @@ class CircularList {
 
 	{
 		Node3 temp = new Node3(element); // head 노드 사용해서 구현해보셈
-		Node3 p = first.link, q = first;
+		Node3 p = first.link, q = first; // q 다음이 p
 
 		if (p == q) { // first만 있으면 갖다 붙여라
-			first.link = temp;
-			temp.link = first; // 마지막이 처음 가르켜야.
+			first.link = temp; // first가 가리키는게 temp가 돼야하고
+			temp.link = first; // temp가 가리키는게 다시 first를. 마지막이 처음 가르켜야.
 			return;
 		}
-		while (p != first) {
+		while (p != first) { //while 이 안돈다.
 			if (cc.compare(element, p.data) < 0) {
-				if (q == first) {
-					temp.link = p;
+				if (q == first) { // 데이터없는 첫노드가 q
+					temp.link = p; // first - 10 - 20 - 30 사이에 5가 끼었을때.
 					first.link = temp;
 					return;
 				} else {
@@ -142,18 +142,15 @@ class CircularList {
 				}
 			} else if (cc.compare(element, p.data) >= 0) {
 				q = p;
-				p = p.link;// 이걸 함으로써 다음으로 옮겨.
-				
-				if (p == null) {
-					q.link = temp;
-					return;
-				}
-			}
-			if (p == first) {
+				p = first;
 				q.link = temp;
-				temp.link = first;
-				break;
+				temp.link = p;
+				return;
 			}
+//				q = p;
+//				p = p.link;// 이걸 함으로써 다음으로 옮겨.
+//				if (p == null) {
+//					q.link = temp;
 		}
 	}
 
