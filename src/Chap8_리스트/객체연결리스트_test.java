@@ -76,6 +76,7 @@ class LinkedList2 {
 	}
 
 	public int Delete(SimpleObject element, Comparator<SimpleObject> cc) // delete the element
+<<<<<<< HEAD
 	{
 		Node2 now = first;
 		Node2 left = null;
@@ -99,9 +100,59 @@ class LinkedList2 {
 		}
 		left.link = now.link;
 		return -1;
+=======
+>>>>>>> e5c510fab7dae7d64b918dc9952c7f975b322ec8
 
+	{
+		Node2 now = first;
+		Node2 left = null;
+		while (now != null) {
+			if (cc.compare(element, now.data) == 0) {
+				if (now == first) {
+					first = now.link;
+					return 1;
+				} else {
+					left.link = now.link;
+					return 1;
+				}
+			} else { // ele != p.data
+				left = now;
+				now = now.link;
+			}
+
+		}
+		return -1;
 	}
 
+<<<<<<< HEAD
+=======
+//	{
+//	Node2 now = first;
+//	Node2 left = null;
+//
+//	if (now == null) { // 처음. first 넣는건데 없으면 걍 없는거지. 리턴
+//		return -1;
+//	}
+//
+//	while (now != null) {
+//		if (cc.compare(element, now.data) > 0) {// 일단 처음이 아니고 현재 커서가 있는 데이터랑 삭제하고픈 데이터가 같지 않을때
+//			left = now;
+//			now = now.link;
+//		}
+//
+//		else if (cc.compare(element, now.data) == 0) {// 일단 처음이 아니고 현재 커서에 있는 데이터가 삭제하고픈 데이터일때
+//			if (left == null) {
+//				first = now.link;
+//				return 1;
+//			}
+//		}
+//	}
+//	left.link = now.link;
+//	return -1;
+//
+//}
+
+>>>>>>> e5c510fab7dae7d64b918dc9952c7f975b322ec8
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node2 p = first;
 		while (p != null) {
@@ -113,28 +164,34 @@ class LinkedList2 {
 
 	public void Add(SimpleObject element, Comparator<SimpleObject> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
+<<<<<<< HEAD
 		Node2 insert = new Node2(element);
 		Node2 now = first, past = now;
+=======
+		Node2 add = new Node2(element);
+		Node2 now = first, left=now;
+	
+>>>>>>> e5c510fab7dae7d64b918dc9952c7f975b322ec8
 		if (now == null) {
-			first = insert;
+			first = add;
 			return;
 		}
 		while (now != null) { // 이미 처음은 아니란겨.
 			if (cc.compare(element, now.data) < 0) {
-				if (past == first) {
-					insert.link = now; // 10 앞에 5가 끼어드는 상황.
-					first = insert;
+				if (now == first) {
+					add.link = now; // 10 앞에 5가 끼어드는 상황.
+					first.link = add;
 					return;
 				} else {
-					insert.link = now;
-					past.link = insert;
+					add.link = now;
+					left.link = add;
 					return;
 				}
 			} else if (cc.compare(element, now.data) >= 0) {
-				past = now;
+				left = now;
 				now = now.link;// 이걸 함으로써 다음으로 옮겨.
 				if (now == null) {
-					past.link = insert;
+					left.link = add;
 					return;
 				}
 			}

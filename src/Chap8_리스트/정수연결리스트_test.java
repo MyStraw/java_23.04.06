@@ -27,61 +27,86 @@ class LinkedList1 {
 	{
 		Node1 now = first;
 		Node1 left = null;
-
-		if (now == null) { // 처음. first 넣는건데 없으면 걍 없는거지. 리턴
-			return -1;
-		}
-
 		while (now != null) {
-			if (element > now.data) {// 일단 처음이 아니고 현재 커서가 있는 데이터랑 삭제하고픈 데이터가 같지 않을때
+			if (element == now.data) {
+				if (now == first) {
+					first = now.link;
+					return element;
+				} else {
+					left.link = now.link;
+					return element;
+				}
+			} else { // ele != p.data
 				left = now;
 				now = now.link;
 			}
 
-			else if (element == now.data) {// 일단 처음이 아니고 현재 커서에 있는 데이터가 삭제하고픈 데이터일때
-				if (left == null) {
-					first = now.link;
-					return 1;
-				}
-			}
 		}
-		left.link = now.link;
 		return -1;
 	}
+	
+//	{
+//	Node1 now = first;
+//	Node1 left = null;
+//
+//	if (now == null) { // 처음. first 넣는건데 없으면 걍 없는거지. 리턴
+//		return -1;
+//	}
+//
+//	while (now != null) {
+//		if (element > now.data) {// 일단 처음이 아니고 현재 커서가 있는 데이터랑 삭제하고픈 데이터가 같지 않을때
+//			left = now;
+//			now = now.link;
+//		}
+//
+//		else if (element == now.data) {// 일단 처음이 아니고 현재 커서에 있는 데이터가 삭제하고픈 데이터일때
+//			if (left == null) {
+//				first = now.link;
+//				return 1;
+//			} else {
+//
+//			}
+//		}
+//	}
+//	left.link = now.link;
+//	return -1;
+//}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
-		Node1 p = first;
-		while (p != null) {
-			System.out.print(p.data + " ");// p값 출력
-			p = p.link;
+		Node1 now = first;
+		while (now != null) {
+			System.out.print(now.data + " ");// p값 출력
+			now = now.link;
 		}
 		System.out.println();
 	}
 
 	public void Add(int element) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{ // 10 - 20 - 30 - 40
-		Node1 insert = new Node1(element); // 삽입할 노드.q=past, p=now, nd=insert로 바꿈.
-		Node1 now = first, past = now; // q는 p를 따라가게 // p가 현재 기존에 있는 포인터.
+		Node1 add = new Node1(element); // 삽입할 노드.q=past, p=now, nd=insert로 바꿈.
+		Node1 now = first, left = now; // q는 p를 따라가게 // p가 현재 기존에 있는 포인터.
+		// 이거를 추가해야 충간값 삽입해도 처음이 안없어지네
+
 		if (now == null) {// 1. 처음 넣는거 (아무것도 없을때는 p도 없지.)
-			first = insert; // 0부터 시작하는 이세계. 아무것도 없으니까 삽입할 노드가 first가 되겠네.
+			first = add; // 0부터 시작하는 이세계. 아무것도 없으니까 삽입할 노드가 first가 되겠네.
 			return;
 		}
 		while (now != null) { // 이미 처음은 아니란겨.
 			if (element < now.data) { // 3. 마지막 넣는거. p는 첫번째 내가 입력할려는값이 첫번째보다 작다면
-				if (past == first) {
-					insert.link = now; // 10 앞에 5가 끼어드는 상황.
-					first = insert;
+				if (now == first) {
+					add.link = now; // 10 앞에 5가 끼어드는 상황.
+					first.link = add; //first.link가 되어야 하지 않나.
 					return;
 				} else {
-					insert.link = now;
-					past.link = insert;
+					add.link = now;
+					left.link = add;
 					return;
 				}
 			} else if (element >= now.data) {
-				past = now;
+				left = now;
 				now = now.link;// 이걸 함으로써 다음으로 옮겨.
 				if (now == null) {
-					past.link = insert;
+					left.link = add;
 					return;
 				}
 			}
@@ -89,12 +114,12 @@ class LinkedList1 {
 	}
 
 	public boolean Search(int data) { // 전체 리스트를 순서대로 출력한다.
-		Node1 p = first;
-		while (p != null) {
-			if (p.data == data) {
+		Node1 now = first;
+		while (now != null) {
+			if (now.data == data) {
 				return true;
 			}
-			p = p.link;
+			now = now.link;
 		}
 		return false;
 	}
@@ -178,31 +203,3 @@ public class 정수연결리스트_test {
 		} while (menu != Menu.Exit);
 	}
 }
-
-//Node1 nd = new Node1(element);
-//Node1 p = first, q = p; // q는 p를 따라가게
-//if (p == null) {// 1. 처음 넣는거
-//	first = nd;
-//	return;
-//}
-//while (p != null) {
-//	if (element < p.data) { // 3. 마지막 넣는거. p는 첫번째 내가 입력할려는값이 첫번째보다 작다면
-//		if (q == first) {
-//			nd.link = p;
-//			first = nd;
-//			return;
-//		} else {
-//			nd.link = p;
-//			q.link = nd;
-//			return;
-//		}
-//	} else if (element > p.data) {
-//		q = p;
-//		p = p.link;// 이걸 함으로써 다음으로 옮겨.
-//		if (p == null) {
-//
-//			return;
-//
-//		}
-//	}
-//}
