@@ -1,4 +1,4 @@
-package Chap8_리스트;
+package Chap99_연습;
 
 /*
  * 정수 리스트 > 객체 리스트> 객체 원형 리스트
@@ -88,27 +88,7 @@ class CircularList {
 	}
 
 	public int Delete(SimpleObject3 element, Comparator<SimpleObject3> cc) // delete the element
-	{
-		Node3 p = first;
-		Node3 q = null;
-		while (p != null) {
-			if (cc.compare(element, p.data) == 0) {
-				if (p == first) {
-					first = p.link;
-					return 1;
-				} else {
-					q.link = p.link;
-					return 1;
-				}
-			} else {
-				q = p;
-				p = p.link;
-			}
 
-		}
-		return -1;
-	}
-	
 //	 {
 //		    Node3 p = first.link; // 현재 노드
 //		    Node3 q = first; // 이전 노드
@@ -136,8 +116,42 @@ class CircularList {
 //		    } while (p != first.link);
 //		    return -1; // 삭제할 노드를 찾지 못한 경우
 //		}
-	
-	
+
+	// -----------------------------
+	{
+		Node3 p = first.link, q = first;
+		Node3 r = first; // 첫 번째 노드를 가리키는 참조 변수 추가
+
+		if (p == q) { // 리스트에 요소가 하나 뿐인 경우
+			if (cc.compare(element, p.data) == 0) {
+				first = null; // 리스트의 유일한 요소 삭제
+			}
+			return -1;
+		}
+
+		while (p != first) {
+			if (cc.compare(element, p.data) == 0) {
+				if (p == r) { // 첫 번째 노드를 삭제하는 경우
+					first = p.link;
+					r = first;
+					q.link = r;
+					p = p.link;
+				} else { // 중간 노드를 삭제하는 경우
+					q.link = p.link;
+					p = p.link;
+				}
+				return 1; // 삭제한 후 반복문 종료
+			}
+			q = p;
+			p = p.link;
+		}
+
+		// 맨 끝 노드를 삭제하는 경우
+		if (cc.compare(element, q.data) == 0) {
+			p.link = first;
+		}
+		return -1;
+	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node3 nd = first.link;
@@ -149,41 +163,133 @@ class CircularList {
 	}
 
 	public void Add(SimpleObject3 element, Comparator<SimpleObject3> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
+
+//	{
+//		Node3 temp = new Node3(element); // head 노드 사용해서 구현해보셈
+//		Node3 p = first.link, q = first; // q 다음이 p
+//
+//		if (p == q) { // first만 있으면 갖다 붙여라
+//			first.link = temp; // first가 가리키는게 temp가 돼야하고
+//			temp.link = first; // temp가 가리키는게 다시 first를. 마지막이 처음 가르켜야.
+//			return;
+//		}
+//		while (p != first) { //while 이 안돈다.
+//			if (cc.compare(element, p.data) < 0) {
+//				if (q == first) { // 데이터없는 첫노드가 q
+//					temp.link = p; // first - 10 - 20 - 30 사이에 5가 끼었을때.
+//					first.link = temp;
+//					return;
+//				} else {
+//					temp.link = p;
+//					q.link = temp;
+//					return;
+//				}
+//			} else if (cc.compare(element, p.data) >= 0) {
+//				q = p;
+//				p = first;
+//				q.link = temp;
+//				temp.link = p;
+//				return;
+//			}
+////				q = p;
+////				p = p.link;// 이걸 함으로써 다음으로 옮겨.
+////				if (p == null) {
+////					q.link = temp;
+//		}
+//	}
+
+//	{
+//	    Node3 temp = new Node3(element);
+//	    Node3 p = first.link, q = first; // q 다음이 p
+//
+//	    while (p != first) { // 리스트를 순회합니다.
+//	        if (cc.compare(element, p.data) < 0) { // 삽입할 노드의 위치를 찾았습니다.
+//	            temp.link = p; // 새 노드가 현재 노드를 가리키도록 합니다.
+//	            q.link = temp; // 이전 노드가 새 노드를 가리키도록 합니다.
+//	            return;
+//	        }
+//	        q = p; // 이전 노드를 현재 노드로 갱신합니다.
+//	        p = p.link; // 현재 노드를 다음 노드로 갱신합니다.
+//	    }
+//
+//	    // 삽입하려는 노드가 리스트의 모든 노드보다 큰 경우, 리스트의 마지막에 삽입합니다.
+//	    q.link = temp; // 이전 노드가 새 노드를 가리키도록 합니다.
+//	    temp.link = first; // 새 노드가 첫 번째 노드를 가리키도록 합니다. (원형 리스트이므로)
+//	}	
+
+//	{
+//	Node3 nd = new Node3(element);
+//	Node3 p = first;
+//	Node3 q = null;
+//	if (p == null) {
+//		first = nd;
+//		return;
+//	}
+//	while (p != null) {
+//		if (cc.compare(element, p.data) < 0) {
+//			if (p == first) { // p가 첫번째일때
+//				nd.link = p;
+//				first = nd;
+//				return;
+//			} else { // p가 첫번째가 아닐때
+//				nd.link = p;
+//				q.link = nd;
+//				return;
+//			}
+//		} else if (cc.compare(element, p.data) > 0) {
+//			q = p;
+//			p = p.link;
+//			if (p == null) {
+//				q.link = nd;
+//				return;
+//			}
+//		}
+//		if (p == first) { // 마지막 노드일 경우 첫 번째 노드와 연결
+//			q.link = nd;
+//			nd.link = first;
+//			break;
+//		}
+//
+//	}
+//
+//}
+
+	// -----------------------------------------
+
 	{
-	    Node3 temp = new Node3(element);
-	    Node3 p = first.link, q = first;
+		Node3 temp = new Node3(element);
+		Node3 p = first.link, q = first;
 
-	    if (p == q) {
-	        first.link = temp;
-	        temp.link = first;
-	        return;
-	    }
-	    
-	    while (p != first) {
-	        if (cc.compare(element, p.data) < 0) {
-	            if (q == first) {
-	                temp.link = p;
-	                first.link = temp;
-	                return;
-	            } else {
-	                temp.link = p;
-	                q.link = temp;
-	                return;
-	            }
-	        } else if (cc.compare(element, p.data) > 0) {
-	            q = p;
-	            p = p.link;
-	        } else {
-	            System.out.println("The node already exists.");
-	            return;
-	        }
-	    }
+		if (p == q) {
+			first.link = temp;
+			temp.link = first;
+			return;
+		}
 
-	    // If the inserted element is the largest, add to the end of the list
-	    q.link = temp;
-	    temp.link = first;
-	}	
-	
+		while (p != first) {
+			if (cc.compare(element, p.data) < 0) {
+				if (q == first) {
+					temp.link = p;
+					first.link = temp;
+					return;
+				} else {
+					temp.link = p;
+					q.link = temp;
+					return;
+				}
+			} else if (cc.compare(element, p.data) > 0) {
+				q = p;
+				p = p.link;
+			} else {
+				System.out.println("The node already exists.");
+				return;
+			}
+		}
+
+		// If the inserted element is the largest, add to the end of the list
+		q.link = temp;
+		temp.link = first;
+	}
 
 	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { // 전체 리스트를 순서대로 출력한다.
 		Node3 p = first;
