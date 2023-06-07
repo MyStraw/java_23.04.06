@@ -108,7 +108,7 @@ class CircularList {
 		}
 		return -1;
 	}
-	
+
 //	 {
 //		    Node3 p = first.link; // 현재 노드
 //		    Node3 q = first; // 이전 노드
@@ -136,8 +136,6 @@ class CircularList {
 //		    } while (p != first.link);
 //		    return -1; // 삭제할 노드를 찾지 못한 경우
 //		}
-	
-	
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node3 nd = first.link;
@@ -150,40 +148,37 @@ class CircularList {
 
 	public void Add(SimpleObject3 element, Comparator<SimpleObject3> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
-	    Node3 temp = new Node3(element);
-	    Node3 p = first.link, q = first;
+		Node3 temp = new Node3(element);
+		Node3 p = first.link, q = first;
 
-	    if (p == q) {
-	        first.link = temp;
-	        temp.link = first;
-	        return;
-	    }
-	    
-	    while (p != first) {
-	        if (cc.compare(element, p.data) < 0) {
-	            if (q == first) {
-	                temp.link = p;
-	                first.link = temp;
-	                return;
-	            } else {
-	                temp.link = p;
-	                q.link = temp;
-	                return;
-	            }
-	        } else if (cc.compare(element, p.data) > 0) {
-	            q = p;
-	            p = p.link;
-	        } else {
-	            System.out.println("The node already exists.");
-	            return;
-	        }
-	    }
+		if (p == q) {
+			first.link = temp;
+			temp.link = first;
+			return;
+		}
 
-	    // If the inserted element is the largest, add to the end of the list
-	    q.link = temp;
-	    temp.link = first;
-	}	
-	
+		while (p != first) {
+			if (cc.compare(element, p.data) < 0) {
+				if (q == first) {
+					temp.link = p;
+					first.link = temp;
+					return;
+				} else {
+					temp.link = p;
+					q.link = temp;
+					return;
+				}
+			} else if (cc.compare(element, p.data) > 0) {
+				q = p;
+				p = p.link;
+			} else {
+				return;
+			}
+		}
+
+		q.link = temp;
+		temp.link = first;
+	}
 
 	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { // 전체 리스트를 순서대로 출력한다.
 		Node3 p = first;
