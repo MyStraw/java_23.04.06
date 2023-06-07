@@ -167,13 +167,12 @@ class Tree {
 				q.RightChild = p.RightChild;
 			}
 			
-		}
-		
+		}		
 		
 		//케이스 3 : child 가 2개인 노드 삭제
 		
 		
-		return true;
+		return false;
 	}
 
 	boolean search(int num) {
