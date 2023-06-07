@@ -149,10 +149,10 @@ class Tree {
 				root = p.LeftChild;	//p.left?				
 			}
 			if(isLeftChild) { 
-				q.LeftChild = p.LeftChild; //p.left?
+				q.LeftChild = p.LeftChild; //p.left? 이게 1번. 1이 부모의 왼쪽에 있는애
 			}
 			else {
-				q.RightChild = p.LeftChild;
+				q.RightChild = p.LeftChild; //이게 4번. 4가 부모의 오른쪽에 있는 애.
 			}
 			
 		}
