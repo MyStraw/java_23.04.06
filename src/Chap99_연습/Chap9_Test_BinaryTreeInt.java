@@ -1,10 +1,10 @@
 package Chap99_연습;
+
 /*
  * 23.6.7 3회차 실습 코드
  */
 import java.util.Random;
 import java.util.Scanner;
-
 
 //정수를 저정하는 이진트리 만들기 실습
 class TreeNode {
@@ -78,112 +78,112 @@ class Tree {
 	boolean insert(int x) {// binary search tree를 만드는 입력 => A + B * C을 tree로 만드는 방법: 입력 해결하는 알고리즘 작성 방법을
 							// 설계하여 구현
 		TreeNode newNode = new TreeNode();
-	    newNode.data = x;
+		newNode.data = x;
 
-	    if(root == null) {
-	        root = newNode;
-	        return true;
-	    }
+		if (root == null) {
+			root = newNode;
+			return true;
+		}
 
-	    TreeNode current = root;
-	    TreeNode parent = null;
+		TreeNode current = root;
+		TreeNode parent = null;
 
-	    while(true) {
-	        parent = current;
-	        if(x < current.data) {
-	            current = current.LeftChild;
-	            if(current == null) {
-	                parent.LeftChild = newNode;
-	                return true;
-	            }
-	        } else if(x > current.data) {
-	            current = current.RightChild;
-	            if(current == null) {
-	                parent.RightChild = newNode;
-	                return true;
-	            }
-	        } else {
-	            return false; // no duplicate data allowed in BST
-	        }
-	    }
+		while (true) {
+			parent = current;
+			if (x < current.data) {
+				current = current.LeftChild;
+				if (current == null) {
+					parent.LeftChild = newNode;
+					return true;
+				}
+			} else if (x > current.data) {
+				current = current.RightChild;
+				if (current == null) {
+					parent.RightChild = newNode;
+					return true;
+				}
+			} else {
+				return false; // no duplicate data allowed in BST
+			}
+		}
 	}
 
 	boolean delete(int num) {
-		 TreeNode parent = root;
-		    TreeNode current = root;
-		    boolean isLeftChild = false;
-		    
-		    while(current.data != num) {
-		        parent = current;
-		        if(current.data > num) {
-		            isLeftChild = true;
-		            current = current.LeftChild;
-		        } else if(current.data < num) {
-		            isLeftChild = false;
-		            current = current.RightChild;
-		        } 
-		        if(current == null) {
-		            return false;
-		        }
-		    }
-		    
-		    // Case 1: if node to be deleted has no children
-		    if(current.LeftChild == null && current.RightChild == null) {
-		        if(current == root) {
-		            root = null;
-		        }
-		        if(isLeftChild) {
-		            parent.LeftChild = null;
-		        } else {
-		            parent.RightChild = null;
-		        }
-		    }
-		    // Case 2 : if node to be deleted has only one child
-		    else if(current.RightChild == null) {
-		        if(current == root) {
-		            root = current.LeftChild;
-		        } else if(isLeftChild) {
-		            parent.LeftChild = current.LeftChild;
-		        } else {
-		            parent.RightChild = current.LeftChild;
-		        }
-		    } else if(current.LeftChild == null) {
-		        if(current == root) {
-		            root = current.RightChild;
-		        } else if(isLeftChild) {
-		            parent.LeftChild = current.RightChild;
-		        } else {
-		            parent.RightChild = current.RightChild;
-		        }
-		    }
-		    // Case 3: node to be deleted has two children
-		    else {
-		        TreeNode successor = inorderSucc(current);
-		        if(current == root) {
-		            root = successor;
-		        } else if(isLeftChild) {
-		            parent.LeftChild = successor;
-		        } else {
-		            parent.RightChild = successor;
-		        } 
-		        successor.LeftChild = current.LeftChild;
-		    }
-		    return true;
+		TreeNode parent = root;
+		TreeNode current = root;
+		boolean isLeftChild = false;
+
+		while (current.data != num) {
+			parent = current;
+			if (current.data > num) {
+				isLeftChild = true;
+				current = current.LeftChild;
+			} else if (current.data < num) {
+				isLeftChild = false;
+				current = current.RightChild;
+			}
+			if (current == null) {
+				return false;
+			}
+		}
+
+		// Case 1: if node to be deleted has no children
+		if (current.LeftChild == null && current.RightChild == null) {
+			if (current == root) {
+				root = null;
+			}
+			if (isLeftChild) {
+				parent.LeftChild = null;
+			} else {
+				parent.RightChild = null;
+			}
+		}
+		// Case 2 : if node to be deleted has only one child
+		else if (current.RightChild == null) {
+			if (current == root) {
+				root = current.LeftChild;
+			} else if (isLeftChild) {
+				parent.LeftChild = current.LeftChild;
+			} else {
+				parent.RightChild = current.LeftChild;
+			}
+		} else if (current.LeftChild == null) {
+			if (current == root) {
+				root = current.RightChild;
+			} else if (isLeftChild) {
+				parent.LeftChild = current.RightChild;
+			} else {
+				parent.RightChild = current.RightChild;
+			}
+		}
+		// Case 3: node to be deleted has two children
+		else {
+			TreeNode successor = inorderSucc(current);
+			if (current == root) {
+				root = successor;
+			} else if (isLeftChild) {
+				parent.LeftChild = successor;
+			} else {
+				parent.RightChild = successor;
+			}
+			successor.LeftChild = current.LeftChild;
+		}
+		return true;
 
 	}
 
 	boolean search(int num) {
 		TreeNode current = root;
-	    while(current != null) {
-	        if(current.data == num) {
-	            return true;
-	        } else if(current.data > num) {
-	            current = current.LeftChild;
-	        } else {
-	            current = current.RightChild;
-	        }
-	    }
-	    return false;
+		while (current != null) {
+			if (current.data == num) {
+				return true;
+			} else if (current.data > num) {
+				current = current.LeftChild;
+			} else {
+				current = current.RightChild;
+			}
+		}
+		return false;
 	}
 }
 
