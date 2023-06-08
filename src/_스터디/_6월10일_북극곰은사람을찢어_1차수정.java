@@ -16,11 +16,11 @@ public class _6월10일_북극곰은사람을찢어_1차수정 {
 		int day = 0;
 		for (char ch : bear.toCharArray()) {
 			st.push(ch);
-			if (st.peek().toString().equals("(")) {
+			if (st.peek()=='(') { //toString 하지마... character는 '(' 이거쟈냐
 				count++;
 			}
 
-			else if (st.peek().toString().equals(")")) {
+			else if (st.peek()==')') {
 				count--;
 			}
 
