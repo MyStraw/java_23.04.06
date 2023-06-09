@@ -5,17 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class _6월10일_북극곰은사람을찢어_1차수정 {
+public class _6월10일_북극곰은사람을찢어_2차수정 {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String N = br.readLine(); //난 이게 필요가 없어쪄. 그냥 한방에 괄호쌍 다 입력해서.
-		String bear = br.readLine(); //괄호쌍 입력 한방에
+		int N =Integer.parseInt(br.readLine()) ; //난 이게 필요가 없어쪄. 그냥 한방에 괄호쌍 다 입력해서.
+		//괄호쌍 입력 한방에
 		Stack<Character> st = new Stack<>(); //스택으로
 		int count = 0;
 		int day = 0;
-		for (char ch : bear.toCharArray()) { //bear 돌면서 한글자씩 ch에
-			st.push(ch); //ch를 스택안에 넣어준다.
+		String bear = br.readLine();
+		for (int i = 0 ; i < N ; i ++) { //bear 돌면서 한글자씩 ch에
+			char b = bear.charAt(i); 
+			st.push(b); //ch를 스택안에 넣어준다.;
 			if (st.peek()=='(') { //toString 하지마... character는 '(' 이거쟈냐
 				count++;
 			}

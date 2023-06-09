@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class _6월10일_앵무새3 {
+public class _6월10일_앵무새3 { //배열로 풀기
 	public static void main(String[] args) throws IOException {
-		//Scanner sc = new Scanner(System.in);
+		// Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 //		sc.nextLine();
@@ -26,7 +26,7 @@ public class _6월10일_앵무새3 {
 			for (String s : S.split(" ")) {
 				que.add(s);
 			}
-			listOfque[i]= que;
+			listOfque[i] = que;
 		}
 
 		String sum = br.readLine();
@@ -46,16 +46,23 @@ public class _6월10일_앵무새3 {
 					listOfque[i].poll();
 					result.poll();
 					count++;
-					if (listOfque[i].isEmpty()) { //반례. 2 a b a impossible
-						listOfque[i].clear();
-						N = N - 1;
-					}
 				}
 			}
 			count2++;
 		}
+		//이거 추가
+		boolean empty = true;
+		for (int i = 0; i < N; i++) {
+			if (listOfque[i].isEmpty())
+				empty = true;
+			else
+				empty = false;
+			if (!empty) {
+				break;
+			}
+		}
 
-		if (result.isEmpty() && listOfque[N].isEmpty()) {
+		if (result.isEmpty() && empty == true) {
 			System.out.println("Possible");
 		} else {
 			System.out.println("Impossible");
