@@ -89,25 +89,60 @@ class CircularList {
 
 	public int Delete(SimpleObject3 element, Comparator<SimpleObject3> cc) // delete the element
 	{
-		Node3 p = first;
-		Node3 q = null;
-		while (p != null) {
-			if (cc.compare(element, p.data) == 0) {
-				if (p == first) {
-					first = p.link;
-					return 1;
-				} else {
-					q.link = p.link;
-					return 1;
-				}
-			} else {
-				q = p;
-				p = p.link;
-			}
+		Node3 p = first.link, q = first;
+		Node3 r = first; // 첫 번째 노드를 가리키는 참조 변수 추가
 
+		if (p == q) { // 리스트에 요소가 하나 뿐인 경우
+			if (cc.compare(element, p.data) == 0) {
+				first = null; // 리스트의 유일한 요소 삭제
+			}
+			return -1;
+		}
+
+		while (p != first) {
+			if (cc.compare(element, p.data) == 0) {
+				if (p == r) { // 첫 번째 노드를 삭제하는 경우
+					first = p.link;
+					r = first;
+					q.link = r;
+					p = p.link;
+				} else { // 중간 노드를 삭제하는 경우
+					q.link = p.link;
+					p = p.link;
+				}
+				return 1; // 삭제한 후 반복문 종료
+			}
+			q = p;
+			p = p.link;
+		}
+
+		// 맨 끝 노드를 삭제하는 경우
+		if (cc.compare(element, q.data) == 0) {
+			p.link = first;
 		}
 		return -1;
 	}
+
+//	{
+//		Node3 p = first;
+//		Node3 q = null;
+//		while (p != null) {
+//			if (cc.compare(element, p.data) == 0) {
+//				if (p == first) {
+//					first = p.link;
+//					return 1;
+//				} else {
+//					q.link = p.link;
+//					return 1;
+//				}
+//			} else {
+//				q = p;
+//				p = p.link;
+//			}
+//
+//		}
+//		return -1;
+//	}
 
 //	 {
 //		    Node3 p = first.link; // 현재 노드
@@ -181,8 +216,8 @@ class CircularList {
 	}
 
 	public boolean Search(SimpleObject3 element, Comparator<SimpleObject3> cc) { // 전체 리스트를 순서대로 출력한다.
-		Node3 p = first;
-		while (p != null) {
+		Node3 p = first.link;
+		while (p != first) {
 			if (cc.compare(element, p.data) == 0) {
 				return true;
 			}

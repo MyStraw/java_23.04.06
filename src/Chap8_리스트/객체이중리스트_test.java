@@ -98,6 +98,7 @@ class DoubledLinkedList2 {
 
 // --- 노드를 검색 ---//
 	public boolean search(SimpleObject2 obj, Comparator<? super SimpleObject2> c) {
+		return false;
 
 	}
 
@@ -117,6 +118,7 @@ class DoubledLinkedList2 {
 
 	}
 	public DoubledLinkedList2 merge(DoubledLinkedList2 lst2) {
+		return lst2;
 
 
 	}

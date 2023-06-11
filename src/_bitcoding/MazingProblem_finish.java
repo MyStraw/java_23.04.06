@@ -129,7 +129,7 @@ class Offsets {
 	int b;
 }
 
-public class MazingProblem {
+public class MazingProblem_finish {
 	// 만약 이 필드를 같은 패키지 내에서만 사용하려면 디폴트 접근 제어자를,
 	// 다른 패키지에서도 사용하려면 'public'을,
 	// 오직 같은 클래스 내에서만 사용하려면 'private'을 선택하게 될 것입니다.
@@ -163,33 +163,32 @@ public class MazingProblem {
 //			[5][4][3]
 			while (d < 8) // moves forward
 			{
-				int g = i + moves[d].a; //그다음위치
+				int g = i + moves[d].a; // 그다음위치
 				int h = j + moves[d].b;
 
 				if ((g == ix) && (h == iy)) { // reached exit // output path
-					System.out.println(st);	// output path
-					System.out.println("the term near the exit: " + i +" " + j);
+					System.out.println(st); // output path
+					System.out.println("the term near the exit: " + i + " " + j);
 					System.out.println("exit: " + ix + " " + iy);
 					mark[g][h] = 2;
 					mark[i][j] = 2;
-					while(!st.isEmpty()) {
+					while (!st.isEmpty()) {
 						tmp = st.pop();
 						mark[tmp.x][tmp.y] = 2;
-						
+
 					}
 					return;
 				}
 				if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
-					temp.x = i;  
-					temp.y = j; 
+					temp.x = i;
+					temp.y = j;
 					temp.dir = d + 1;
-					Items push = new Items(i, j, d+1);
+					Items push = new Items(i, j, d + 1);
 					st.push(push);
 					mark[temp.x][temp.y] = 1;
 					i = g;
-					j = h; 
+					j = h;
 					d = 0;
-					
 
 				} else
 					d++;
@@ -202,32 +201,34 @@ public class MazingProblem {
 	public static void main(String[] args) {
 		int[][] maze = new int[14][17];
 		int[][] mark = new int[14][17];
-		
+
 		int input[][] = { // 12 x 15
-				{ 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 }, 
-				{ 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
-				{ 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 }, 
-				{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0 },
-				{ 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1 }, 
-				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
-				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 }, 
-				{ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
-				{ 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, 
-				{ 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
-				{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, 
-				{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 } };
+				{ 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1 },
+				{ 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0 },
+				{ 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1 }, { 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 },
+				{ 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1 }, { 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
+				{ 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, { 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
+				{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, { 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 } };
 
 		for (int ia = 0; ia < 8; ia++) {
 			moves[ia] = new Offsets(0, 0);// 배열에 offsets 객체를 치환해야 한다.
 		}
-		moves[0].a = -1;		moves[0].b = 0; 	// ↑
-		moves[1].a = -1;		moves[1].b = 1; 	// ↗
-		moves[2].a = 0;			moves[2].b = 1;		// →
-		moves[3].a = 1;			moves[3].b = 1; 	// ↘
-		moves[4].a = 1;			moves[4].b = 0;		// ↓
-		moves[5].a = 1;			moves[5].b = -1;	// ↙
-		moves[6].a = 0;			moves[6].b = -1; 	// ←
-		moves[7].a = -1;		moves[7].b = -1; 	// ↖
+		moves[0].a = -1;
+		moves[0].b = 0; // ↑
+		moves[1].a = -1;
+		moves[1].b = 1; // ↗
+		moves[2].a = 0;
+		moves[2].b = 1; // →
+		moves[3].a = 1;
+		moves[3].b = 1; // ↘
+		moves[4].a = 1;
+		moves[4].b = 0; // ↓
+		moves[5].a = 1;
+		moves[5].b = -1; // ↙
+		moves[6].a = 0;
+		moves[6].b = -1; // ←
+		moves[7].a = -1;
+		moves[7].b = -1; // ↖
 
 //		[7][0][1] 이런 방을 만든거다. 여기에 생성자가 있네~
 //		[6]   [2]
@@ -245,7 +246,7 @@ public class MazingProblem {
 					maze[i][j] = input[i - 1][j - 1];
 				}
 				mark[i][j] = 0;
-				
+
 			}
 		}
 		System.out.println("maze[12,15]::");
@@ -264,7 +265,7 @@ public class MazingProblem {
 			}
 			System.out.println();
 		}
-		path(maze, mark, 12, 15); //이게 답이네?
+		path(maze, mark, 12, 15); // 이게 답이네?
 		System.out.println("mark::");
 		for (int i = 1; i <= 12; i++) {
 			for (int j = 1; j <= 15; j++) {

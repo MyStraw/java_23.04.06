@@ -139,7 +139,7 @@ class Point {
 	}
 }
 
-public class Chap5_Test_QueenEight_revised {
+public class Chap5_Test_QueenEight_revised_finish {
 
 	static final int numberQueens = 4;
 

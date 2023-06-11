@@ -1,4 +1,4 @@
-package Chap9_트리;
+package Chap5_재귀알고리즘;
 
 /*
  * 23.6.7 3회차 실습 코드
@@ -91,10 +91,10 @@ class Tree {
 			return true;
 		}
 		while (p != null) {
-			q = p; //이전거 q. 그러니 부모? 가 p가 되게끔.
-			if (x < p.data) { //p 데이터보다 삽입하려는게 작은수라면 왼쪽으로 가야지
+			q = p; // 이전거 q. 그러니 부모? 가 p가 되게끔.
+			if (x < p.data) { // p 데이터보다 삽입하려는게 작은수라면 왼쪽으로 가야지
 				p = p.LeftChild;
-				if (p == null) { //근데 삽입 할라니까 왼쪽이 비어있네? 그럼 새로 만들어야지. temp.
+				if (p == null) { // 근데 삽입 할라니까 왼쪽이 비어있네? 그럼 새로 만들어야지. temp.
 					q.LeftChild = temp; // 새로 생성을 해야지.
 					return true;
 				}
@@ -104,23 +104,24 @@ class Tree {
 					q.RightChild = temp; // 새로 생성을 해야지.
 					return true;
 				}
+			} else { // 중복처리
+				return false; // 이거 하나 부족.
 			}
 		}
 		return false;
 	}
 
 	boolean delete(int num) {
-		TreeNode p = root; //루트에서부터 출발 해보자잉
+		TreeNode p = root; // 루트에서부터 출발 해보자잉
 		TreeNode q = root;
 		boolean isLeftChild = true;
-		
-		while(p.data != num) {
+
+		while (p.data != num) {
 			q = p;
 			if (p.data > num) {
 				isLeftChild = true;
 				p = p.LeftChild;
-			}
-			else if (p.data < num) {
+			} else if (p.data < num) {
 				isLeftChild = false;
 				p = p.RightChild;
 			}
@@ -128,51 +129,58 @@ class Tree {
 				return false;
 			}
 		}
-			
-		//케이스 1 : leaf node 삭제		
+
+		// 케이스 1 : leaf node 삭제
 		if (p.LeftChild == null && p.RightChild == null) {
 			if (p == root) {
 				root = null;
 			}
-			if(isLeftChild) { //위 while에서 true를 해놨으니까...
-				q.LeftChild = null; //p의 부모가 q인 상태. p는 q의 왼쪽아이. 그래서 q의 왼쪽아이를 자르면 삭제되겠네
-			}
-			else {
+			if (isLeftChild) { // 위 while에서 true를 해놨으니까...
+				q.LeftChild = null; // p의 부모가 q인 상태. p는 q의 왼쪽아이. 그래서 q의 왼쪽아이를 자르면 삭제되겠네
+			} else {
 				q.RightChild = null;
 			}
-			
+
 		}
-		
-		//케이스 2 : child 가 1개인 노드 삭제 //위랑 똑같이 하면 되겠네.
-		if(p.RightChild == null) {
+
+		// 케이스 2 : child 가 1개인 노드 삭제 //위랑 똑같이 하면 되겠네.
+		if (p.RightChild == null) {
 			if (p == root) {
-				root = p.LeftChild;	//p.left?				
+				root = p.LeftChild; // p.left?
 			}
-			if(isLeftChild) { 
-				q.LeftChild = p.LeftChild; //p.left? 이게 1번. 1이 부모의 왼쪽에 있는애
+			if (isLeftChild) {
+				q.LeftChild = p.LeftChild; // p.left? 이게 1번. 1이 부모의 왼쪽에 있는애
+			} else {
+				q.RightChild = p.LeftChild; // 이게 4번. 4가 부모의 오른쪽에 있는 애.
 			}
-			else {
-				q.RightChild = p.LeftChild; //이게 4번. 4가 부모의 오른쪽에 있는 애.
-			}
-			
+
 		}
-		if(p.LeftChild == null) {
+		if (p.LeftChild == null) {
 			if (p == root) {
-				root = p.RightChild;	//p.left?				
+				root = p.RightChild; // p.left?
 			}
-			if(isLeftChild) { 
-				q.LeftChild = p.RightChild; //p.left?
-			}
-			else {
+			if (isLeftChild) {
+				q.LeftChild = p.RightChild; // p.left?
+			} else {
 				q.RightChild = p.RightChild;
 			}
-			
-		}		
-		
-		//케이스 3 : child 가 2개인 노드 삭제
-		
-		
-		return false;
+		}
+		// 케이스 3 : child 가 2개인 노드 삭제. inorderSucc이용
+		else {
+			TreeNode successor = inorderSucc(p);
+			if (p == root) {
+				root = successor;
+
+			} else if (isLeftChild) {
+				q.LeftChild = successor;
+
+			} else {
+				q.RightChild = successor;
+			}
+			successor.LeftChild = p.LeftChild;
+
+		}
+		return true;
 	}
 
 	boolean search(int num) {
@@ -190,15 +198,15 @@ class Tree {
 	}
 }
 
-public class Chap9_Test_BinaryTreeInt {	
-	enum Menu { //이넘 타입은 다 이런 보라색으로 표시된다.
+public class Chap9_Test_BinaryTreeInt {
+	enum Menu { // 이넘 타입은 다 이런 보라색으로 표시된다.
 		Add("삽입"), Delete("삭제"), Search("검색"), InorderPrint("순차출력"), Exit("종료");
 
 		private final String message; // 표시할 문자열
 
 		static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
 			for (Menu m : Menu.values())
-				if (m.ordinal() == idx) //ordinal은 enum의 메소드. 정수값으로 반환. Add의 ordinal은 0을 반환. 순서를 알수있다.
+				if (m.ordinal() == idx) // ordinal은 enum의 메소드. 정수값으로 반환. Add의 ordinal은 0을 반환. 순서를 알수있다.
 					return m;
 			return null;
 		}

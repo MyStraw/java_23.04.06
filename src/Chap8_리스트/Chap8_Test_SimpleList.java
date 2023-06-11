@@ -4,10 +4,10 @@ package Chap8_리스트;
 //이건 무시. 새로 올라온 정수연결리스트 들부터 다 봐
 import java.util.Scanner;
 
-import Chap8_List.SimpleLinkedList.Menu;
 class Node {
 	int data;
 	Node link;
+
 	public Node(int element) {
 		data = element;
 		link = null;
@@ -16,30 +16,34 @@ class Node {
 
 class LinkedList {
 	Node first;
-	public LinkedList() { //생성자.
+
+	public LinkedList() { // 생성자.
 		first = null;
 	}
-	public int Delete(int element) //delete the element
+
+	public int Delete(int element) // delete the element
 	{
 
 		return 0;
 	}
+
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 
 	}
-	public void Add(int element) //임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다 
+
+	public void Add(int element) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
 	{
 		Node newNode = new Node(element);
-		if(first == null) {
+		if (first == null) {
 			first = newNode;
-		return;
-	}
+			return;
+		}
 
 	}
+
 	public boolean Search(int data) { // 전체 리스트를 순서대로 출력한다.
 		return true;
 	}
-
 
 public class Chap8_Test_SimpleList {
 	enum Menu {

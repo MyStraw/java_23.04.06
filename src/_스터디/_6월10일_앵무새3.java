@@ -3,22 +3,17 @@ package _스터디;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
-public class _6월10일_앵무새3 { //배열로 풀기
-	public static void main(String[] args) throws IOException {
-		// Scanner sc = new Scanner(System.in);
+public class _6월10일_앵무새3 { // 배열로 풀기
+	public static void main(String[] args) throws IOException {		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-//		sc.nextLine();
 		Queue<String> listOfque[] = new LinkedList[N];
-//		List<Queue<String>> listOfque = new ArrayList<>();
 		Queue<String> result = new LinkedList<>();
 		int count = 0;
-		int count2 = 0;
+		int loop = 0;
 
 		for (int i = 0; i < N; i++) {
 			String S = br.readLine();
@@ -35,7 +30,7 @@ public class _6월10일_앵무새3 { //배열로 풀기
 		}
 
 		while (!result.isEmpty()) {
-			if (count2 > count) {
+			if (loop > count) {
 				break;
 			}
 			for (int i = 0; i < N; i++) {
@@ -48,9 +43,9 @@ public class _6월10일_앵무새3 { //배열로 풀기
 					count++;
 				}
 			}
-			count2++;
+			loop++;
 		}
-		//이거 추가
+		// 이거 추가. 배열도 마찬가지로~
 		boolean empty = true;
 		for (int i = 0; i < N; i++) {
 			if (listOfque[i].isEmpty())

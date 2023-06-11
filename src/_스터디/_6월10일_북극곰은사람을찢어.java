@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class _6월10일_북극곰은사람을찢어 {
 	public static void main(String[] args) throws IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String N = br.readLine();
 		String bear = br.readLine();
 		String bearcopy = bear;
@@ -37,10 +37,10 @@ public class _6월10일_북극곰은사람을찢어 {
 				break;
 			}
 		}
-
-		if (gae == bear.length() && gae2 == bearcopy.length()) {
-			System.out.println("-1");
-		}
+//
+//		if (gae == bear.length() && gae2 == bearcopy.length()) {
+//			System.out.println("-1");
+//		}
 
 		if (bear == "" || bearcopy == "") {
 			if (count > count2) {
@@ -50,7 +50,9 @@ public class _6월10일_북극곰은사람을찢어 {
 			} else if (count == count2) {
 				System.out.println(count);
 			}
-		}
-
+		} else
+			System.out.println("-1");
 	}
+	
 }
+// (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))

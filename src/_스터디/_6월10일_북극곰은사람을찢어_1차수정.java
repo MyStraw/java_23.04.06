@@ -9,7 +9,8 @@ public class _6월10일_북극곰은사람을찢어_1차수정 {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String N = br.readLine(); //난 이게 필요가 없어쪄. 그냥 한방에 괄호쌍 다 입력해서.
+		int N =Integer.parseInt(br.readLine());  //난 이게 필요가 없어쪄. 그냥 한방에 괄호쌍 다 입력해서.
+		
 		String bear = br.readLine(); //괄호쌍 입력 한방에
 		Stack<Character> st = new Stack<>(); //스택으로
 		int count = 0;
