@@ -124,12 +124,12 @@ class OpenHash {
 	}
 
 	// --- 키값 key를 갖는 버킷 검색 ---//
-	private Bucket searchNode(SimpleObject2 key) {
+	private Bucket searchNode(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
 		int hash = hashValue(key); // 검색할 데이터의 해시값
 		Bucket p = table[hash]; // 주목 버킷
 
 		for (int i = 0; p.stat != Status.EMPTY && i < size; i++) {
-			if (p.stat == Status.OCCUPIED && p.getValue().equals(key))
+			if (p.stat == Status.OCCUPIED && c.compare(p.getValue(), key) == 0) //이퀄즈로 하는데 아니라.
 				return p;
 			hash = rehashValue(hash); // 재해시
 			p = table[hash];
@@ -139,7 +139,7 @@ class OpenHash {
 
 	// --- 키값이 key인 요소를 검색(데이터를 반환)---//
 	public SimpleObject2 search(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
-		Bucket p = searchNode(key);
+		Bucket p = searchNode(key, c); //c를 던져주고(컴페레이터)
 		if (p != null)
 			return p.getValue();
 		else
@@ -166,7 +166,7 @@ class OpenHash {
 
 	// --- 키값이 key인 요소를 삭제 ---//
 	public int remove(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
-		Bucket p = searchNode(key); // 주목 버킷
+		Bucket p = searchNode(key, c); // 주목 버킷
 		if (p == null)
 			return 1; // 이 키값은 등록되어 있지 않음
 

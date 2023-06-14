@@ -49,8 +49,7 @@ class SimpleChainHash { //전체 해시. 사이즈
  	int hash = 11;
  	hash = 31* hash * key;
  	hash = hash * hash;
-     return hash;
- 
+     return hash; 
 
  }
 

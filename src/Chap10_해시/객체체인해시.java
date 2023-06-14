@@ -64,7 +64,7 @@ class SimpleObject5 {
 class ChainHash5 {
 //--- 해시를 구성하는 노드 ---//
 	class Node2 {
-		private SimpleObject5 data; // 키값
+		private SimpleObject5 data; // 키값 //
 		private Node2 next; // 뒤쪽 포인터(뒤쪽 노드에 대한 참조)
 		// --- 생성자(constructor) ---//
 

@@ -12,12 +12,12 @@ class OpenHash2 {
   enum Status {OCCUPIED, EMPTY, DELETED};    // {데이터 저장, 비어있음, 삭제 완료}
 
   //--- 버킷 ---//
-  static class Bucket {
+  static class Bucket {//각 칸 하나를 버켓.
       private int data;                   // 데이터
-      private Status stat;              // 상태
+      private Status stat;              // 상태 (ouccupied, empty, deleted 이 상태를 표시)
 
       //--- 생성자(constructor) ---//
-      Bucket() {
+      Bucket() { 
           stat = Status.EMPTY;    // 버킷이 비어있음
       }
 
@@ -53,9 +53,9 @@ class OpenHash2 {
   //--- 생성자(constructor) ---//
   public OpenHash2(int size) {
       try {
-          table = new Bucket[size];
+          table = new Bucket[size]; //배열 만들고 각각의 원소는 배열의 객체를 갖고있고
           for (int i = 0; i < size; i++)
-              table[i] = new Bucket();
+              table[i] = new Bucket(); //각각의 원소는 배열의 객체를 갖고있고
           this.size = size;
       } catch (OutOfMemoryError e) {        // 테이블을 생성할 수 없음
           this.size = 0;
@@ -78,7 +78,7 @@ class OpenHash2 {
       Bucket p = table[hash];          // 주목 버킷
 
       for (int i = 0; p.stat != Status.EMPTY && i < size; i++) {
-          if (p.stat == Status.OCCUPIED && p.getValue() == key)
+          if (p.stat == Status.OCCUPIED && p.getValue() == key) //값 들어있는게 키값과 같으면 반환.
               return p;
           hash = rehashValue(hash);         // 재해시
           p = table[hash];
@@ -98,7 +98,7 @@ class OpenHash2 {
   //--- 키값이 key인 데이터를 data의 요소로 추가 ---//
   public int add(int data) {
       if (search(data) != 0)
-          return 1;                         // 키값이 이미 등록되어 있음
+          return 1;          // 키값이 이미 등록되어 있음 //이미 있는지 검색
 
       int hash = hashValue(data);            // 추가할 데이터의 해시값
       Bucket p = table[hash];          // 주목 버킷
