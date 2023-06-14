@@ -18,41 +18,36 @@ public class _6월17일_키로거2 {
 //		int N = sc.nextInt();		
 
 		boolean k = true;
-		
+
 		// <<BP<A>>Cd-
-		Stack<Character> keyloger = new Stack<>();
+//		Stack<Character> keyloger = new Stack<>();
 		Stack<Character> back = new Stack<>();
 		List<Character> list = new LinkedList<>();
-		
-		
-		
-		
-		
-		
+
 		for (int i = 0; i < N; i++) {
-			String L = br.readLine();
-			keyloger.clear();
+			String str = br.readLine();
+			list.clear();
 			back.clear();
 
-			for (char c : L.toCharArray()) {
-				keyloger.push(c);
-
-				switch (keyloger.peek()) {
-				case '<':
-					keyloger.pop();
-					back.push(keyloger.pop());					
-					break;
-				case '>':
-					keyloger.pop();
-					break;
-				case '-':
-					keyloger.pop();
-					keyloger.pop();
-					break;
-				}
-				if (!keyloger.isEmpty())
-					System.out.println(keyloger.peek());
+			for (int j = str.length() - 1; j >= 0; j--) {
+				back.push(str.charAt(i));
 			}
+
+			switch (back.push(str.charAt(i))) {
+			case '<':
+				list.keyloger.pop();
+				back.push(keyloger.pop());
+				break;
+			case '>':
+				keyloger.pop();
+				break;
+			case '-':
+				keyloger.pop();
+				keyloger.pop();
+				break;
+			}
+			if (!keyloger.isEmpty())
+				System.out.println(keyloger.peek());
 		}
 	}
 
