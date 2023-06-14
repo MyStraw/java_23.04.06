@@ -1,4 +1,5 @@
 package Chap10_해시;
+
 //SimpleObject version으로 수정하기 
 import java.util.Comparator;
 import java.util.Scanner;
@@ -15,10 +16,12 @@ class SimpleObject2 {
 		this.sno = sno;
 		this.sname = sname;
 	}
+
 	public SimpleObject2() {
 		this.sno = null;
 		this.sname = null;
 	}
+
 	// --- 문자열 표현을 반환 ---//
 	public String toString() {
 		return "(" + sno + ") " + sname;
@@ -41,6 +44,7 @@ class SimpleObject2 {
 			return (d1.sname.compareTo(d2.sname) > 0) ? 1 : ((d1.sname.compareTo(d2.sname) < 0)) ? -1 : 0;
 		}
 	}
+
 	void scanData(String guide, int sw) {
 		Scanner stdIn = new Scanner(System.in);
 		System.out.println(guide + "할 데이터를 입력하세요: ");
@@ -54,6 +58,7 @@ class SimpleObject2 {
 		}
 	}
 }
+
 //*
 class OpenHash {
 
@@ -63,7 +68,7 @@ class OpenHash {
 	}; // {데이터 저장, 비어있음, 삭제 완료}
 
 	// --- 버킷 ---//
-	static class Bucket { 
+	static class Bucket {
 		private SimpleObject2 data; // 데이터
 		private Status stat; // 상태
 
@@ -90,7 +95,7 @@ class OpenHash {
 		}
 
 		// --- 키의 해시값을 반환 ---//
-			public int hashCode() {
+		public int hashCode() {
 			int hash = this.data.hashCode();
 			hash = 31 * hash;
 			hash = hash * hash;
@@ -114,8 +119,10 @@ class OpenHash {
 	}
 
 	// --- 해시값을 구함 ---//
-	public int hashValue(SimpleObject2 key) {
-		return key.hashCode() % size;
+	public int hashValue(SimpleObject2 key) { // 키가 객체. 이걸 고쳐야.
+		return Integer.parseInt(key.sno) % size; // 이렇게 바꿔줘야.
+		// return key.sno. hashCode() % size;
+		// int hash = Integer.parseInt(st.no)%13; //아래에 이거 이용
 	}
 
 	// --- 재해시값을 구함 ---//
@@ -129,7 +136,7 @@ class OpenHash {
 		Bucket p = table[hash]; // 주목 버킷
 
 		for (int i = 0; p.stat != Status.EMPTY && i < size; i++) {
-			if (p.stat == Status.OCCUPIED && c.compare(p.getValue(), key) == 0) //이퀄즈로 하는데 아니라.
+			if (p.stat == Status.OCCUPIED && c.compare(p.getValue(), key) == 0) // 이퀄즈로 하는데 아니라.
 				return p;
 			hash = rehashValue(hash); // 재해시
 			p = table[hash];
@@ -139,7 +146,7 @@ class OpenHash {
 
 	// --- 키값이 key인 요소를 검색(데이터를 반환)---//
 	public SimpleObject2 search(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
-		Bucket p = searchNode(key, c); //c를 던져주고(컴페레이터)
+		Bucket p = searchNode(key, c); // c를 던져주고(컴페레이터)
 		if (p != null)
 			return p.getValue();
 		else
@@ -168,10 +175,10 @@ class OpenHash {
 	public int remove(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
 		Bucket p = searchNode(key, c); // 주목 버킷
 		if (p == null)
-			return 1; // 이 키값은 등록되어 있지 않음
+			return 0; // 이 키값은 등록되어 있지 않음
 
 		p.setStat(Status.DELETED);
-		return 0;
+		return 1;
 	}
 
 	// --- 해시 테이블을 덤프(dump) ---//
@@ -180,7 +187,8 @@ class OpenHash {
 			System.out.printf("%02d ", i);
 			switch (table[i].stat) {
 			case OCCUPIED:
-				System.out.printf("%s (%s)\n", table[i]);
+				//System.out.println(table[i].data);
+				System.out.printf("%s \n", table[i].getValue());
 				break;
 
 			case EMPTY:
@@ -194,6 +202,7 @@ class OpenHash {
 		}
 	}
 }
+
 //*/
 public class 객체오픈해시 {
 
@@ -237,13 +246,13 @@ public class 객체오픈해시 {
 	public static void main(String[] args) {
 		Menu menu; // 메뉴
 		SimpleObject2 data; // 추가용 데이터 참조
-		SimpleObject2 temp = new SimpleObject2(); // 읽어 들일 데이터
+		SimpleObject2 temp = new SimpleObject2(); // 읽어 들일 데이터 // 객체 한번 생성하고 돌려쓰네? ADD 바로아래서 계속 새로 만들어줘야지.
 		int result;
 		OpenHash hash = new OpenHash(13);
 		do {
 			switch (menu = SelectMenu()) {
 			case ADD: // 추가
-
+				temp = new SimpleObject2(); // 계속 새로 만들어 줘야지 추가할때
 				temp.scanData("추가", SimpleObject2.NO | SimpleObject2.NAME);
 				int k = hash.add(temp, SimpleObject2.NO_ORDER);
 				switch (k) {

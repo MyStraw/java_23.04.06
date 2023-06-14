@@ -1,5 +1,7 @@
 package Chap99_연습;
 
+// 1 다음 11 오는거~ string이야~ int로 비교를 해야지
+
 /*
  * 정수 리스트 > 객체 리스트> 객체 원형 리스트
  */
@@ -48,7 +50,7 @@ class SimpleObject3 {
 
 	private static class NoOrderComparator implements Comparator<SimpleObject3> {
 		public int compare(SimpleObject3 d1, SimpleObject3 d2) {
-			return (d1.no.compareTo(d2.no) > 0) ? 1 : (d1.no.compareTo(d2.no) < 0) ? -1 : 0;
+			return Integer.parseInt(d1.no) - Integer.parseInt(d2.no); //no가 string이야. 
 		}
 	}
 
@@ -57,7 +59,7 @@ class SimpleObject3 {
 
 	private static class NameOrderComparator implements Comparator<SimpleObject3> {
 		public int compare(SimpleObject3 d1, SimpleObject3 d2) {
-			return d1.name.compareTo(d2.name);
+			return (d1.name.compareTo(d2.name) > 0) ? 1 : (d1.name.compareTo(d2.name) < 0) ? -1 : 0;
 		}
 	}
 }
