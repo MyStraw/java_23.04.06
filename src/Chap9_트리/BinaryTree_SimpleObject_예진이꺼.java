@@ -1,10 +1,10 @@
 package Chap9_트리;
+
 /*
  * 23.6.7 3회차 실습코드 
  */
 import java.util.Comparator;
 import java.util.Scanner;
-
 
 class SimpleObject2 {
 	static final int NO = 1; // 번호를 읽어 들일까요?
@@ -17,21 +17,27 @@ class SimpleObject2 {
 	public String toString() {
 		return "(" + no + ") " + name;
 	}
+
 	public SimpleObject2() {
-		no = null;name = null;
+		no = null;
+		name = null;
 	}
+
 	public SimpleObject2(String no, String name) {
-		this.no = no;this.name = name;
+		this.no = no;
+		this.name = name;
 	}
+
 	public String getNo() {
 		return no;
 	}
+
 	// --- 데이터를 읽어 들임 ---//
 	void scanData(String guide, int sw) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println(guide + "할 데이터를 입력하세요."+ sw);
+		System.out.println(guide + "할 데이터를 입력하세요." + sw);
 
-		if ((sw & NO) == NO) { //& 는 bit 연산자임 
+		if ((sw & NO) == NO) { // & 는 bit 연산자임
 			System.out.print("번호: ");
 			no = sc.next();
 		}
@@ -46,7 +52,7 @@ class SimpleObject2 {
 
 	private static class NoOrderComparator implements Comparator<SimpleObject2> {
 		public int compare(SimpleObject2 d1, SimpleObject2 d2) {
-			return (d1.no.compareTo(d2.no) > 0) ? 1 : (d1.no.compareTo(d2.no)<0) ? -1 : 0;
+			return (d1.no.compareTo(d2.no) > 0) ? 1 : (d1.no.compareTo(d2.no) < 0) ? -1 : 0;
 		}
 	}
 
@@ -59,7 +65,6 @@ class SimpleObject2 {
 		}
 	}
 }
-
 
 //정수를 저정하는 이진트리 만들기 실습
 class TreeNode4 {
@@ -237,7 +242,8 @@ class Tree4 {
 	}
 }
 
-public class BinaryTree_SimpleObject {
+public class BinaryTree_SimpleObject_예진이꺼
+{
 
 	enum Menu {
 		Add("삽입"), Delete("삭제"), Search("검색"), InorderPrint("정렬인쇄"), Exit("종료");
@@ -292,14 +298,14 @@ public class BinaryTree_SimpleObject {
 					t.add(soz, SimpleObject2.NO_ORDER);
 				break;
 			case Delete: // 머리 노드 삭제
-           	 so = new SimpleObject2();
-           	 so.scanData("삭제", SimpleObject2.NO);
-           	 t.delete(so, SimpleObject2.NO_ORDER);
-	
+				so = new SimpleObject2();
+				so.scanData("삭제", SimpleObject2.NO);
+				t.delete(so, SimpleObject2.NO_ORDER);
+
 				break;
 			case Search: // 회원 번호 검색
-	           	 so = new SimpleObject2();
-	           	 so.scanData("검색", SimpleObject2.NO);
+				so = new SimpleObject2();
+				so.scanData("검색", SimpleObject2.NO);
 				result = t.search(so, SimpleObject2.NO_ORDER);
 				if (result == null)
 					System.out.println("검색 값 = " + result + "데이터가 없습니다.");
