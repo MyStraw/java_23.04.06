@@ -3,42 +3,42 @@ package _스터디;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
 
 public class _6월17일_내일할거야3 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Scanner sc = new Scanner(System.in);
-		// int n = Integer.parseInt(br.readLine());
+		int n = Integer.parseInt(br.readLine());
+		int[][] N = new int[n][2];
 
-		StringBuilder sbD = new StringBuilder();
-		StringBuilder sbT = new StringBuilder();
-		int n = sc.nextInt();
-		List<Character> list = new LinkedList<>();
-
-		int[] N = new int[31];
+		int last = 0;
+		int gap = 0;
 
 		for (int i = 0; i < n; i++) {
-//			int d = Integer.parseInt(br.readLine());
-//			int t = Integer.parseInt(br.readLine());
-//			sbD.append(d);
-//			sbT.append(t);
-			int d = sc.nextInt();
-			int t = sc.nextInt();
-			for (int j = t; j > t - d; j--) {
-				if (N[j] != 0) {
-					t--;
-				}
-				N[j] = j;
-			}
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			int d = Integer.parseInt(st.nextToken());
+			int t = Integer.parseInt(st.nextToken());
+			N[i][0] = d;
+			N[i][1] = t;
 		}
-		for (int i = 0; i < N.length; i++) {
-			if (N[i] != 0) {
-				System.out.println(i - 1);
-				break;
+		Arrays.sort(N, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				return o1[1] - o2[1];
 			}
+		});
+//		int max = 0;
+		for (int i = n - 1; i >= 0; i--) {
+//			if (max - 1 < last - 1)
+//				max = last - N[i][1];
+			if (last <= N[i][1] && i != n - 1) {
+				gap = N[i][1] - last + 1;
+			}
+			last = N[i][1] - N[i][0] + 1 - gap;
 		}
+
+		System.out.println(last - 1);
 	}
 }
