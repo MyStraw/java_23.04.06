@@ -7,18 +7,17 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
-public class _6월17일_내일할거야3 {
+public class _6월17일_내일할거야4 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		int[][] N = new int[n][2];
 
 		int last = 0;
-		int gap = 0;
 
 		for (int i = 0; i < n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int d = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(st.nextToken()); //띄움표시를 기준으로.
 			int t = Integer.parseInt(st.nextToken());
 			N[i][0] = d;
 			N[i][1] = t;
@@ -30,12 +29,11 @@ public class _6월17일_내일할거야3 {
 			}
 		});
 
-		for (int i = n - 1; i >= 0; i--) {
-			gap = 0; //if를 쓸땐 항상 아닐때도 생각을 늘 하쟈. gap 초기화가 없으니 계속 값이 유지되어서 다음으로 넘어가쟈냐
+		for (int i = n - 1; i >= 0; i--) { //if는 쓸때 조심해서 쓰자.
 			if (last <= N[i][1] && i != n - 1) {
-				gap = N[i][1] - last + 1;
-			}
-			last = N[i][1] - N[i][0] + 1 - gap;
+				last = last - N[i][0];
+			} else
+				last = N[i][1] - N[i][0] + 1;
 		}
 		System.out.println(last - 1);
 	}
