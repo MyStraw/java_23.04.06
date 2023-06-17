@@ -15,41 +15,42 @@ public class _6월17일_키로거3차 {
 		
 
 		int N = Integer.parseInt(br.readLine());
-		Stack<Character> keyloger = new Stack<>();
-		Stack<Character> mouth = new Stack<>();
+		Stack<Character> left = new Stack<>();
+		Stack<Character> right = new Stack<>();
 
 		for (int i = 0; i < N; i++) {
-			String str = br.readLine();			
-			keyloger.clear();
-			mouth.clear();			
-			char[] n = new char[str.length()];
-			n = str.toCharArray();
+			String S = br.readLine();			
+			left.clear();
+			right.clear();			
+			
+			char[] moonja = new char[S.length()];
+			moonja = S.toCharArray();
 
 
-			for (char back : n) {
-				if (back != '<' && back != '>' && back != '-') {
-					keyloger.push(back);
+			for (char s : moonja) {
+				if (s != '<' && s != '>' && s != '-') {
+					left.push(s);
 				}
-				switch (back) {
+				switch (s) {
 				case '<':
-					if (!keyloger.isEmpty()) {
-						mouth.push(keyloger.pop());
+					if (!left.isEmpty()) {
+						right.push(left.pop());
 					}
 					break;
 				case '>':
-					if (!mouth.isEmpty())
-						keyloger.push(mouth.pop());
+					if (!right.isEmpty())
+						left.push(right.pop());
 					break;
 				case '-':
-					if (!keyloger.isEmpty())
-						keyloger.pop();
+					if (!left.isEmpty())
+						left.pop();
 					break;
 				}
 			}
-			while (!mouth.isEmpty()) {
-				keyloger.push(mouth.pop());
+			while (!right.isEmpty()) {
+				left.push(right.pop());
 			}
-			for (char c : keyloger) {
+			for (char c : left) {
 				bw.write(c);
 			}
 			bw.write("\n");
