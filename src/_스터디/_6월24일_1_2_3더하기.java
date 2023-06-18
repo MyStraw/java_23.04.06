@@ -34,7 +34,7 @@ public class _6월24일_1_2_3더하기 {
 
 		int count = 0;
 		int count2 = 0;
-		int count3 = 0;
+		int count3 = 1;
 
 		for (int i = 0; i < T; i++) {
 			int n = Integer.parseInt(br.readLine());
@@ -44,6 +44,7 @@ public class _6월24일_1_2_3더하기 {
 						if (3 * x + 2 * y + z == n) {
 							num[x][y][z] = 1;
 							count++;
+							System.out.println(x + "," + y + "," + z);
 						}
 					}
 				}
@@ -53,12 +54,13 @@ public class _6월24일_1_2_3더하기 {
 			for (int y = 0; y <= 5; y++) {
 				for (int z = 0; z <= 10; z++) {
 					if (haveOne(num, x, y) && num[x][y][z] != 1) {
-						count2++;
+
 						break;
 					}
+
 				}
 			}
 		}
-		System.out.println(count + count2);
+		System.out.println(count + Xn);
 	}
 }
