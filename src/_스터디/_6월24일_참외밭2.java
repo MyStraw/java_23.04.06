@@ -27,7 +27,7 @@ public class _6월24일_참외밭2 {
 		int four[] = new int[4];
 
 		for (int i = 0; i < 6; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			int compass = Integer.parseInt(st.nextToken());
 			int length = Integer.parseInt(st.nextToken());
 
