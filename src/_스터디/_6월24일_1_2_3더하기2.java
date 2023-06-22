@@ -30,11 +30,14 @@ public class _6월24일_1_2_3더하기2 {
 		for (int i = 0; i < T; i++) {
 			int n = Integer.parseInt(br.readLine());
 			sum = 0;
+			System.out.println("[3][2][1]");
+			System.out.println("---------");
 			for (int x = 0; x <= 3; x++) {
 				for (int y = 0; y <= 5; y++) {
 					for (int z = 0; z <= 10; z++) {
 						if (3 * x + 2 * y + z == n) {
 							sum = sum + pluscase(x, y, z);
+							System.out.println("["+x+"]["+y+"]["+z+"]");
 						}
 					}
 				}
