@@ -21,6 +21,8 @@ public class _6월24일_1_2_3더하기2 {
 			return factorial(n - 1) * n;
 	}
 
+	
+	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,7 +45,10 @@ public class _6월24일_1_2_3더하기2 {
 				}
 			}
 			bw.write(String.valueOf(sum + "\n"));
-		}
+		}		
+		
+		
+		
 		bw.flush();
 		bw.close();
 	}
