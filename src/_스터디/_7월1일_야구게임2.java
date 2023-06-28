@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _7월1일_야구게임 {
+public class _7월1일_야구게임2 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
 		int s = 123;
@@ -20,12 +20,16 @@ public class _7월1일_야구게임 {
 
 		int N = Integer.parseInt(br.readLine());
 
+		
+		int baseball[][][] = new int [N][N][N];
+		
 		for (int i = 0; i < N; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			int num = Integer.parseInt(st.nextToken()); // 띄움표시를 기준으로.
 			int strike = Integer.parseInt(st.nextToken());
 			int ball = Integer.parseInt(st.nextToken());
 			String nums = Integer.toString(num);
+			
 
 			boolean ff = false;
 			boolean sttrue = false;
@@ -34,26 +38,18 @@ public class _7월1일_야구게임 {
 			int ballcount = 0;
 
 			for (int k = 0; k < 3; k++) {
-
 				for (int j = 1; j <= 9; j++) { // 이럼 안되네, 1~9 까지 3가지니까
-					if (nums.charAt(0) == Integer.toString(j).charAt(0)) {
-						strikecount++;
-					}
-					if (nums.charAt(1) == Integer.toString(j).charAt(1)) {
-						strikecount++;
-					}
-					if (nums.charAt(2) == Integer.toString(j).charAt(2)) {
-						strikecount++;
-					}
-
-					if (nums.contains(Integer.toString(j)) && ff == true) {
+					if (nums.contains(Integer.toString(j))) {
 						ballcount++;
-						ff = true;
-						bltrue = true;
+						if (nums.charAt(k) == Integer.toString(j).charAt(0)) {
+							strikecount++;
+							ballcount--;
+						}
 					}
 				}
-				//달팽이 8퀸처럼?
-
+				if (strike == strikecount && ballcount == ball) {
+					System.out.println();
+				}
 			}
 
 		}
