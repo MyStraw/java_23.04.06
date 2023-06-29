@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Stack;
 
-public class _7월1일_달팽이 {
+public class _7월1일_달팽이2 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		//8퀸?
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,17 +21,12 @@ public class _7월1일_달팽이 {
 
 		int gaesu = N * N;
 
-		int panic[][] = new int[N][N];
-
-		Stack<Integer> st = new Stack<>();
-
-		for (int i = 1; i <= gaesu; i++) {
-			st.push(i);
-		}
+		int panic[][] = new int[N][N];		
 
 		for (int i = 0; i < NN / 2; i++) {
 			for (int j = 0; j < N; j++) {
-				panic[j + i][i] = st.pop();
+				panic[j + i][i] = gaesu;
+				gaesu--;
 				if (panic[j + i][i] == ja) {
 					jax = j + i;
 					jay = i;
@@ -39,7 +34,8 @@ public class _7월1일_달팽이 {
 			}
 
 			for (int k = 1; k < N; k++) {
-				panic[NN - 1 - i][k + i] = st.pop();
+				panic[NN - 1 - i][k + i] = gaesu;
+				gaesu--;
 				if (panic[NN - 1 - i][k + i] == ja) {
 					jax = NN - 1 - i;
 					jay = k + i;
@@ -47,7 +43,8 @@ public class _7월1일_달팽이 {
 			}
 
 			for (int l = 1; l < N; l++) {
-				panic[NN - 1 - l - i][NN - 1 - i] = st.pop();
+				panic[NN - 1 - l - i][NN - 1 - i] = gaesu;
+				gaesu--;
 				if (panic[NN - 1 - l - i][NN - 1 - i]== ja) {
 					jax = NN - 1 - l - i;
 					jay = NN - 1 - i;
@@ -55,7 +52,8 @@ public class _7월1일_달팽이 {
 			}
 
 			for (int m = 1; m < N - 1; m++) {
-				panic[i][NN - 1 - m - i] = st.pop();
+				panic[i][NN - 1 - m - i] = gaesu;
+				gaesu--;
 				if (panic[i][NN - 1 - m - i] == ja) {
 					jax = i;
 					jay = NN - 1 - m - i;
@@ -64,8 +62,8 @@ public class _7월1일_달팽이 {
 
 			N = N - 2;
 
-			if (st.peek() == 1) {
-				panic[NN / 2][NN / 2] = st.pop();
+			if (gaesu == 1) {
+				panic[NN / 2][NN / 2] = gaesu;
 				if (panic[NN / 2][NN / 2] == ja) {
 					jax = NN / 2;
 					jay = NN / 2;
