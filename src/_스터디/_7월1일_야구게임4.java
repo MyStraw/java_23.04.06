@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class _7월1일_야구게임4 {
@@ -18,12 +16,9 @@ public class _7월1일_야구게임4 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int N = Integer.parseInt(br.readLine());
 
-//		List<Integer> aa = new ArrayList<>();
-//		List<Integer> bb = new ArrayList<>();
 		List<Integer> aa = new ArrayList<>();
 		List<Integer> bb = new ArrayList<>();
-		List<Integer> cc = new ArrayList<>();
-		List<Integer> dd = new ArrayList<>();
+
 		for (int i = 100; i <= 999; i++) {
 			if (Integer.toString(i).charAt(0) != Integer.toString(i).charAt(1)
 					&& Integer.toString(i).charAt(1) != Integer.toString(i).charAt(2)
@@ -56,24 +51,12 @@ public class _7월1일_야구게임4 {
 
 				if (strike == strikecount && ball == ballcount) {
 					bb.add(c);
-					if (i == 0)
-						cc = bb;
 				}
 			}
-			if (i != 0) {
-				for (int k = 0; k < bb.size(); k++) {
-					for (int l = 0; l < cc.size(); l++) {
-						if (bb.get(k) == cc.get(l)) {
-							dd.add(bb.get(k));
-							cc.clear();
-						}
-					}
-				}
-				cc = dd;
-			}
+			aa= new ArrayList<>(bb);
 			bb.clear();
 		}
-		bw.write(String.valueOf(dd.get(0)));
+		bw.write(String.valueOf(aa.size()));
 		bw.flush();
 		bw.close();
 	}
@@ -89,6 +72,3 @@ public class _7월1일_야구게임4 {
 /**
  * 4 123 1 1 356 1 0 327 2 0 489 0 1
  **/
-
-//a = b
-//b = []
