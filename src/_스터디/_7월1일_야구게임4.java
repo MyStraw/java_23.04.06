@@ -18,7 +18,6 @@ public class _7월1일_야구게임4 {
 
 		List<Integer> aa = new ArrayList<>();
 		List<Integer> bb = new ArrayList<>();
-
 		for (int i = 100; i <= 999; i++) {
 			if (Integer.toString(i).charAt(0) != Integer.toString(i).charAt(1)
 					&& Integer.toString(i).charAt(1) != Integer.toString(i).charAt(2)
@@ -34,7 +33,7 @@ public class _7월1일_야구게임4 {
 			int strike = Integer.parseInt(st.nextToken());
 			int ball = Integer.parseInt(st.nextToken());
 
-			for (int c : aa) {
+			for (int c : aa) { // 여기에 aa를 돌잖앙.
 				int strikecount = 0;
 				int ballcount = 0;
 
@@ -53,7 +52,8 @@ public class _7월1일_야구게임4 {
 					bb.add(c);
 				}
 			}
-			aa= new ArrayList<>(bb);
+			// aa = bb; //cc = bb 별의 별거 다했네
+			aa = new ArrayList<>(bb);
 			bb.clear();
 		}
 		bw.write(String.valueOf(aa.size()));
