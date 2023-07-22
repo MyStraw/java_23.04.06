@@ -1,7 +1,5 @@
 package BaekJoon;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class _1157_단어공부 {
@@ -20,10 +18,12 @@ public class _1157_단어공부 {
 		for (int i = 0; i < str.length-1; i++) {		
 			for (int j = 1; j < str.length; j++) {
 				if (str[i] == str[j]) {
-					count++;
+					countt[i] += 1;
 				}
 			}
 		}
+		
+		
 
 		int countmax = 0;
 		int countjung = 0;
