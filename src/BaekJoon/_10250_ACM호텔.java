@@ -3,7 +3,6 @@ package BaekJoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class _10250_ACM호텔 {
@@ -40,8 +39,7 @@ public class _10250_ACM호텔 {
 				}
 				else if (x.length() == 1) {
 					System.out.println(y + "0"+ x);
-				}	
-			
+				}			
 		}		
 	}
 }
