@@ -8,15 +8,24 @@ public class _2231_분해합 {
 
 		int N = sc.nextInt();
 
-		String N_String = Integer.toString(N);
-
-		char[] C = N_String.toCharArray();
-		int [] I = new int [N_String.length()];
-	
-		for (int i = 0; i < N_String.length(); i++) {
-			I[i] = (int)C[i] - '0';
+		int M = 0;
+		boolean F = false;
+		for (int i = 0; i < 1_000_000; i++) {
+			M = (i / 1000000) 
+					+ (i % 1000000) / 100000 
+					+ (i % 1000000) % 100000 / 10000 
+					+ (i % 1000000) % 100000 % 10000 / 1000	
+					+ (i % 1000000) % 100000 % 10000 % 1000 / 100 
+					+ (i % 1000000) % 100000 % 10000 % 1000 % 100 / 10 
+					+ (i % 1000000) % 100000 % 10000 % 1000 % 100 % 10 / 1; 
+			if (i + M == N) {
+				System.out.println(i);
+				F = true;
+				break;
+			}			
 		}
-		
-		
+		if (F == false) {
+			System.out.println("0");
+		}
 	}
 }
