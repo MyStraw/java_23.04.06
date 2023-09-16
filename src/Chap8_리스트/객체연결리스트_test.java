@@ -124,7 +124,6 @@ class LinkedList2 {
 //
 //}
 
-
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
 		Node2 p = first;
 		while (p != null) {
@@ -138,8 +137,7 @@ class LinkedList2 {
 	{
 
 		Node2 add = new Node2(element);
-		Node2 now = first, left=now;
-	
+		Node2 now = first, left = now;
 
 		if (now == null) {
 			first = add;
