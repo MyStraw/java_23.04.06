@@ -1,4 +1,4 @@
-package BaekJoon_notyet;
+package BaekJoon;
 
 import java.util.Scanner;
 
