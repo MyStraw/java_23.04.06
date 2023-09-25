@@ -1,4 +1,4 @@
-package BaekJoon_notyet;
+package BaekJoon;
 
 public class _14337_헬리콥터 {
 	public static void main(String[] args) {
