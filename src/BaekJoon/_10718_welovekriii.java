@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 public class _10718_welovekriii {
 	public static void main(String[] args) {
