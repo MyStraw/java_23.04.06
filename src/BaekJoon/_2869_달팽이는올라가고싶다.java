@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-public class _2869_달팽이는올라가고싶다2 {
+public class _2869_달팽이는올라가고싶다 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -19,17 +19,28 @@ public class _2869_달팽이는올라가고싶다2 {
 		int V = Integer.parseInt(st.nextToken());
 
 		int total = 0;
-		int noon = 0;
+		int noon = 0;	
 
-		total = (V - A) / (A - B) + 1;
-
-		if ((V - A) < (A - B)) {
-			bw.write(Integer.toString(total + 1));
-
-		} else {
-			bw.write(Integer.toString(total));
+		while (total < V) {
+			noon++;
+			total = total + A;
+			if(total >=V) {
+				break;
+			}			
+			total = total - B;					
+			if(total >=V) {
+				break;
+			}						
 		}
+		
+		while(A-B>V) {
+			total = A-B;
+		}
+		
+		bw.write(Integer.toString(noon));
 		bw.flush();
 		bw.close();
+
 	}
+
 }

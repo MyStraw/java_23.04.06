@@ -27,6 +27,5 @@ public class _10989_수정렬하기3 {
 		}
 		bw.flush();
 		bw.close();
-
 	}
 }
