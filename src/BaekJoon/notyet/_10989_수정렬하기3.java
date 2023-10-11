@@ -15,9 +15,8 @@ public class _10989_수정렬하기3 {
 		int N = Integer.parseInt(br.readLine());
 		String num[] = new String[N];
 
-		for (int i = 0; i < N; i++) {
-			String M = br.readLine();
-			num[i] = M;
+		for (int i = 0; i < N; i++) {			
+			num[i] = br.readLine();
 		}
 
 		Arrays.sort(num);
