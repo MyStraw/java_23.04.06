@@ -1,7 +1,5 @@
 package BaekJoon.notyet;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class _8545_Zadanie_probne {
@@ -10,13 +8,7 @@ public class _8545_Zadanie_probne {
 		
 		String abc = sc.next();
 		
-		char [] zadanie = abc.toCharArray();
-		
-		Arrays.sort(zadanie,new Comparator<Integer>() {
-			public char compare (char a, char b) {
-				return b - a;
-			}
-		}
-	}
+		char [] zadanie = abc.toCharArray();				
 
+	}
 }

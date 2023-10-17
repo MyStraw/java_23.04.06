@@ -2,16 +2,15 @@ package BaekJoon.notyet;
 
 import java.util.Scanner;
 
-public class _8437_Julka {
+public class _16394_홍익대학교 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		int total = sc.nextInt();
-		int gap = sc.nextInt(); // Klaudia has more than Natalia
+		int year = sc.nextInt();
 		
-		int Kaudia;
-		int Natalia;
+		int var = year - 1946;
 		
-		
+		System.out.println(var);
 	}
+
 }
