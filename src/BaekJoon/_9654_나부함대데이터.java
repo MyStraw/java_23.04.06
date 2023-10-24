@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 public class _9654_나부함대데이터 {
 	public static void main(String[] args) {

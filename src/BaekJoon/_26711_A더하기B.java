@@ -1,18 +1,20 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class _13277_큰수곱셈 {
+public class _26711_A더하기B {
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		BigInteger A = sc.nextBigInteger();
 		BigInteger B = sc.nextBigInteger();
 		
-		BigInteger total = A.multiply(B);
-		System.out.println(total);
+		BigInteger C = A.add(B);
 		
+		System.out.println(C);
+
 	}
 
 }
