@@ -19,7 +19,7 @@ class Offesets {
 
 
 public class 미로찾기 {
-	static Offsets[] move = new Offesets[8]; // start
+	static Offsets[] move = new Offsets[8]; // start
 	
 	public static void path(int[][] maze, int[][] mark) {
 		
