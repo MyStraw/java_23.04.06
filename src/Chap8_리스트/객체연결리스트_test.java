@@ -194,11 +194,11 @@ public class 객체연결리스트_test {
 
 		Menu(String string) { // 생성자(constructor)
 			message = string;
-		}
+		} //"버블1" 이 메세지에 저장
 
 		String getMessage() { // 표시할 문자열을 반환
 			return message;
-		}
+		} //바로 아래 %3 ==2 이 부분 출력. 사용자에게 메뉴 옵션 출력
 	}
 
 	// --- 메뉴 선택 ---//

@@ -7,9 +7,10 @@ import java.util.Set;
 import static _스터디_자료구조._4_1_버블정렬.bubbleSort1;
 import static _스터디_자료구조._4_1_버블정렬.bubbleSort2;
 import static _스터디_자료구조._4_1_버블정렬.bubbleSort3;
-import _스터디_자료구조._4_2_단순선택정렬;
-import _스터디_자료구조._4_3_단순삽입정렬;
-import _스터디_자료구조._4_4_셸정렬;
+import static _스터디_자료구조._4_2_단순선택정렬.selectionSort;
+import static _스터디_자료구조._4_3_단순삽입정렬.insertionSort;
+import static _스터디_자료구조._4_4_셸정렬.shellSort1;
+import static _스터디_자료구조._4_4_셸정렬.shellSort2;
 
 public class _4_0_정렬메인 {
 	public static boolean upOrdown = true; // true : 오름차순, false : 내림차순
