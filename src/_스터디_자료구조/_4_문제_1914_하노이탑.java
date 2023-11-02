@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class _4_1914_하노이탑 {
+public class _4_문제_1914_하노이탑 {
 	
 	static StringBuffer str = new StringBuffer();
 
