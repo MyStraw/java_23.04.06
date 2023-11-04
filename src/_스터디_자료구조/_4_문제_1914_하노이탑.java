@@ -18,6 +18,10 @@ public class _4_문제_1914_하노이탑 {
 			System.out.println(K);
 			System.out.println(str);
 			
+//			System.out.println(K); 이건 에러가 났다. System.out과 BufferedWriter은 출력순서 보장이 안된다.
+//			bw.flush();
+//			bw.close();
+			
 		} else if (N > 20) {			
 //			BigInteger a = BigInteger.valueOf(2);
 //			BigInteger b = a.pow(N);

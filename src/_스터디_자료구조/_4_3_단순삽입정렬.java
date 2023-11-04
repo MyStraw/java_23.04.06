@@ -3,7 +3,7 @@ package _스터디_자료구조;
 public class _4_3_단순삽입정렬 {
 
 	static void insertionSort(int[] insert, int dataSize) {
-		for (int i = 0; i < dataSize; i++) {
+		for (int i = 0; i < dataSize; i++) { //맨 왼쪽은 정렬이 끝났다고 가정
 			int j;
 			int temp = insert[i];
 			for (j = i; j > 0 && insert[j - 1] > temp; j--) {
