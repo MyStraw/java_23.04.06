@@ -3,11 +3,12 @@ package _스터디_자료구조;
 import static _스터디_자료구조._4_0_swap.swap;
 //import static _스터디_자료구조._4_0_정렬메인.*;
 import static _스터디_자료구조._4_0_menu.*;
+
 public class _4_1_버블정렬 {
 
 	static int bubbleSort1(int[] bubble, int dataSize) {
-		for (int i = 0; i < dataSize - 1; i++) { //맨 앞은 안하게됨
-			for (int j = dataSize - 1; j > i; j--) { //젤 오른쪽부터
+		for (int i = 0; i < dataSize - 1; i++) { // 맨 앞은 안하게됨
+			for (int j = dataSize - 1; j > i; j--) { // 젤 오른쪽부터
 				if (upOrdown) {
 					if (bubble[j] < bubble[j - 1]) { // 오름차순
 						swap(bubble, j - 1, j);

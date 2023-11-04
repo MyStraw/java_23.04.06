@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import static _스터디_자료구조._4_1_버블정렬.bubbleSort1;
+//import static _스터디_자료구조._4_1_버블정렬.bubbleSort1;
 import static _스터디_자료구조._4_1_버블정렬.bubbleSort2;
 import static _스터디_자료구조._4_1_버블정렬.bubbleSort3;
 import static _스터디_자료구조._4_2_단순선택정렬.selectionSort;
