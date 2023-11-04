@@ -14,7 +14,7 @@ import static _스터디_자료구조._4_4_셸정렬.shellSort2;
 
 public class _4_0_정렬메인 {
 	public static boolean upOrdown = true; // true : 오름차순, false : 내림차순
-	public static final int num = 7;
+	public static final int num = 9;
 	public static int count = 0;
 	
 	public static void main(String[] args) {
@@ -37,7 +37,7 @@ public class _4_0_정렬메인 {
 			}
 		}
 
-		bubbleSort1(bubble, dataSize);
+		insertionSort(bubble, dataSize);
 		if (upOrdown)
 			System.out.println("\n" + "오름차순으로 정렬 해봄" + "\n");
 		else if (!upOrdown)

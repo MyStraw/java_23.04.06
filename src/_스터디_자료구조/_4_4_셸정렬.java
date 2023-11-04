@@ -3,7 +3,7 @@ package _스터디_자료구조;
 public class _4_4_셸정렬 {
 
 	static void shellSort1(int[] shell, int dataSize) {
-		for (int h = dataSize / 2; h > 0; h /= 2) {
+		for (int h = dataSize / 2; h > 0; h /= 2) { // h의 초기값, h의 조건, 그리고 밑에 돌고 마지막에 h를 2로 나눈값
 			for (int i = h; i < dataSize; i++) {
 				int j;
 				int temp = shell[i];
