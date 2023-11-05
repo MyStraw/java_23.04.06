@@ -15,11 +15,11 @@ class OverflowIntStackException extends RuntimeException {
 	}
 }
 
-class IntStack {	
+class IntStack {
 	private int[] data; // 스택용 배열
 	private int capacity; // 스택의 크기
 	private int top; // 스택 포인터
-	
+
 	public IntStack(int i) {
 		top = 0;
 		capacity = i;
@@ -29,6 +29,7 @@ class IntStack {
 			capacity = 0;
 		}
 	}
+
 // --- 스택에 x를 푸시 ---//
 	public int push(int x) throws OverflowIntStackException {
 		if (top >= capacity) // 스택이 가득 참

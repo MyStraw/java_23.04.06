@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class _2751_수정렬하기2_1 {
+public class _10989_수정렬하기3_3 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
