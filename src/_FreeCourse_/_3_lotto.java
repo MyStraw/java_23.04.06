@@ -60,26 +60,3 @@ public class _3_lotto {
 
 	}
 }
-
-//src
-//└── main
-//    └── java
-//        └── com
-//            └── example
-//                └── lotto
-//                    ├── controller
-//                    │   └── LottoController.java
-//                    ├── model
-//                    │   ├── Lotto.java
-//                    │   └── Prize.java
-//                    ├── service
-//                    │   └── LottoService.java
-//                    ├── util
-//                    │   └── RandomUtil.java
-//                    ├── validation
-//                    │   └── LottoValidation.java
-//                    ├── view
-//                    │   └── LottoView.java
-//                    └── dto
-//                        └── LottoDTO.java
-
