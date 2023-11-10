@@ -16,7 +16,7 @@ public class _5_문제_1517_버블소트5 {
 			int i;
 			int center = (left + right) / 2;
 			int p = 0; //buff에 복사된 배열 수
-			int j = 0; //현재까지 병합된 수(buff에서 a로 얼마나 반영됐는지 p-j는 buff에 남은양)
+			int j = 0; //현재까지 병합된 수(buff에서 a로 얼마나 반영됐는지 // p-j는 buff에 남은양)
 			int k = left; // sort후 a[]에 다시 넣을때
 
 			__mergeSort(a, left, center); //왼쪽 반 - 양념반 후라이드반 나누기
@@ -36,7 +36,7 @@ public class _5_문제_1517_버블소트5 {
 					//p-j는 즉, 아직 쓰이지 않은 buff다.
 				}
 			}
-			while (j < p) { //buff에 있는걸 a에 빼서 준다고 생각! buff에 남아있단건 역전이 되어있다!!는것.
+			while (j < p) { //buff에 있는걸 a에 빼서 준다고 생각! buff에 데이터가 남아있단건 그 수만큼 정렬이 안되어있다!!는것.
 				a[k++] = buff[j++]; //한칸 오른쪽 이동된 a에 남은값 채우기			
 			}
 		}
