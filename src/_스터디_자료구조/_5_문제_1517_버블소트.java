@@ -9,8 +9,8 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class _5_문제_1517_버블소트 {
+	
 	static int count = 0;
-
 	static int bubbleSort(int[] bubble, int dataSize) {
 		int k = 0;
 		while (true) {
@@ -30,6 +30,12 @@ public class _5_문제_1517_버블소트 {
 		}
 		return count;
 	}
+	
+	static void swap(int[] bubble, int index1, int index2) {
+		int temp = bubble[index1];
+		bubble[index1] = bubble[index2];
+		bubble[index2] = temp;
+	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,16 +51,12 @@ public class _5_문제_1517_버블소트 {
 			i++;
 		}
 
-		bubbleSort(bubble, dataSize);
+		bubbleSort(bubble, dataSize);		
 		bw.write(String.valueOf(count));
 		bw.flush();
-		bw.close();
+		bw.close();		
 	}
 	
-	static void swap(int[] bubble, int index1, int index2) {
-		int temp = bubble[index1];
-		bubble[index1] = bubble[index2];
-		bubble[index2] = temp;
-	}
+	
 
 }

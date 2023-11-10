@@ -20,34 +20,20 @@ public class _5_문제_1517_버블소트2 {
 		for (int i = 0; i < dataSize;) {
 			bubble[i] = Integer.parseInt(data.nextToken());
 			i++;
-		}
-
-//		int count = 0;
-//		for (int i = 0; i < dataSize; i++) {
-//			for (int j = i + 1; j < dataSize; j++) {
-//				if (bubble[i] > bubble[j]) {
-//					count++;
-//				}
-//			}
-//		}
-
+		}		
 		int count = 0;
-		System.out.println(halfsize(bubble, dataSize, count));
-	}
-
-	public static int halfsize(int[] bubble, int dataSize, int count) {		
-		if (dataSize == 1) {
-			return count;
-		}
-		dataSize = dataSize / 2;
-		for (int i = 0; i < dataSize; i += dataSize) {
-			for (int j = i + 1; j < dataSize; j += dataSize) {
-				if (bubble[i] > bubble[j]) {
+		for (int i = 0; i < dataSize; i++) {
+			for (int j = i + 1; j < dataSize; j++) {
+				if (bubble[i] < bubble[j]) {
 					count++;
-					halfsize(bubble, dataSize, count);
 				}
 			}
-		}
-		return count;
+		}		
+		
+		bw.write(String.valueOf(count));	
+		bw.flush();
+		bw.close();		
 	}
 }
+//9
+//6 7 5 1 2 4 9 8 3
