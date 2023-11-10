@@ -16,11 +16,13 @@ public class _5_문제_1517_버블소트5 {
 			int i;
 			int center = (left + right) / 2;
 			int p = 0; //buff에 복사된 배열 수
-			int j = 0; //현재까지 병합된 수
+			int j = 0; //현재까지 병합된 수(buff에서 a로 얼마나 반영됐는지 p-j는 buff에 남은양)
 			int k = left; // sort후 a[]에 다시 넣을때
 
-			__mergeSort(a, left, center);
-			__mergeSort(a, center + 1, right);
+			__mergeSort(a, left, center); //왼쪽 반 - 양념반 후라이드반 나누기
+			__mergeSort(a, center + 1, right); //오른쪽 반
+			
+			//여기까지가 계속해서 쪼개는 부분
 
 			for (i = left; i <= center; i++) {
 				buff[p++] = a[i];

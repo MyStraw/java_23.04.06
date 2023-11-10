@@ -19,7 +19,6 @@ public class _5_문제_24056_알고리즘수업_삽입정렬6_3 {
 	}
 
 	static int insertionSort(int[] A, int[] B, int dataSize) {
-
 		for (int i = 0; i < dataSize; i++) { // 맨 왼쪽은 정렬이 끝났다고 가정
 			if (sameSame(A, B, dataSize)) {
 				return 1;
@@ -35,7 +34,6 @@ public class _5_문제_24056_알고리즘수업_삽입정렬6_3 {
 			A[j] = temp;
 		}
 		return 0;
-
 	}
 
 	public static void main(String[] args) throws IOException {
