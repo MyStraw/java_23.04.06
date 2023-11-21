@@ -1,7 +1,7 @@
 package _스터디_자료구조;
 
-import Chap4_스택과큐.EmptyIntStackException;
-import Chap4_스택과큐.OverflowIntStackException;
+import Chap4_스택과큐.IntStack_book.EmptyIntStackException;
+import Chap4_스택과큐.IntStack_book.OverflowIntStackException;
 
 public class _3_스택 {
 }

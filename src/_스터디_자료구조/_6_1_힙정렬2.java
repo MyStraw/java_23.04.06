@@ -20,9 +20,6 @@ public class _6_1_힙정렬2 {
 		for (int i = n - 1; i > 0; i--) {
 			// 루트를 배열의 마지막 요소와 교환
 			swap(arr, 0, i);
-//			int temp = arr[0];
-//			arr[0] = arr[i];
-//			arr[i] = temp;
 
 			// 힙의 크기를 줄이고, 힙 속성을 다시 맞춤
 			heapify(arr, i, 0);
@@ -62,12 +59,7 @@ public class _6_1_힙정렬2 {
 
 		// largest가 루트가 아니라면 교환하고, 하위 트리에 대해 heapify를 재귀호출. 2번째가 바뀌었을때 그 하위도 또 해야
 		if (largest != i) {
-			swap(arr, i, largest);
-//			int swap = arr[i];
-//			arr[i] = arr[largest];
-//			arr[largest] = swap;
-
-			// 재귀적로 하위 트리
+			swap(arr, i, largest);			
 			heapify(arr, n, largest);
 		}
 	}
