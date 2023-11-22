@@ -102,7 +102,7 @@ public class _7_1_브루트포스법 {
 
 		System.out.println("패  턴 ");
 		String s2 = sc.next();
-
+		
 		// int idx = bfMatch(s1, s2);
 		//int idx = kmpMatch(s1, s2);
 		int idx = bmMatch(s1,s2);
