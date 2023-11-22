@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class _7_문제_11279_최대힙 {
+public class _7_문제_11279_최대힙4 {
 
 	static void swap(ArrayList<Integer> arr, int idx1, int idx2) {
 		int temp = arr.get(idx1);
@@ -64,29 +64,6 @@ public class _7_문제_11279_최대힙 {
 					bw.write("0\n");
 				}
 			}
-
-//			if (x == 0) {
-//				if (!heap.isEmpty()) {
-//					if (heap.size() >= 2) {
-//						
-//						int n = heap.size();
-//						for (int j = n - 1; j > 0; j--) {
-//							// 루트를 배열의 마지막 요소와 교환
-//							swap(heap, 0, j);
-//							if (heap.get(j) == 0)
-//								System.out.println(heap.get(j));
-//							// 힙의 크기를 줄이고, 힙 속성을 다시 맞춤
-//							heapify(heap, j, 0);
-//						}
-//						System.out.println(heap.get(heap.lastIndexOf(heap)));
-//						heap.remove(heap.lastIndexOf(heap));
-//					} else if (heap.size() < 2) {
-//						System.out.println(x);
-//					}
-//				} else if (heap.isEmpty()) {
-//					System.out.println("0");
-//				}
-//			}
 		}
 		bw.flush();
 		bw.close();

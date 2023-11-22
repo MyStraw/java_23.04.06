@@ -34,7 +34,6 @@ public class _7_1_브루트포스법2 {
 				len2 += s1.substring(i, i + 1).getBytes().length;
 			}
 			len2 += s2.length();
-
 			
 			System.out.println("텍스트: " + s1);
 			System.out.printf(String.format("패  턴: %%%ds\n", len1), s2);

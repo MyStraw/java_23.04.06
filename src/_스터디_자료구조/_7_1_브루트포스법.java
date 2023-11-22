@@ -3,7 +3,6 @@ package _스터디_자료구조;
 import java.util.Scanner;
 
 public class _7_1_브루트포스법 {
-
 	static int bmMatch(String txt, String pat) {
 		int pt;
 		int pp;
@@ -19,9 +18,7 @@ public class _7_1_브루트포스법 {
 		for (pt = 0; pt < patLen - 1; pt++) {
 			skip[pat.charAt(pt)] = patLen - pt - 1;
 		}
-
 		// 검색
-
 		while (pt < txtLen) {
 			pp = patLen - 1;
 			while (txt.charAt(pt) == pat.charAt(pp)) {
@@ -32,11 +29,11 @@ public class _7_1_브루트포스법 {
 				pt--;
 			}
 			pt += (skip[txt.charAt(pt)] > patLen - pp) ? skip[txt.charAt(pt)] : patLen - pp;
+			//pt += Math.max(skip[txt.charAt(pt)], patLen - pp);
 		}
-
 		return -1;
 	}
-
+//--------------------------------------------------------------------------------------------
 	static int kmpMatch(String txt, String pat) {
 		int pt = 1;
 		int pp = 0;
@@ -72,9 +69,8 @@ public class _7_1_브루트포스법 {
 			return pt - pp;
 		}
 		return -1;
-
 	}
-
+	//--------------------------------------------------------------------------------------------
 	static int bfMatch(String txt, String pat) {
 		int pt = 0;
 		int pp = 0;
@@ -93,7 +89,7 @@ public class _7_1_브루트포스법 {
 		}
 		return -1;
 	}
-
+	//--------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
