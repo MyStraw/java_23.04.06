@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
-public class _7_문제_24173_알고리즘수업_힙정렬2 {
+public class _7_문제_24174_알고리즘수업_힙정렬2 {
 	public static int count = 0;
 	public static int K = 0;
 
