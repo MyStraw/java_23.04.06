@@ -2,7 +2,7 @@ package BaekJoon.notyet;
 
 import java.util.Scanner;
 
-public class _8437_Julka {
+public class _8437_Julka { //미완
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		

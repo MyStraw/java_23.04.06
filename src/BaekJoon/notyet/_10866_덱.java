@@ -6,22 +6,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class _10866_덱 {
+public class _10866_덱 { //제출해
 	static int N;
 
 	static class IntDeque {
 		private int[] deque;
 		private int capacity;
-		private int front; // 맨 처음 요소 커서
-		private int back; // 맨 끝 요소 커서
-		private int num; // 현재 데이터 개수
+		private int front; 
+		private int back; 
+		private int num; 
 
 		public IntDeque(int i) {
 			num = front = back = 0;
 			capacity = i;
 			try {
-				deque = new int[capacity]; // 큐 본체용 배열을 생성
-			} catch (OutOfMemoryError e) { // 생성할 수 없음
+				deque = new int[capacity];
+			} catch (OutOfMemoryError e) { 
 				capacity = 0;
 			}
 		}
@@ -47,18 +47,20 @@ public class _10866_덱 {
 		}
 
 		public int popFront() {		
-			if (num <= 0)
-				return -1;
+			if (num == 0)
+				return -1;	
 			int x = deque[front++];
 			num--;
-			
+				
 			return x;
 		}
 
 		public int popBack() {
-			if (num <= 0)
-				return -1;			
+			if (num == 0)
+				return -1;		
+			num--;
 			return deque[--back];
+			
 		}		
 		
 

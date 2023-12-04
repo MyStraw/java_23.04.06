@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,66 +6,50 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class _10845_큐 {
+public class _10828_스택 {
 	static int N;
 
-	static class IntQue {
-		private int[] que;
+	static class IntStack {
+		private int[] stk;
 		private int capacity;
-		private int front; // 맨 처음 요소 커서
-		private int rear; // 맨 끝 요소 커서
-		private int num; // 현재 데이터 개수
+		private int point;
 
-		public IntQue(int i) {
-			num = front = rear = 0;
-			capacity = i;
+		public IntStack(int maxLen) {
+			point = 0;
+			capacity = maxLen;
 			try {
-				que = new int[capacity]; // 큐 본체용 배열을 생성
-			} catch (OutOfMemoryError e) { // 생성할 수 없음
+				stk = new int[capacity];
+
+			} catch (OutOfMemoryError e) {
 				capacity = 0;
 			}
 		}
 
 		public int push(int x) {
-			que[rear++] = x;
-			num++;
-			if (rear == capacity)
-				rear = 0;
-			return x;
+			return stk[point++] = x;
 		}
 
 		public int pop() {
-			if (num <= 0)
+			if (point <= 0)
 				return -1;
-			int x = que[front++];
-			num--;
-			if (front == capacity)
-				front = 0;
-			return x;
+			return stk[--point];
 		}
 
 		public int size() {
-			return num;
+			return point;
 		}
 
 		public int empty() {
-			if (num == 0)
+			if (point == 0)
 				return 1;
 			return 0;
 		}
 
-		public int front() {
-			if (num == 0) {
+		public int top() {
+			if (point == 0) {
 				return -1;
 			}
-			return que[front];
-		}
-
-		public int back() {
-			if (num == 0) {
-				return -1;
-			}
-			return que[rear - 1];
+			return stk[point - 1];
 		}
 
 	}
@@ -76,7 +60,7 @@ public class _10845_큐 {
 
 		N = Integer.parseInt(br.readLine());
 
-		IntQue intStack = new IntQue(N);
+		IntStack intStack = new IntStack(N);
 
 		for (int i = 0; i < N; i++) {
 			String order = br.readLine();
@@ -90,12 +74,9 @@ public class _10845_큐 {
 				System.out.println(intStack.size());
 			} else if (order.equals("empty")) {
 				System.out.println(intStack.empty());
-			} else if (order.equals("front")) {
-				System.out.println(intStack.front());
-			} else if (order.equals("back")) {
-				System.out.println(intStack.back());
+			} else if (order.equals("top")) {
+				System.out.println(intStack.top());
 			}
-
 		}
 	}
 

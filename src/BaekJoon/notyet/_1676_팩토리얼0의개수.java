@@ -2,7 +2,7 @@ package BaekJoon.notyet;
 
 import java.util.Scanner;
 
-public class _1676_팩토리얼0의개수 {
+public class _1676_팩토리얼0의개수 { //미완
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
