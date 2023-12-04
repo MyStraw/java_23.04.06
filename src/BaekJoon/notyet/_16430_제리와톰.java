@@ -2,13 +2,15 @@ package BaekJoon.notyet;
 
 import java.util.Scanner;
 
-public class _8545_Zadanie_probne {
+public class _16430_제리와톰 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		String abc = sc.next();
+		int A = sc.nextInt();
+		int B = sc.nextInt();
 		
-		char [] zadanie = abc.toCharArray();				
-
+		System.out.print(B-A+" ");
+		System.out.println(B);
 	}
+
 }

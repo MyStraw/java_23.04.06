@@ -9,47 +9,63 @@ import java.io.OutputStreamWriter;
 public class _10845_큐 {
 	static int N;
 
-	static class IntStack {
-		private int[] stk;
+	static class IntQue {
+		private int[] que;
 		private int capacity;
-		private int point;
+		private int front; // 맨 처음 요소 커서
+		private int rear; // 맨 끝 요소 커서
+		private int num; // 현재 데이터 개수
 
-		public IntStack(int maxLen) {
-			point = 0;
-			capacity = maxLen;
+		public IntQue(int i) {
+			num = front = rear = 0;
+			capacity = i;
 			try {
-				stk = new int[capacity];
-
-			} catch (OutOfMemoryError e) {
+				que = new int[capacity]; // 큐 본체용 배열을 생성
+			} catch (OutOfMemoryError e) { // 생성할 수 없음
 				capacity = 0;
 			}
 		}
 
 		public int push(int x) {
-			return stk[point++] = x;
+			que[rear++] = x;
+			num++;
+			if (rear == capacity)
+				rear = 0;
+			return x;
 		}
 
 		public int pop() {
-			if (point <= 0)
+			if (num <= 0)
 				return -1;
-			return stk[--point];
+			int x = que[front++];
+			num--;
+			if (front == capacity)
+				front = 0;
+			return x;
 		}
 
 		public int size() {
-			return point;
+			return num;
 		}
 
 		public int empty() {
-			if (point == 0)
+			if (num == 0)
 				return 1;
 			return 0;
 		}
 
-		public int top() {
-			if (point == 0) {
+		public int front() {
+			if (num == 0) {
 				return -1;
 			}
-			return stk[point-1];
+			return que[front];
+		}
+
+		public int back() {
+			if (num == 0) {
+				return -1;
+			}
+			return que[rear - 1];
 		}
 
 	}
@@ -60,7 +76,7 @@ public class _10845_큐 {
 
 		N = Integer.parseInt(br.readLine());
 
-		IntStack intStack = new IntStack(N);
+		IntQue intStack = new IntQue(N);
 
 		for (int i = 0; i < N; i++) {
 			String order = br.readLine();
@@ -74,9 +90,12 @@ public class _10845_큐 {
 				System.out.println(intStack.size());
 			} else if (order.equals("empty")) {
 				System.out.println(intStack.empty());
-			} else if (order.equals("top")) {
-				System.out.println(intStack.top());
+			} else if (order.equals("front")) {
+				System.out.println(intStack.front());
+			} else if (order.equals("back")) {
+				System.out.println(intStack.back());
 			}
+
 		}
 	}
 
