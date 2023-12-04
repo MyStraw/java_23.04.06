@@ -9,49 +9,82 @@ import java.io.OutputStreamWriter;
 public class _10866_덱 {
 	static int N;
 
-	static class IntStack {
-		private int[] stk;
+	static class IntDeque {
+		private int[] deque;
 		private int capacity;
-		private int point;
+		private int front; // 맨 처음 요소 커서
+		private int back; // 맨 끝 요소 커서
+		private int num; // 현재 데이터 개수
 
-		public IntStack(int maxLen) {
-			point = 0;
-			capacity = maxLen;
+		public IntDeque(int i) {
+			num = front = back = 0;
+			capacity = i;
 			try {
-				stk = new int[capacity];
-
-			} catch (OutOfMemoryError e) {
+				deque = new int[capacity]; // 큐 본체용 배열을 생성
+			} catch (OutOfMemoryError e) { // 생성할 수 없음
 				capacity = 0;
 			}
 		}
 
-		public int push(int x) {
-			return stk[point++] = x;
+		public int pushFront(int x) {
+			if (back == capacity)
+				back = 0;
+			back++;
+			num++;
+			for (int i = N - 2; i >= 0; i--) {
+				deque[i + 1] = deque[i];
+			}
+			deque[front] = x;			
+			return x;
 		}
 
-		public int pop() {
-			if (point <= 0)
-				return -1;
-			return stk[--point];
+		public int pushBack(int x) {
+			deque[back++] = x;
+			num++;
+			if (back == capacity)
+				back = 0;
+			return x;
 		}
+
+		public int popFront() {		
+			if (num <= 0)
+				return -1;
+			int x = deque[front++];
+			num--;
+			
+			return x;
+		}
+
+		public int popBack() {
+			if (num <= 0)
+				return -1;			
+			return deque[--back];
+		}		
+		
 
 		public int size() {
-			return point;
+			return num;
 		}
 
 		public int empty() {
-			if (point == 0)
+			if (num == 0)
 				return 1;
 			return 0;
 		}
 
-		public int top() {
-			if (point == 0) {
+		public int front() {
+			if (num == 0) {
 				return -1;
 			}
-			return stk[point-1];
+			return deque[front];
 		}
 
+		public int back() {
+			if (num == 0) {
+				return -1;
+			}
+			return deque[back - 1];
+		}
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -60,22 +93,30 @@ public class _10866_덱 {
 
 		N = Integer.parseInt(br.readLine());
 
-		IntStack intStack = new IntStack(N);
+		IntDeque intDeque = new IntDeque(N);
 
 		for (int i = 0; i < N; i++) {
 			String order = br.readLine();
-			if (order.startsWith("push")) {
+			if (order.startsWith("push_front")) {
 				String[] command = order.split(" ");
 				int num = Integer.parseInt(command[1]);
-				intStack.push(num);
-			} else if (order.equals("pop")) {
-				System.out.println(intStack.pop());
+				intDeque.pushFront(num);
+			} else if (order.startsWith("push_back")) {
+				String[] command = order.split(" ");
+				int num = Integer.parseInt(command[1]);
+				intDeque.pushBack(num);
+			} else if (order.equals("pop_front")) {
+				System.out.println(intDeque.popFront());
+			} else if (order.equals("pop_back")) {
+				System.out.println(intDeque.popBack());
 			} else if (order.equals("size")) {
-				System.out.println(intStack.size());
+				System.out.println(intDeque.size());
 			} else if (order.equals("empty")) {
-				System.out.println(intStack.empty());
-			} else if (order.equals("top")) {
-				System.out.println(intStack.top());
+				System.out.println(intDeque.empty());
+			} else if (order.equals("front")) {
+				System.out.println(intDeque.front());
+			} else if (order.equals("back")) {
+				System.out.println(intDeque.back());
 			}
 		}
 	}
