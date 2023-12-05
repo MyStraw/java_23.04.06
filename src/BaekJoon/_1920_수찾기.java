@@ -1,4 +1,4 @@
-package BaekJoon.notyet;
+package BaekJoon;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,7 +30,7 @@ public class _1920_수찾기 { // 제출해
 
 		Arrays.sort(A);
 
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < M; i++) {
 			int a = Arrays.binarySearch(A, B[i]);
 			if (a >= 0) {
 				bw.write(String.valueOf("1\n"));
@@ -39,7 +39,6 @@ public class _1920_수찾기 { // 제출해
 		}
 		bw.flush();
 		bw.close();
-
 	}
 
 }
