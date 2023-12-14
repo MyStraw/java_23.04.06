@@ -70,22 +70,26 @@ public class _5430_AC {
 			if (D) {
 				bw.write("error\n");
 			} else {
-				if (reverseCount % 2 == 0) {					
-					bw.write("[");				
-					int dequeSize = deque.size()-1; //이렇게 안하면 하나 poll 할때마다 size가 변동된다
-					for (int k = 0; k < dequeSize; k++) {
-						bw.write(String.valueOf(deque.pollFirst() + ","));
-					}
-					bw.write(String.valueOf(deque.pollFirst() + "]\n"));
+				if (!deque.isEmpty()) {
+					if (reverseCount % 2 == 0) {
+						bw.write("[");
+						int dequeSize = deque.size() - 1; // 이렇게 안하면 하나 poll 할때마다 size가 변동된다
+						for (int k = 0; k < dequeSize; k++) {
+							bw.write(String.valueOf(deque.pollFirst() + ","));
+						}
+						bw.write(String.valueOf(deque.pollFirst() + "]\n"));
 
-				} else if (reverseCount % 2 == 1) {			
-					bw.write("[");				
-					int dequeSize = deque.size()-1;
-					for (int k = 0; k < dequeSize; k++) {
-						bw.write(String.valueOf(deque.pollLast() + ","));
+					} else if (reverseCount % 2 == 1) {
+						bw.write("[");
+						int dequeSize = deque.size() - 1;
+						for (int k = 0; k < dequeSize; k++) {
+							bw.write(String.valueOf(deque.pollLast() + ","));
+						}
+						bw.write(String.valueOf(deque.pollLast() + "]\n"));
 					}
-					bw.write(String.valueOf(deque.pollLast() + "]\n"));
-				}
+				} else
+					bw.write("[]\n");
+
 			}
 
 		}
